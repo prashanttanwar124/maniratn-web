@@ -3,10 +3,11 @@ import { Head, router } from '@inertiajs/vue3';
 import { onMounted, onUnmounted } from 'vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import TheNav from '@/components/maniratn/TheNav.vue';
-import TheFooter from '@/components/maniratn/TheFooter.vue';
+import TheNav       from '@/components/maniratn/TheNav.vue';
+import TheFooter    from '@/components/maniratn/TheFooter.vue';
 import TheAccordion from '@/components/maniratn/TheAccordion.vue';
-import HeroShader from '@/components/maniratn/HeroShader.vue';
+import HeroShader   from '@/components/maniratn/HeroShader.vue';
+import CustomCursor from '@/components/maniratn/CustomCursor.vue';
 import { collections as collectionsRoute, contact } from '@/routes';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -18,35 +19,35 @@ function navigate(page: string) {
 }
 
 const collections = [
-    { name: 'Bridal Collection', desc: 'Timeless sets for your most precious day', tag: 'Signature', icon: '💍' },
-    { name: 'Temple Jewellery', desc: 'Traditional designs rooted in heritage', tag: 'Heritage', icon: '🪔' },
-    { name: 'Daily Wear', desc: 'Elegant, lightweight pieces for everyday grace', tag: 'Everyday', icon: '✨' },
-    { name: 'Diamond Solitaires', desc: 'Brilliant cuts, exceptional clarity', tag: 'Premium', icon: '💎' },
+    { name: 'Bridal Collection', desc: 'Timeless sets for your most precious day',    tag: 'Signature', icon: '💍' },
+    { name: 'Temple Jewellery',  desc: 'Traditional designs rooted in heritage',       tag: 'Heritage',  icon: '🪔' },
+    { name: 'Daily Wear',        desc: 'Elegant, lightweight pieces for everyday grace',tag: 'Everyday',  icon: '✨' },
+    { name: 'Diamond Solitaires',desc: 'Brilliant cuts, exceptional clarity',          tag: 'Premium',   icon: '💎' },
 ];
 
 const faqItems = [
-    { title: 'What materials do you use?', content: 'All our ornaments are crafted from 22K and 24K hallmarked gold, certified BIS-standard silver, and ethically sourced gemstones including diamonds, rubies, emeralds, and sapphires. Every piece comes with a quality certificate.' },
-    { title: 'Do you offer custom jewellery?', content: 'Yes, we specialise in bespoke commissions. From bridal sets to heirloom pieces, our master craftsmen work closely with you from design sketch to final delivery. Visit our store or contact us to begin your custom journey.' },
-    { title: 'What is your exchange & return policy?', content: 'We offer lifetime exchange on all gold ornaments at the prevailing market rate. Returns are accepted within 7 days of purchase for unused, unworn pieces accompanied by the original bill and packaging.' },
-    { title: 'How do I care for my jewellery?', content: 'Store pieces individually in soft-lined boxes to prevent scratching. Avoid contact with perfumes, chemicals, or chlorinated water. Bring your jewellery to us annually for a complimentary professional cleaning and inspection.' },
-    { title: 'Do you provide EMI or instalment plans?', content: 'We offer flexible monthly instalment schemes for purchases above ₹25,000. We also partner with leading banks for 0% EMI options on select purchases. Ask our team for details in-store.' },
+    { title: 'What materials do you use?',           content: 'All our ornaments are crafted from 22K and 24K hallmarked gold, certified BIS-standard silver, and ethically sourced gemstones including diamonds, rubies, emeralds, and sapphires. Every piece comes with a quality certificate.' },
+    { title: 'Do you offer custom jewellery?',       content: 'Yes, we specialise in bespoke commissions. From bridal sets to heirloom pieces, our master craftsmen work closely with you from design sketch to final delivery. Visit our store or contact us to begin your custom journey.' },
+    { title: 'What is your exchange & return policy?',content: 'We offer lifetime exchange on all gold ornaments at the prevailing market rate. Returns are accepted within 7 days of purchase for unused, unworn pieces accompanied by the original bill and packaging.' },
+    { title: 'How do I care for my jewellery?',      content: 'Store pieces individually in soft-lined boxes to prevent scratching. Avoid contact with perfumes, chemicals, or chlorinated water. Bring your jewellery to us annually for a complimentary professional cleaning and inspection.' },
+    { title: 'Do you provide EMI or instalment plans?',content: 'We offer flexible monthly instalment schemes for purchases above ₹25,000. We also partner with leading banks for 0% EMI options on select purchases. Ask our team for details in-store.' },
 ];
 
 const featurePoints: [string, string][] = [
-    ['BIS Hallmarked', 'Certified purity on every piece'],
-    ['Custom Orders', 'Bespoke designs, your vision'],
+    ['BIS Hallmarked',   'Certified purity on every piece'],
+    ['Custom Orders',    'Bespoke designs, your vision'],
     ['Expert Craftsmen', 'Artisans with decades of skill'],
-    ['Lifetime Exchange', 'Trust that lasts forever'],
+    ['Lifetime Exchange','Trust that lasts forever'],
 ];
 
 const marqueeItems = Array(4)
-    .fill(['✦ Handcrafted Gold', '✦ BIS Hallmarked', '✦ Custom Orders', '✦ Lifetime Exchange', '✦ 18 Years of Trust', '✦ Diamond Certified'])
+    .fill(['✦ Handcrafted Gold','✦ BIS Hallmarked','✦ Custom Orders','✦ Lifetime Exchange','✦ 18 Years of Trust','✦ Diamond Certified'])
     .flat();
 
 const stats: [string, string][] = [
-    ['18+', 'Years of craft'],
+    ['18+',   'Years of craft'],
     ['5000+', 'Happy families'],
-    ['100%', 'Hallmarked gold'],
+    ['100%',  'Hallmarked gold'],
 ];
 
 const cardGradients = [
@@ -56,14 +57,21 @@ const cardGradients = [
     'linear-gradient(135deg,#0A0A1A 0%,#1A1A3A 55%,#2A2A5A 100%)',
 ];
 
+const promiseStats: [string, string, string][] = [
+    ['18+',   'Years',      'of service'],
+    ['5000+', 'Families',   'served'],
+    ['100%',  'Purity',     'guaranteed'],
+    ['0%',    'Compromise', 'on quality'],
+];
+
 onMounted(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.from('.hero-eyebrow', { y: 20, opacity: 0, duration: 0.6, delay: 0.4 })
+    tl.from('.hero-eyebrow', { y: 20, opacity: 0, duration: 0.6, delay: 0.5 })
       .from('.hero-title',   { y: 44, opacity: 0, duration: 0.9 }, '-=0.35')
       .from('.hero-body',    { y: 22, opacity: 0, duration: 0.65 }, '-=0.55')
-      .from('.hero-cta',     { y: 20, opacity: 0, duration: 0.5 }, '-=0.4')
-      .from('.hero-stats',   { y: 20, opacity: 0, duration: 0.5 }, '-=0.3')
-      .from('.hero-image-card', { y: 24, opacity: 0, duration: 0.55 }, '-=0.3');
+      .from('.hero-cta',     { y: 20, opacity: 0, duration: 0.5 },  '-=0.4')
+      .from('.hero-stats',   { y: 20, opacity: 0, duration: 0.5 },  '-=0.3')
+      .from('.hero-card',    { y: 24, opacity: 0, duration: 0.55 }, '-=0.3');
 
     gsap.from('.collection-item', {
         scrollTrigger: { trigger: '.collections-grid', start: 'top 82%' },
@@ -87,23 +95,29 @@ onMounted(() => {
     });
 });
 
-onUnmounted(() => {
-    ScrollTrigger.killAll();
-});
+onUnmounted(() => { ScrollTrigger.killAll(); });
 </script>
 
 <template>
     <Head title="Maniratn Jewellers — Since 2007" />
+
+    <!-- Global custom cursor -->
+    <CustomCursor />
+
     <TheNav current-page="home" hero-variant="dark" />
 
     <div class="mj-page">
-        <!-- ── Hero ──────────────────────────────────────────── -->
-        <section class="mj-hero">
-            <!-- Left: content -->
-            <div class="mj-hero-content">
-                <div class="mj-hero-deco-ring mj-hero-deco-ring--tl"></div>
-                <div class="mj-hero-deco-ring mj-hero-deco-ring--br"></div>
 
+        <!-- ── Hero: full-width with shader bg ────────────── -->
+        <section class="mj-hero">
+            <!-- Layer 0: WebGL shader fills entire hero -->
+            <HeroShader />
+
+            <!-- Layer 1: gradient overlay — ensures left text is legible -->
+            <div class="mj-hero-overlay"></div>
+
+            <!-- Layer 2: content -->
+            <div class="mj-hero-content">
                 <div class="hero-eyebrow">
                     <div class="mj-ew-line"></div>
                     <span>Since 2007</span>
@@ -133,37 +147,16 @@ onUnmounted(() => {
                 </div>
             </div>
 
-            <!-- Right: WebGL shader -->
-            <div class="mj-hero-shader">
-                <HeroShader />
-
-                <!-- Overlay: floating info pills -->
-                <div class="mj-shader-overlay">
-                    <div class="mj-hero-pill mj-hero-pill--tl">
-                        <span class="mj-pill-dot"></span>
-                        <span>22K Hallmarked Gold</span>
-                    </div>
-                    <div class="mj-hero-pill mj-hero-pill--tr">
-                        <span class="mj-pill-dot"></span>
-                        <span>BIS Certified</span>
-                    </div>
-                    <div class="mj-hero-pill mj-hero-pill--bl">
-                        <span class="mj-pill-dot"></span>
-                        <span>Custom Orders</span>
-                    </div>
+            <!-- Layer 3: bottom-right arrival card -->
+            <div class="hero-card">
+                <svg width="10" height="10" viewBox="0 0 8 8" style="flex-shrink:0">
+                    <rect x="4" y="0" width="4" height="4" transform="rotate(45 4 4)" fill="#C4922A"/>
+                </svg>
+                <div>
+                    <div class="hero-card-title">New Arrival — Bridal 2025</div>
+                    <div class="hero-card-sub">Navaratna necklace set · 22K gold</div>
                 </div>
-
-                <!-- Bottom arrival card -->
-                <div class="hero-image-card">
-                    <svg width="10" height="10" viewBox="0 0 8 8" style="flex-shrink:0">
-                        <rect x="4" y="0" width="4" height="4" transform="rotate(45 4 4)" fill="#C4922A"/>
-                    </svg>
-                    <div>
-                        <div class="mj-card-title">New Arrival — Bridal 2025</div>
-                        <div class="mj-card-sub">Navaratna necklace set · 22K gold</div>
-                    </div>
-                    <button class="mj-card-link" @click="navigate('collections')">View →</button>
-                </div>
+                <button class="hero-card-link" @click="navigate('collections')">View →</button>
             </div>
         </section>
 
@@ -182,17 +175,14 @@ onUnmounted(() => {
                         <svg width="8" height="8" viewBox="0 0 8 8"><rect x="4" y="0" width="4" height="4" transform="rotate(45 4 4)" fill="#C4922A"/></svg>
                         <span class="mj-eyebrow">Our Collections</span>
                     </div>
-                    <h2 class="mj-section-h2">
-                        Crafted for every<br><em class="mj-crimson-i">occasion</em>
-                    </h2>
+                    <h2 class="mj-section-h2">Crafted for every<br><em class="mj-crimson-i">occasion</em></h2>
                 </div>
                 <button class="mj-view-all" @click="navigate('collections')">View All →</button>
             </div>
 
             <div class="collections-grid">
                 <div
-                    v-for="(col, i) in collections"
-                    :key="i"
+                    v-for="(col, i) in collections" :key="i"
                     class="collection-item"
                     @click="navigate('collections')"
                 >
@@ -200,9 +190,7 @@ onUnmounted(() => {
                         <div class="mj-col-ring mj-col-ring--1"></div>
                         <div class="mj-col-ring mj-col-ring--2"></div>
                         <span class="mj-col-icon">{{ col.icon }}</span>
-                        <div class="col-overlay">
-                            <span>Explore</span>
-                        </div>
+                        <div class="col-overlay"><span>Explore</span></div>
                     </div>
                     <div class="mj-col-body">
                         <div class="mj-col-row">
@@ -215,7 +203,7 @@ onUnmounted(() => {
             </div>
         </section>
 
-        <!-- ── Promise ──────────��───────────────────────────── -->
+        <!-- ── Promise ──────────────────────────────────────── -->
         <section class="feature-section">
             <div class="mj-promise-text">
                 <div class="mj-eyebrow-row">
@@ -223,8 +211,7 @@ onUnmounted(() => {
                     <span class="mj-eyebrow" style="color:var(--mj-gold-light)">Our Promise</span>
                 </div>
                 <h2 class="mj-promise-h2">
-                    Jewellery that carries<br>
-                    <em class="mj-gold-i">generations</em> of love
+                    Jewellery that carries<br><em class="mj-gold-i">generations</em> of love
                 </h2>
                 <p class="mj-promise-body">
                     For over 18 years, Maniratn Jewellers has been the trusted choice for families
@@ -256,7 +243,7 @@ onUnmounted(() => {
             </div>
         </section>
 
-        <!-- ── FAQ ──────────────��───────────────────────────── -->
+        <!-- ── FAQ ──────────────────────────────────────────── -->
         <section class="faq-section">
             <div class="mj-faq-inner">
                 <div class="mj-faq-head">
@@ -272,18 +259,16 @@ onUnmounted(() => {
             </div>
         </section>
 
-        <!-- ── CTA ───────────────────��────────────────���─────── -->
+        <!-- ── CTA ──────────────────────────────────────────── -->
         <section class="cta-section">
             <div class="mj-cta-inner">
                 <svg width="28" height="28" viewBox="0 0 16 16" style="margin:0 auto 28px;display:block">
                     <path d="M8 0 L9 7 L16 8 L9 9 L8 16 L7 9 L0 8 L7 7Z" fill="#C4922A" opacity="0.85"/>
                 </svg>
                 <h2 class="mj-cta-h2">Begin your jewellery journey</h2>
-                <p class="mj-cta-body">
-                    Visit our store or get in touch — we're here to help you find the perfect piece.
-                </p>
+                <p class="mj-cta-body">Visit our store or get in touch — we're here to help you find the perfect piece.</p>
                 <div class="mj-cta-btns">
-                    <button class="mj-btn-gold mj-cta-btn" @click="navigate('contact')">Contact Us</button>
+                    <button class="mj-btn-gold  mj-cta-btn" @click="navigate('contact')">Contact Us</button>
                     <button class="mj-btn-ghost mj-cta-btn" @click="navigate('collections')">View Collections</button>
                 </div>
                 <div class="mj-cta-rule">
@@ -298,55 +283,52 @@ onUnmounted(() => {
     </div>
 </template>
 
-<script lang="ts">
-const promiseStats: [string, string, string][] = [
-    ['18+',   'Years',    'of service'],
-    ['5000+', 'Families', 'served'],
-    ['100%',  'Purity',   'guaranteed'],
-    ['0%',    'Compromise', 'on quality'],
-];
-</script>
-
 <style scoped>
-/* ── Page wrapper — kills all x-overflow ─────────────── */
-.mj-page {
-    overflow-x: hidden;
-    width: 100%;
-}
+/* ── Page wrapper ────────────────────────────────────── */
+.mj-page { overflow-x: hidden; width: 100%; }
 
-/* ── Hero ────────────────────��───────────────────────── */
+/* ── Hero: full-width shader background ─────────────── */
 .mj-hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    overflow: hidden;                /* prevent shader canvas overflow */
-}
-
-.mj-hero-content {
-    background: var(--mj-crimson);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 120px 64px 80px;
     position: relative;
+    min-height: 100vh;
     overflow: hidden;
-    min-width: 0;
+    display: flex;
+    align-items: center;
 }
 
-.mj-hero-deco-ring {
+/* Shader canvas sits in layer 0 (absolute, inset 0, from its own scoped style) */
+
+/* Gradient overlay: strong dark on left fades to nearly clear on right */
+.mj-hero-overlay {
     position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
+    inset: 0;
+    z-index: 1;
+    background:
+        /* left column: opaque dark so text is always readable */
+        linear-gradient(
+            105deg,
+            rgba(26, 6, 6, 0.98)   0%,
+            rgba(60, 12, 12, 0.93) 18%,
+            rgba(74, 13, 13, 0.82) 36%,
+            rgba(40,  8,  8, 0.45) 56%,
+            rgba(10,  2,  2, 0.10) 74%,
+            rgba(0,   0,  0, 0.00) 100%
+        ),
+        /* bottom fade — keeps card area legible */
+        linear-gradient(
+            to top,
+            rgba(10, 2, 2, 0.55) 0%,
+            rgba(0,  0, 0, 0.00) 28%
+        );
 }
-.mj-hero-deco-ring--tl {
-    top: -80px; right: -80px;
-    width: 320px; height: 320px;
-    border: 1px solid rgba(196,146,42,0.15);
-}
-.mj-hero-deco-ring--br {
-    bottom: 40px; left: -60px;
-    width: 220px; height: 220px;
-    border: 1px solid rgba(196,146,42,0.1);
+
+/* Content sits in layer 2 */
+.mj-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 148px 5% 110px 7%;
+    max-width: 620px;
+    width: 52%;
 }
 
 /* Eyebrow */
@@ -364,144 +346,102 @@ const promiseStats: [string, string, string][] = [
 /* Title */
 .hero-title {
     font-family: var(--mj-serif);
-    font-size: clamp(46px, 5vw, 74px);
-    font-weight: 300; line-height: 1.08;
+    font-size: clamp(56px, 6.5vw, 92px);
+    font-weight: 300; line-height: 1.03;
     color: var(--mj-cream);
-    margin-bottom: 28px; letter-spacing: 0.01em;
+    margin-bottom: 30px; letter-spacing: 0.005em;
+    text-shadow: 0 2px 32px rgba(0,0,0,0.4);
 }
-.hero-title em { font-weight: 400; font-style: italic; }
+.hero-title em { font-weight: 400; font-style: italic; color: rgba(253,248,240,0.92); }
 
 /* Body */
 .hero-body {
     font-family: var(--mj-sans);
-    font-size: 14px; line-height: 1.85;
-    color: rgba(253,248,240,0.62);
-    max-width: 340px; margin-bottom: 40px;
-    font-weight: 300;
+    font-size: 15px; line-height: 1.85;
+    color: rgba(253,248,240,0.65);
+    max-width: 380px; margin-bottom: 42px; font-weight: 300;
 }
 
-/* CTA */
+/* CTAs */
 .hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
 
 /* Stats */
 .hero-stats {
     display: flex; gap: 36px; flex-wrap: wrap;
     margin-top: 56px; padding-top: 28px;
-    border-top: 1px solid rgba(196,146,42,0.18);
+    border-top: 1px solid rgba(196,146,42,0.2);
 }
 .mj-stat-num {
-    display: block;
-    font-family: var(--mj-serif); font-size: 30px;
-    font-weight: 500; color: var(--mj-gold-light); line-height: 1;
+    display: block; font-family: var(--mj-serif);
+    font-size: 32px; font-weight: 500;
+    color: var(--mj-gold-light); line-height: 1;
 }
 .mj-stat-label {
-    display: block;
-    font-family: var(--mj-sans); font-size: 10px;
-    letter-spacing: 0.16em; color: rgba(253,248,240,0.4);
-    text-transform: uppercase; margin-top: 4px;
+    display: block; font-family: var(--mj-sans);
+    font-size: 10px; letter-spacing: 0.16em;
+    color: rgba(253,248,240,0.4); text-transform: uppercase; margin-top: 4px;
 }
 
-/* ── Shader panel ────────────────────────────────────── */
-.mj-hero-shader {
-    position: relative;
-    overflow: hidden;
-    min-height: 100vh;
-    min-width: 0;
-}
-
-/* Floating overlay pills */
-.mj-shader-overlay {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-}
-.mj-hero-pill {
-    position: absolute;
-    display: flex; align-items: center; gap: 8px;
-    background: rgba(10,4,4,0.55);
-    border: 1px solid rgba(196,146,42,0.3);
-    backdrop-filter: blur(8px);
-    padding: 9px 16px;
-    font-family: var(--mj-sans); font-size: 11px;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: rgba(232,201,109,0.9);
-    white-space: nowrap;
-}
-.mj-hero-pill--tl { top: 18%; left: 8%; }
-.mj-hero-pill--tr { top: 30%; right: 8%; }
-.mj-hero-pill--bl { bottom: 28%; left: 8%; }
-.mj-pill-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--mj-gold); flex-shrink: 0;
-    animation: mj-blink 2.4s ease-in-out infinite;
-}
-@keyframes mj-blink {
-    0%, 100% { opacity: 1; } 50% { opacity: 0.35; }
-}
-
-/* Bottom card on shader panel */
-.hero-image-card {
-    position: absolute; bottom: 32px; left: 24px; right: 24px;
-    background: rgba(10,4,4,0.75);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(196,146,42,0.25);
+/* Bottom-right arrival card (layer 3) */
+.hero-card {
+    position: absolute; z-index: 3;
+    bottom: 36px; right: 36px;
+    min-width: 280px; max-width: 340px;
+    background: rgba(8,3,3,0.72);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(196,146,42,0.28);
     border-top: 2px solid var(--mj-gold);
     padding: 18px 22px;
     display: flex; align-items: center; gap: 14px;
-    z-index: 2;
 }
-.mj-card-title {
+.hero-card-title {
     font-family: var(--mj-serif); font-size: 15px;
     font-weight: 500; color: var(--mj-cream); line-height: 1;
 }
-.mj-card-sub {
+.hero-card-sub {
     font-family: var(--mj-sans); font-size: 11px;
-    color: rgba(232,201,109,0.65); margin-top: 3px;
+    color: rgba(232,201,109,0.65); margin-top: 4px;
 }
-.mj-card-link {
-    margin-left: auto;
-    background: none; border: none; cursor: pointer;
+.hero-card-link {
+    margin-left: auto; flex-shrink: 0;
+    background: none; border: none;
     font-family: var(--mj-sans); font-size: 11px;
     letter-spacing: 0.1em; color: var(--mj-gold);
-    font-weight: 500; white-space: nowrap;
-    transition: color 0.2s;
+    font-weight: 500; transition: color 0.2s;
 }
-.mj-card-link:hover { color: var(--mj-gold-light); }
+.hero-card-link:hover { color: var(--mj-gold-light); }
 
-/* ── Marquee ────────────���────────────────────────────── */
+/* ── Marquee ─────────────────────────────────────────── */
 .mj-marquee-wrap {
     background: var(--mj-gold);
-    padding: 13px 0;
-    overflow: hidden;          /* critical: prevent x scroll */
-    width: 100%;
+    padding: 13px 0; overflow: hidden; width: 100%;
 }
 .mj-marquee-track {
     display: flex; gap: 48px;
-    width: max-content;        /* let it grow, clipped by parent */
+    width: max-content;
     animation: mj-marquee 22s linear infinite;
 }
 .mj-marquee-item {
     font-family: var(--mj-sans); font-size: 11px;
     letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--mj-crimson-dark); font-weight: 600;
-    white-space: nowrap;
+    color: var(--mj-crimson-dark); font-weight: 600; white-space: nowrap;
 }
 @keyframes mj-marquee {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
 }
 
-/* ── Shared eyebrow ────────���─────────────────────────── */
+/* ── Shared eyebrow ──────────────────────────────────── */
 .mj-eyebrow-row { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
 .mj-eyebrow {
     font-family: var(--mj-sans); font-size: 11px;
     letter-spacing: 0.26em; color: var(--mj-gold); text-transform: uppercase;
 }
 
-/* ── Collections ──────────────���──────────────────────── */
+/* ── Collections ─────────────────────────────────────── */
 .mj-collections-section {
     padding: 100px 60px;
-    background: linear-gradient(180deg, #FEFBF5 0%, var(--mj-cream) 100%);
+    background: linear-gradient(180deg,#FEFBF5 0%,var(--mj-cream) 100%);
     overflow: hidden;
 }
 .mj-section-head {
@@ -511,7 +451,7 @@ const promiseStats: [string, string, string][] = [
 }
 .mj-section-h2 {
     font-family: var(--mj-serif);
-    font-size: clamp(34px, 4vw, 54px);
+    font-size: clamp(34px,4vw,54px);
     font-weight: 300; color: var(--mj-ink);
     letter-spacing: 0.01em; line-height: 1.15;
 }
@@ -519,19 +459,18 @@ const promiseStats: [string, string, string][] = [
 .mj-view-all {
     font-family: var(--mj-sans); font-size: 12px;
     letter-spacing: 0.15em; color: var(--mj-gold);
-    text-transform: uppercase; cursor: pointer;
-    border: none; background: none;
+    text-transform: uppercase; border: none; background: none;
     border-bottom: 1px solid var(--mj-gold); padding-bottom: 2px;
     white-space: nowrap;
 }
 
 .collections-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0,1fr));
     gap: 16px;
 }
 .collection-item {
-    cursor: pointer; overflow: hidden;
+    overflow: hidden;
     border: 1px solid rgba(196,146,42,0.2);
     background: #fff;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -550,177 +489,162 @@ const promiseStats: [string, string, string][] = [
 .mj-col-ring {
     position: absolute; border-radius: 50%;
 }
-.mj-col-ring--1 { width: 120px; height: 120px; border: 1px solid rgba(196,146,42,0.22); }
-.mj-col-ring--2 { width: 80px;  height: 80px;  border: 1px solid rgba(196,146,42,0.16); }
-.mj-col-icon { position: relative; z-index: 1; font-size: 38px; }
+.mj-col-ring--1 { width:120px; height:120px; border:1px solid rgba(196,146,42,0.22); }
+.mj-col-ring--2 { width: 80px; height: 80px;  border:1px solid rgba(196,146,42,0.16); }
+.mj-col-icon { position:relative; z-index:1; font-size:38px; }
 .col-overlay {
-    position: absolute; inset: 0;
-    background: rgba(107,18,18,0.72);
-    opacity: 0; transition: opacity 0.3s ease;
-    display: flex; align-items: center; justify-content: center;
+    position:absolute; inset:0;
+    background:rgba(107,18,18,0.72);
+    opacity:0; transition:opacity 0.3s ease;
+    display:flex; align-items:center; justify-content:center;
 }
 .col-overlay span {
-    font-family: var(--mj-sans); font-size: 11px;
-    letter-spacing: 0.22em; color: var(--mj-cream);
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(232,201,109,0.5); padding-bottom: 2px;
+    font-family:var(--mj-sans); font-size:11px;
+    letter-spacing:0.22em; color:var(--mj-cream);
+    text-transform:uppercase;
+    border-bottom:1px solid rgba(232,201,109,0.5); padding-bottom:2px;
 }
-.mj-col-body { padding: 16px 14px 14px; background: #fff; }
-.mj-col-row {
-    display: flex; justify-content: space-between;
-    align-items: center; margin-bottom: 6px;
+.mj-col-body { padding:16px 14px 14px; background:#fff; }
+.mj-col-row  { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+.mj-col-name { font-family:var(--mj-serif); font-size:17px; font-weight:500; color:var(--mj-ink); }
+.mj-col-tag  {
+    font-family:var(--mj-sans); font-size:9px; letter-spacing:0.15em;
+    color:var(--mj-crimson); text-transform:uppercase;
+    border:1px solid rgba(107,18,18,0.28); padding:2px 7px;
 }
-.mj-col-name { font-family: var(--mj-serif); font-size: 17px; font-weight: 500; color: var(--mj-ink); }
-.mj-col-tag {
-    font-family: var(--mj-sans); font-size: 9px;
-    letter-spacing: 0.15em; color: var(--mj-crimson);
-    text-transform: uppercase;
-    border: 1px solid rgba(107,18,18,0.28); padding: 2px 7px;
-}
-.mj-col-desc { font-family: var(--mj-sans); font-size: 12px; color: var(--mj-ink-soft); line-height: 1.6; }
+.mj-col-desc { font-family:var(--mj-sans); font-size:12px; color:var(--mj-ink-soft); line-height:1.6; }
 
-/* ── Promise / Feature ───────────────��───────────────── */
+/* ── Promise / Feature ───────────────────────────────── */
 .feature-section {
-    display: grid; grid-template-columns: 1fr 1fr;
-    background: var(--mj-crimson-dark);
-    overflow: hidden;
+    display:grid; grid-template-columns:1fr 1fr;
+    background:var(--mj-crimson-dark); overflow:hidden;
 }
-.mj-promise-text { padding: 96px 64px; min-width: 0; }
+.mj-promise-text { padding:96px 64px; min-width:0; }
 .mj-promise-h2 {
-    font-family: var(--mj-serif);
-    font-size: clamp(30px, 3.5vw, 48px);
-    font-weight: 300; color: var(--mj-cream);
-    line-height: 1.18; margin-bottom: 24px;
+    font-family:var(--mj-serif);
+    font-size:clamp(30px,3.5vw,48px);
+    font-weight:300; color:var(--mj-cream); line-height:1.18; margin-bottom:24px;
 }
-.mj-gold-i { color: #E8C96D; font-style: italic; }
+.mj-gold-i { color:#E8C96D; font-style:italic; }
 .mj-promise-body {
-    font-family: var(--mj-sans); font-size: 14px;
-    line-height: 1.9; color: rgba(253,248,240,0.55);
-    margin-bottom: 36px; font-weight: 300; max-width: 380px;
+    font-family:var(--mj-sans); font-size:14px; line-height:1.9;
+    color:rgba(253,248,240,0.55); margin-bottom:36px; font-weight:300; max-width:380px;
 }
-.mj-promise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 28px; }
-.mj-pi-head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-.mj-pi-title { font-family: var(--mj-serif); font-size: 16px; font-weight: 500; color: var(--mj-cream); }
-.mj-pi-desc { font-family: var(--mj-sans); font-size: 12px; color: rgba(253,248,240,0.42); line-height: 1.5; }
+.mj-promise-grid  { display:grid; grid-template-columns:1fr 1fr; gap:22px 28px; }
+.mj-pi-head       { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.mj-pi-title      { font-family:var(--mj-serif); font-size:16px; font-weight:500; color:var(--mj-cream); }
+.mj-pi-desc       { font-family:var(--mj-sans); font-size:12px; color:rgba(253,248,240,0.42); line-height:1.5; }
 
 .mj-promise-deco {
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 20px; padding: 64px 40px;
-    min-width: 0;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    gap:20px; padding:64px 40px; min-width:0;
 }
 .mj-stats-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 2px; width: 100%; max-width: 320px;
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:2px; width:100%; max-width:320px;
 }
 .mj-pstat {
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 28px 12px;
-    background: rgba(253,248,240,0.04);
-    border: 1px solid rgba(196,146,42,0.12);
-    text-align: center;
-    transition: background 0.22s;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    padding:28px 12px;
+    background:rgba(253,248,240,0.04);
+    border:1px solid rgba(196,146,42,0.12);
+    text-align:center; transition:background 0.22s;
 }
-.mj-pstat:hover { background: rgba(196,146,42,0.07); }
-.mj-pstat-num {
-    font-family: var(--mj-serif); font-size: 32px;
-    font-weight: 500; color: #E8C96D; line-height: 1;
-}
-.mj-pstat-label {
-    font-family: var(--mj-sans); font-size: 10px;
-    letter-spacing: 0.14em; color: rgba(253,248,240,0.65);
-    text-transform: uppercase; margin-top: 5px;
-}
-.mj-pstat-sub {
-    font-family: var(--mj-sans); font-size: 9px;
-    color: rgba(253,248,240,0.28); margin-top: 2px;
-}
+.mj-pstat:hover { background:rgba(196,146,42,0.07); }
+.mj-pstat-num   { font-family:var(--mj-serif); font-size:32px; font-weight:500; color:#E8C96D; line-height:1; }
+.mj-pstat-label { font-family:var(--mj-sans); font-size:10px; letter-spacing:0.14em; color:rgba(253,248,240,0.65); text-transform:uppercase; margin-top:5px; }
+.mj-pstat-sub   { font-family:var(--mj-sans); font-size:9px; color:rgba(253,248,240,0.28); margin-top:2px; }
+
 .mj-promise-badge {
-    display: flex; align-items: center; gap: 8px;
-    border: 1px solid rgba(196,146,42,0.18);
-    padding: 10px 20px;
-    background: rgba(253,248,240,0.03);
+    display:flex; align-items:center; gap:8px;
+    border:1px solid rgba(196,146,42,0.18);
+    padding:10px 20px; background:rgba(253,248,240,0.03);
 }
 .mj-promise-badge span {
-    font-family: var(--mj-sans); font-size: 11px;
-    letter-spacing: 0.1em; color: rgba(232,201,109,0.6);
-    text-transform: uppercase;
+    font-family:var(--mj-sans); font-size:11px;
+    letter-spacing:0.1em; color:rgba(232,201,109,0.6); text-transform:uppercase;
 }
 
-/* ── FAQ ───────────��─────────────────────────────────── */
-.faq-section { padding: 96px 60px; background: #fff; overflow: hidden; }
-.mj-faq-inner { max-width: 800px; margin: 0 auto; }
-.mj-faq-head { text-align: center; margin-bottom: 44px; }
-.mj-faq-orn { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px; }
-.mj-faq-h2 {
-    font-family: var(--mj-serif);
-    font-size: clamp(30px, 3vw, 44px);
-    font-weight: 300; color: var(--mj-ink);
-}
+/* ── FAQ ─────────────────────────────────────────────── */
+.faq-section   { padding:96px 60px; background:#fff; overflow:hidden; }
+.mj-faq-inner  { max-width:800px; margin:0 auto; }
+.mj-faq-head   { text-align:center; margin-bottom:44px; }
+.mj-faq-orn    { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:12px; }
+.mj-faq-h2     { font-family:var(--mj-serif); font-size:clamp(30px,3vw,44px); font-weight:300; color:var(--mj-ink); }
 
-/* ── CTA ────────────────────���───────────────────���────── */
+/* ── CTA ─────────────────────────────────────────────── */
 .cta-section {
     background: linear-gradient(155deg, var(--mj-crimson) 0%, var(--mj-crimson-dark) 100%);
-    overflow: hidden;
-    position: relative;
+    overflow: hidden; position: relative;
 }
 .cta-section::before {
-    content: '';
-    position: absolute; top: -100px; left: 50%;
-    transform: translateX(-50%);
-    width: min(600px, 90vw); height: min(600px, 90vw);
-    border-radius: 50%;
-    border: 1px solid rgba(196,146,42,0.1);
-    pointer-events: none;
+    content:''; position:absolute; top:-100px; left:50%;
+    transform:translateX(-50%);
+    width:min(600px,90vw); height:min(600px,90vw);
+    border-radius:50%; border:1px solid rgba(196,146,42,0.1); pointer-events:none;
 }
-.mj-cta-inner {
-    position: relative; z-index: 1;
-    text-align: center; padding: 96px 60px;
-}
-.mj-cta-h2 {
-    font-family: var(--mj-serif);
-    font-size: clamp(28px, 3.5vw, 46px);
-    font-weight: 300; color: var(--mj-cream);
-    margin-bottom: 14px; line-height: 1.2;
-}
-.mj-cta-body {
-    font-family: var(--mj-sans); font-size: 14px;
-    color: rgba(253,248,240,0.55);
-    margin: 0 auto 40px; max-width: 400px; line-height: 1.7;
-}
-.mj-cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-.mj-cta-btn { min-width: 160px; padding: 15px 36px; }
-.mj-cta-rule {
-    display: flex; align-items: center; justify-content: center;
-    gap: 12px; margin-top: 52px;
-}
-.mj-cta-rule span {
-    display: block; width: 80px; height: 0.5px;
-    background: rgba(196,146,42,0.28);
+.mj-cta-inner { position:relative; z-index:1; text-align:center; padding:96px 60px; }
+.mj-cta-h2    { font-family:var(--mj-serif); font-size:clamp(28px,3.5vw,46px); font-weight:300; color:var(--mj-cream); margin-bottom:14px; line-height:1.2; }
+.mj-cta-body  { font-family:var(--mj-sans); font-size:14px; color:rgba(253,248,240,0.55); margin:0 auto 40px; max-width:400px; line-height:1.7; }
+.mj-cta-btns  { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+.mj-cta-btn   { min-width:160px; padding:15px 36px; }
+.mj-cta-rule  { display:flex; align-items:center; justify-content:center; gap:12px; margin-top:52px; }
+.mj-cta-rule span { display:block; width:80px; height:0.5px; background:rgba(196,146,42,0.28); }
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 1200px) {
+    .mj-hero-content { width: 60%; max-width: 620px; }
+    .mj-hero-overlay {
+        background:
+            linear-gradient(
+                105deg,
+                rgba(26, 6, 6, 0.98)   0%,
+                rgba(60, 12, 12, 0.93) 22%,
+                rgba(74, 13, 13, 0.82) 42%,
+                rgba(40,  8,  8, 0.50) 62%,
+                rgba(10,  2,  2, 0.12) 80%,
+                rgba(0,   0,  0, 0.00) 100%
+            ),
+            linear-gradient(to top, rgba(10,2,2,0.55) 0%, rgba(0,0,0,0.00) 28%);
+    }
 }
 
-/* ── Responsive ────────────────���─────────────────────── */
 @media (max-width: 1100px) {
-    .mj-hero { grid-template-columns: 1fr; min-height: auto; }
-    .mj-hero-content { padding: 120px 32px 56px; }
-    .mj-hero-shader { min-height: 55vh; }
-    .collections-grid { grid-template-columns: repeat(2, 1fr); }
-    .feature-section { grid-template-columns: 1fr; }
-    .mj-promise-text { padding: 72px 40px; }
-    .mj-promise-deco { padding: 48px 40px; }
+    .hero-card { right:20px; bottom:24px; min-width:240px; }
+    .collections-grid { grid-template-columns:repeat(2,1fr); }
+    .feature-section { grid-template-columns:1fr; }
+    .mj-promise-text { padding:72px 40px; }
+    .mj-promise-deco { padding:48px 40px; }
+}
+
+@media (max-width: 900px) {
+    .mj-hero-content { width: 78%; max-width: none; }
+    .mj-hero-overlay {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(20, 4, 4, 0.92) 0%,
+                rgba(20, 4, 4, 0.75) 60%,
+                rgba(10, 2, 2, 0.40) 100%
+            );
+    }
 }
 
 @media (max-width: 720px) {
-    .mj-hero-content { padding: 110px 24px 52px; }
-    .hero-cta { flex-direction: column; }
-    .hero-stats { gap: 16px 24px; }
-    .mj-collections-section, .faq-section { padding: 72px 20px; }
-    .collections-grid { grid-template-columns: 1fr; }
-    .mj-promise-text { padding: 56px 24px; }
-    .mj-cta-inner { padding: 72px 24px; }
-    .mj-hero-pill--tr { display: none; }
-    .mj-stats-grid { max-width: 100%; }
-    .faq-section { padding-inline: 20px; }
+    .mj-hero-content { padding:120px 24px 80px 28px; width:100%; max-width:none; }
+    .mj-hero-overlay {
+        background: rgba(16, 4, 4, 0.82);
+    }
+    .hero-title { font-size: clamp(44px,10vw,64px); }
+    .hero-cta   { flex-direction:column; }
+    .hero-stats { gap:16px 24px; }
+    .hero-card  { display:none; }
+    .mj-collections-section, .faq-section { padding:72px 20px; }
+    .collections-grid { grid-template-columns:1fr; }
+    .mj-promise-text  { padding:56px 24px; }
+    .mj-cta-inner     { padding:72px 24px; }
+    .mj-stats-grid    { max-width:100%; }
 }
 </style>

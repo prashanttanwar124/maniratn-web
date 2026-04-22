@@ -45,18 +45,9 @@ float fbm(vec2 p) {
     return v;
 }
 
-// ── sparkle ──────────────────────────────────────────────
-float sparkle(vec2 uv, float t) {
-    vec2 g = floor(uv * 60.0);
-    float rnd = hash(g + floor(t * 0.8));
-    float phase = hash(g * 3.7);
-    float blink = 0.5 + 0.5 * sin(t * 4.0 + phase * 6.28);
-    return step(0.94, rnd) * pow(blink, 3.0) * 0.9;
-}
-
 void main() {
     vec2 uv = gl_FragCoord.xy / u_res;
-    float t  = u_time * 0.18;
+    float t  = u_time * 0.14;
 
     // domain warp — two passes
     vec2 q = vec2(fbm(uv * 2.2 + t),
@@ -66,34 +57,33 @@ void main() {
     float f = fbm(uv * 1.5 + 2.2 * r + t * 0.5);
 
     // ── palette ────────────────────────────────────────────
-    vec3 dark    = vec3(0.04,  0.008, 0.008);   // near-black crimson
+    vec3 dark    = vec3(0.025, 0.005, 0.005);   // near-black crimson
+    vec3 ink     = vec3(0.06,  0.015, 0.015);   // very dark ink
+    vec3 wine    = vec3(0.22,  0.04,  0.04);    // deep wine
     vec3 crimson = vec3(0.42,  0.07,  0.07);    // #6B1212
-    vec3 wine    = vec3(0.29,  0.05,  0.05);    // deep wine
     vec3 gold1   = vec3(0.769, 0.573, 0.165);   // #C4922A
     vec3 gold2   = vec3(0.91,  0.788, 0.427);   // #E8C96D
-    vec3 cream   = vec3(0.99,  0.97,  0.94);    // near-white
 
     // ── layered blend ──────────────────────────────────────
-    float f2 = f * f;
-    float f3 = f2 * f;
     vec3 col = dark;
-    col = mix(col,    wine,    smoothstep(0.1, 0.4, f));
-    col = mix(col,    crimson, smoothstep(0.3, 0.6, f));
-    col = mix(col,    gold1,   smoothstep(0.55, 0.78, f));
-    col = mix(col,    gold2,   smoothstep(0.72, 0.88, f));
-    col = mix(col,    cream,   smoothstep(0.86, 0.97, f) * 0.55);
+    col = mix(col,    ink,     smoothstep(0.05, 0.2, f));
+    col = mix(col,    wine,    smoothstep(0.18, 0.42, f));
+    col = mix(col,    crimson, smoothstep(0.36, 0.60, f));
+    col = mix(col,    gold1,   smoothstep(0.58, 0.78, f));
+    col = mix(col,    gold2,   smoothstep(0.74, 0.90, f) * 0.7);
 
-    // ── sparkles ───────────────────────────────────────────
-    float sp = sparkle(uv, u_time);
-    col += gold2 * sp;
+    // ── soft radial center glow ────────────────────────────
+    vec2 vc = uv - vec2(0.62, 0.48);
+    float glow = exp(-dot(vc, vc) * 3.5) * 0.18;
+    col += gold1 * glow;
 
     // ── edge vignette ──────────────────────────────────────
-    vec2 vc = uv - 0.5;
-    float vig = 1.0 - dot(vc, vc) * 1.8;
+    vec2 vv = uv - 0.5;
+    float vig = 1.0 - dot(vv, vv) * 1.6;
     col *= max(vig, 0.0);
 
-    // ── subtle scanline grain ──────────────────────────────
-    float grain = (hash(uv * 800.0 + u_time) - 0.5) * 0.025;
+    // ── subtle film grain ──────────────────────────────────
+    float grain = (hash(uv * 600.0 + u_time * 0.5) - 0.5) * 0.018;
     col += grain;
 
     gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
