@@ -6,12 +6,13 @@ import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { initializeFlashToast } from '@/lib/flashToast';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const marketingPages = new Set(['Welcome', 'Contact', 'Collections', 'About']);
 
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
     layout: (name) => {
         switch (true) {
-            case name === 'Welcome':
+            case marketingPages.has(name):
                 return null;
             case name.startsWith('auth/'):
                 return AuthLayout;

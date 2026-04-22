@@ -1,452 +1,726 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
-import { dashboard, login, register } from '@/routes';
+import { Head, router } from '@inertiajs/vue3';
+import { onMounted, onUnmounted } from 'vue';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TheNav from '@/components/maniratn/TheNav.vue';
+import TheFooter from '@/components/maniratn/TheFooter.vue';
+import TheAccordion from '@/components/maniratn/TheAccordion.vue';
+import HeroShader from '@/components/maniratn/HeroShader.vue';
+import { collections as collectionsRoute, contact } from '@/routes';
 
-withDefaults(
-    defineProps<{
-        canRegister: boolean;
-    }>(),
-    {
-        canRegister: true,
-    },
-);
+gsap.registerPlugin(ScrollTrigger);
+
+function navigate(page: string) {
+    if (page === 'collections') router.visit(collectionsRoute());
+    else if (page === 'contact') router.visit(contact());
+    window.scrollTo(0, 0);
+}
+
+const collections = [
+    { name: 'Bridal Collection', desc: 'Timeless sets for your most precious day', tag: 'Signature', icon: '💍' },
+    { name: 'Temple Jewellery', desc: 'Traditional designs rooted in heritage', tag: 'Heritage', icon: '🪔' },
+    { name: 'Daily Wear', desc: 'Elegant, lightweight pieces for everyday grace', tag: 'Everyday', icon: '✨' },
+    { name: 'Diamond Solitaires', desc: 'Brilliant cuts, exceptional clarity', tag: 'Premium', icon: '💎' },
+];
+
+const faqItems = [
+    { title: 'What materials do you use?', content: 'All our ornaments are crafted from 22K and 24K hallmarked gold, certified BIS-standard silver, and ethically sourced gemstones including diamonds, rubies, emeralds, and sapphires. Every piece comes with a quality certificate.' },
+    { title: 'Do you offer custom jewellery?', content: 'Yes, we specialise in bespoke commissions. From bridal sets to heirloom pieces, our master craftsmen work closely with you from design sketch to final delivery. Visit our store or contact us to begin your custom journey.' },
+    { title: 'What is your exchange & return policy?', content: 'We offer lifetime exchange on all gold ornaments at the prevailing market rate. Returns are accepted within 7 days of purchase for unused, unworn pieces accompanied by the original bill and packaging.' },
+    { title: 'How do I care for my jewellery?', content: 'Store pieces individually in soft-lined boxes to prevent scratching. Avoid contact with perfumes, chemicals, or chlorinated water. Bring your jewellery to us annually for a complimentary professional cleaning and inspection.' },
+    { title: 'Do you provide EMI or instalment plans?', content: 'We offer flexible monthly instalment schemes for purchases above ₹25,000. We also partner with leading banks for 0% EMI options on select purchases. Ask our team for details in-store.' },
+];
+
+const featurePoints: [string, string][] = [
+    ['BIS Hallmarked', 'Certified purity on every piece'],
+    ['Custom Orders', 'Bespoke designs, your vision'],
+    ['Expert Craftsmen', 'Artisans with decades of skill'],
+    ['Lifetime Exchange', 'Trust that lasts forever'],
+];
+
+const marqueeItems = Array(4)
+    .fill(['✦ Handcrafted Gold', '✦ BIS Hallmarked', '✦ Custom Orders', '✦ Lifetime Exchange', '✦ 18 Years of Trust', '✦ Diamond Certified'])
+    .flat();
+
+const stats: [string, string][] = [
+    ['18+', 'Years of craft'],
+    ['5000+', 'Happy families'],
+    ['100%', 'Hallmarked gold'],
+];
+
+const cardGradients = [
+    'linear-gradient(135deg,#4A0D0D 0%,#6B1212 55%,#8B2020 100%)',
+    'linear-gradient(135deg,#2C1A0A 0%,#5C3010 55%,#7A4218 100%)',
+    'linear-gradient(135deg,#1A0F0A 0%,#3A2010 55%,#5A3518 100%)',
+    'linear-gradient(135deg,#0A0A1A 0%,#1A1A3A 55%,#2A2A5A 100%)',
+];
+
+onMounted(() => {
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    tl.from('.hero-eyebrow', { y: 20, opacity: 0, duration: 0.6, delay: 0.4 })
+      .from('.hero-title',   { y: 44, opacity: 0, duration: 0.9 }, '-=0.35')
+      .from('.hero-body',    { y: 22, opacity: 0, duration: 0.65 }, '-=0.55')
+      .from('.hero-cta',     { y: 20, opacity: 0, duration: 0.5 }, '-=0.4')
+      .from('.hero-stats',   { y: 20, opacity: 0, duration: 0.5 }, '-=0.3')
+      .from('.hero-image-card', { y: 24, opacity: 0, duration: 0.55 }, '-=0.3');
+
+    gsap.from('.collection-item', {
+        scrollTrigger: { trigger: '.collections-grid', start: 'top 82%' },
+        y: 36, opacity: 0, duration: 0.55, stagger: 0.1, ease: 'power3.out',
+    });
+    gsap.from('.mj-promise-text', {
+        scrollTrigger: { trigger: '.feature-section', start: 'top 78%' },
+        x: -36, opacity: 0, duration: 0.75, ease: 'power3.out',
+    });
+    gsap.from('.mj-promise-deco', {
+        scrollTrigger: { trigger: '.feature-section', start: 'top 78%' },
+        x: 36, opacity: 0, duration: 0.75, ease: 'power3.out', delay: 0.1,
+    });
+    gsap.from('.faq-section', {
+        scrollTrigger: { trigger: '.faq-section', start: 'top 82%' },
+        y: 28, opacity: 0, duration: 0.65, ease: 'power3.out',
+    });
+    gsap.from('.cta-section', {
+        scrollTrigger: { trigger: '.cta-section', start: 'top 88%' },
+        y: 20, opacity: 0, duration: 0.55, ease: 'power3.out',
+    });
+});
+
+onUnmounted(() => {
+    ScrollTrigger.killAll();
+});
 </script>
 
 <template>
-    <Head title="Welcome">
-        <link rel="preconnect" href="https://rsms.me/" />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-    </Head>
-    <div
-        class="flex min-h-screen flex-col items-center bg-[#FDFDFC] p-6 text-[#1b1b18] lg:justify-center lg:p-8 dark:bg-[#0a0a0a]"
-    >
-        <header
-            class="mb-6 w-full max-w-[335px] text-sm not-has-[nav]:hidden lg:max-w-4xl"
-        >
-            <nav class="flex items-center justify-end gap-4">
-                <Link
-                    v-if="$page.props.auth.user"
-                    :href="dashboard()"
-                    class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
-                >
-                    Dashboard
-                </Link>
-                <template v-else>
-                    <Link
-                        :href="login()"
-                        class="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
-                    >
-                        Log in
-                    </Link>
-                    <Link
-                        v-if="canRegister"
-                        :href="register()"
-                        class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
-                    >
-                        Register
-                    </Link>
-                </template>
-            </nav>
-        </header>
-        <div
-            class="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0"
-        >
-            <main
-                class="flex w-full max-w-[335px] flex-col-reverse overflow-hidden rounded-lg lg:max-w-4xl lg:flex-row"
-            >
-                <div
-                    class="flex-1 rounded-br-lg rounded-bl-lg bg-white p-6 pb-12 text-[13px] leading-[20px] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] lg:rounded-tl-lg lg:rounded-br-none lg:p-20 dark:bg-[#161615] dark:text-[#EDEDEC] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"
-                >
-                    <h1 class="mb-1 font-medium">Let's get started</h1>
-                    <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A]">
-                        Laravel has an incredibly rich ecosystem. <br />We
-                        suggest starting with the following.
-                    </p>
-                    <ul class="mb-4 flex flex-col lg:mb-6">
-                        <li
-                            class="relative flex items-center gap-4 py-2 before:absolute before:top-1/2 before:bottom-0 before:left-[0.4rem] before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A]"
-                        >
-                            <span
-                                class="relative bg-white py-1 dark:bg-[#161615]"
-                            >
-                                <span
-                                    class="flex h-3.5 w-3.5 items-center justify-center rounded-full border border-[#e3e3e0] bg-[#FDFDFC] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] dark:border-[#3E3E3A] dark:bg-[#161615]"
-                                >
-                                    <span
-                                        class="h-1.5 w-1.5 rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A]"
-                                    />
-                                </span>
-                            </span>
-                            <span>
-                                Read the
-                                <a
-                                    href="https://laravel.com/docs"
-                                    target="_blank"
-                                    class="ml-1 inline-flex items-center space-x-1 font-medium text-[#f53003] underline underline-offset-4 dark:text-[#FF4433]"
-                                >
-                                    <span>Documentation</span>
-                                    <svg
-                                        width="10"
-                                        height="11"
-                                        viewBox="0 0 10 11"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-2.5 w-2.5"
-                                    >
-                                        <path
-                                            d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                            stroke="currentColor"
-                                            stroke-linecap="square"
-                                        />
-                                    </svg>
-                                </a>
-                            </span>
-                        </li>
-                        <li
-                            class="relative flex items-center gap-4 py-2 before:absolute before:top-0 before:bottom-1/2 before:left-[0.4rem] before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A]"
-                        >
-                            <span
-                                class="relative bg-white py-1 dark:bg-[#161615]"
-                            >
-                                <span
-                                    class="flex h-3.5 w-3.5 items-center justify-center rounded-full border border-[#e3e3e0] bg-[#FDFDFC] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] dark:border-[#3E3E3A] dark:bg-[#161615]"
-                                >
-                                    <span
-                                        class="h-1.5 w-1.5 rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A]"
-                                    />
-                                </span>
-                            </span>
-                            <span>
-                                Watch video tutorials at
-                                <a
-                                    href="https://laracasts.com"
-                                    target="_blank"
-                                    class="ml-1 inline-flex items-center space-x-1 font-medium text-[#f53003] underline underline-offset-4 dark:text-[#FF4433]"
-                                >
-                                    <span>Laracasts</span>
-                                    <svg
-                                        width="10"
-                                        height="11"
-                                        viewBox="0 0 10 11"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-2.5 w-2.5"
-                                    >
-                                        <path
-                                            d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                            stroke="currentColor"
-                                            stroke-linecap="square"
-                                        />
-                                    </svg>
-                                </a>
-                            </span>
-                        </li>
-                    </ul>
-                    <ul class="flex gap-3 text-sm leading-normal">
-                        <li>
-                            <a
-                                href="https://cloud.laravel.com"
-                                target="_blank"
-                                class="inline-block rounded-sm border border-black bg-[#1b1b18] px-5 py-1.5 text-sm leading-normal text-white hover:border-black hover:bg-black dark:border-[#eeeeec] dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:border-white dark:hover:bg-white"
-                            >
-                                Deploy now
-                            </a>
-                        </li>
-                    </ul>
+    <Head title="Maniratn Jewellers — Since 2007" />
+    <TheNav current-page="home" hero-variant="dark" />
+
+    <div class="mj-page">
+        <!-- ── Hero ──────────────────────────────────────────── -->
+        <section class="mj-hero">
+            <!-- Left: content -->
+            <div class="mj-hero-content">
+                <div class="mj-hero-deco-ring mj-hero-deco-ring--tl"></div>
+                <div class="mj-hero-deco-ring mj-hero-deco-ring--br"></div>
+
+                <div class="hero-eyebrow">
+                    <div class="mj-ew-line"></div>
+                    <span>Since 2007</span>
                 </div>
-                <div
-                    class="relative -mb-px aspect-[335/364] w-full shrink-0 overflow-hidden rounded-t-lg bg-[#fff2f2] lg:mb-0 lg:-ml-px lg:aspect-auto lg:w-[438px] lg:rounded-t-none lg:rounded-r-lg dark:bg-[#1D0002]"
-                >
-                    <!-- Laravel Logo -->
-                    <svg
-                        class="w-full max-w-none translate-y-0 text-[#F53003] opacity-100 transition-all duration-750 dark:text-[#F61500] starting:opacity-0 motion-safe:starting:translate-y-6"
-                        viewBox="0 0 438 104"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M17.2036 -3H0V102.197H49.5189V86.7187H17.2036V-3Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M110.256 41.6337C108.061 38.1275 104.945 35.3731 100.905 33.3681C96.8667 31.3647 92.8016 30.3618 88.7131 30.3618C83.4247 30.3618 78.5885 31.3389 74.201 33.2923C69.8111 35.2456 66.0474 37.928 62.9059 41.3333C59.7643 44.7401 57.3198 48.6726 55.5754 53.1293C53.8287 57.589 52.9572 62.274 52.9572 67.1813C52.9572 72.1925 53.8287 76.8995 55.5754 81.3069C57.3191 85.7173 59.7636 89.6241 62.9059 93.0293C66.0474 96.4361 69.8119 99.1155 74.201 101.069C78.5885 103.022 83.4247 103.999 88.7131 103.999C92.8016 103.999 96.8667 102.997 100.905 100.994C104.945 98.9911 108.061 96.2359 110.256 92.7282V102.195H126.563V32.1642H110.256V41.6337ZM108.76 75.7472C107.762 78.4531 106.366 80.8078 104.572 82.8112C102.776 84.8161 100.606 86.4183 98.0637 87.6206C95.5202 88.823 92.7004 89.4238 89.6103 89.4238C86.5178 89.4238 83.7252 88.823 81.2324 87.6206C78.7388 86.4183 76.5949 84.8161 74.7998 82.8112C73.004 80.8078 71.6319 78.4531 70.6856 75.7472C69.7356 73.0421 69.2644 70.1868 69.2644 67.1821C69.2644 64.1758 69.7356 61.3205 70.6856 58.6154C71.6319 55.9102 73.004 53.5571 74.7998 51.5522C76.5949 49.5495 78.738 47.9451 81.2324 46.7427C83.7252 45.5404 86.5178 44.9396 89.6103 44.9396C92.7012 44.9396 95.5202 45.5404 98.0637 46.7427C100.606 47.9451 102.776 49.5487 104.572 51.5522C106.367 53.5571 107.762 55.9102 108.76 58.6154C109.756 61.3205 110.256 64.1758 110.256 67.1821C110.256 70.1868 109.756 73.0421 108.76 75.7472Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M242.805 41.6337C240.611 38.1275 237.494 35.3731 233.455 33.3681C229.416 31.3647 225.351 30.3618 221.262 30.3618C215.974 30.3618 211.138 31.3389 206.75 33.2923C202.36 35.2456 198.597 37.928 195.455 41.3333C192.314 44.7401 189.869 48.6726 188.125 53.1293C186.378 57.589 185.507 62.274 185.507 67.1813C185.507 72.1925 186.378 76.8995 188.125 81.3069C189.868 85.7173 192.313 89.6241 195.455 93.0293C198.597 96.4361 202.361 99.1155 206.75 101.069C211.138 103.022 215.974 103.999 221.262 103.999C225.351 103.999 229.416 102.997 233.455 100.994C237.494 98.9911 240.611 96.2359 242.805 92.7282V102.195H259.112V32.1642H242.805V41.6337ZM241.31 75.7472C240.312 78.4531 238.916 80.8078 237.122 82.8112C235.326 84.8161 233.156 86.4183 230.614 87.6206C228.07 88.823 225.251 89.4238 222.16 89.4238C219.068 89.4238 216.275 88.823 213.782 87.6206C211.289 86.4183 209.145 84.8161 207.35 82.8112C205.554 80.8078 204.182 78.4531 203.236 75.7472C202.286 73.0421 201.814 70.1868 201.814 67.1821C201.814 64.1758 202.286 61.3205 203.236 58.6154C204.182 55.9102 205.554 53.5571 207.35 51.5522C209.145 49.5495 211.288 47.9451 213.782 46.7427C216.275 45.5404 219.068 44.9396 222.16 44.9396C225.251 44.9396 228.07 45.5404 230.614 46.7427C233.156 47.9451 235.326 49.5487 237.122 51.5522C238.917 53.5571 240.312 55.9102 241.31 58.6154C242.306 61.3205 242.806 64.1758 242.806 67.1821C242.805 70.1868 242.305 73.0421 241.31 75.7472Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M438 -3H421.694V102.197H438V-3Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M139.43 102.197H155.735V48.2834H183.712V32.1665H139.43V102.197Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M324.49 32.1665L303.995 85.794L283.498 32.1665H266.983L293.748 102.197H314.242L341.006 32.1665H324.49Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M376.571 30.3656C356.603 30.3656 340.797 46.8497 340.797 67.1828C340.797 89.6597 356.094 104 378.661 104C391.29 104 399.354 99.1488 409.206 88.5848L398.189 80.0226C398.183 80.031 389.874 90.9895 377.468 90.9895C363.048 90.9895 356.977 79.3111 356.977 73.269H411.075C413.917 50.1328 398.775 30.3656 376.571 30.3656ZM357.02 61.0967C357.145 59.7487 359.023 43.3761 376.442 43.3761C393.861 43.3761 395.978 59.7464 396.099 61.0967H357.02Z"
-                            fill="currentColor"
-                        />
-                    </svg>
 
-                    <!-- 13 -->
-                    <svg
-                        class="relative -mt-[6.6rem] -ml-8 w-[438px] max-w-none [--stroke-color:#1B1B18] lg:ml-0 dark:[--stroke-color:#FF750F]"
-                        viewBox="0 0 440 392"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <g
-                            class="text-[#1B1B18] opacity-100 mix-blend-darken transition-all delay-300 duration-750 dark:text-black dark:mix-blend-normal starting:opacity-0"
-                        >
-                            <mask
-                                id="path-1-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="-0.328613"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="-0.328613"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M234.936 400.8C204.136 400.8 178.936 392.4 159.336 375.6C140.136 358.8 130.536 337 130.536 310.2H200.736C200.736 318.2 203.736 324.8 209.736 330C215.736 335.2 223.736 337.8 233.736 337.8C243.336 337.8 251.136 335 257.136 329.4C263.536 323.8 266.736 316.6 266.736 307.8C266.736 299.8 263.936 293.2 258.336 288C252.736 282.8 245.536 280.2 236.736 280.2H199.536V218.4H236.736C243.536 218.4 249.336 216 254.136 211.2C258.936 206.4 261.336 200.4 261.336 193.2C261.336 184.8 258.736 178.2 253.536 173.4C248.336 168.6 241.736 166.2 233.736 166.2C226.536 166.2 220.336 168.4 215.136 172.8C210.336 177.2 207.936 182.8 207.936 189.6H141.336C141.336 164.8 150.136 144.6 167.736 129C185.336 113 207.936 105 235.536 105C263.136 105 285.536 112.2 302.736 126.6C320.336 141 329.136 160 329.136 183.6C329.136 200.8 324.536 214.8 315.336 225.6C306.136 236 294.336 243.2 279.936 247.2C297.136 252 310.736 260.2 320.736 271.8C331.136 283.4 336.336 298 336.336 315.6C336.336 340.4 326.936 360.8 308.136 376.8C289.336 392.8 264.936 400.8 234.936 400.8Z"
-                                />
-                                <path
-                                    d="M26.8714 167.6H1.67139V105.2H94.6714V400.2H26.8714V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M234.936 400.8C204.136 400.8 178.936 392.4 159.336 375.6C140.136 358.8 130.536 337 130.536 310.2H200.736C200.736 318.2 203.736 324.8 209.736 330C215.736 335.2 223.736 337.8 233.736 337.8C243.336 337.8 251.136 335 257.136 329.4C263.536 323.8 266.736 316.6 266.736 307.8C266.736 299.8 263.936 293.2 258.336 288C252.736 282.8 245.536 280.2 236.736 280.2H199.536V218.4H236.736C243.536 218.4 249.336 216 254.136 211.2C258.936 206.4 261.336 200.4 261.336 193.2C261.336 184.8 258.736 178.2 253.536 173.4C248.336 168.6 241.736 166.2 233.736 166.2C226.536 166.2 220.336 168.4 215.136 172.8C210.336 177.2 207.936 182.8 207.936 189.6H141.336C141.336 164.8 150.136 144.6 167.736 129C185.336 113 207.936 105 235.536 105C263.136 105 285.536 112.2 302.736 126.6C320.336 141 329.136 160 329.136 183.6C329.136 200.8 324.536 214.8 315.336 225.6C306.136 236 294.336 243.2 279.936 247.2C297.136 252 310.736 260.2 320.736 271.8C331.136 283.4 336.336 298 336.336 315.6C336.336 340.4 326.936 360.8 308.136 376.8C289.336 392.8 264.936 400.8 234.936 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M26.8714 167.6H1.67139V105.2H94.6714V400.2H26.8714V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M234.936 400.8C204.136 400.8 178.936 392.4 159.336 375.6C140.136 358.8 130.536 337 130.536 310.2H200.736C200.736 318.2 203.736 324.8 209.736 330C215.736 335.2 223.736 337.8 233.736 337.8C243.336 337.8 251.136 335 257.136 329.4C263.536 323.8 266.736 316.6 266.736 307.8C266.736 299.8 263.936 293.2 258.336 288C252.736 282.8 245.536 280.2 236.736 280.2H199.536V218.4H236.736C243.536 218.4 249.336 216 254.136 211.2C258.936 206.4 261.336 200.4 261.336 193.2C261.336 184.8 258.736 178.2 253.536 173.4C248.336 168.6 241.736 166.2 233.736 166.2C226.536 166.2 220.336 168.4 215.136 172.8C210.336 177.2 207.936 182.8 207.936 189.6H141.336C141.336 164.8 150.136 144.6 167.736 129C185.336 113 207.936 105 235.536 105C263.136 105 285.536 112.2 302.736 126.6C320.336 141 329.136 160 329.136 183.6C329.136 200.8 324.536 214.8 315.336 225.6C306.136 236 294.336 243.2 279.936 247.2C297.136 252 310.736 260.2 320.736 271.8C331.136 283.4 336.336 298 336.336 315.6C336.336 340.4 326.936 360.8 308.136 376.8C289.336 392.8 264.936 400.8 234.936 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-1-mask)"
-                            />
-                            <path
-                                d="M26.8714 167.6H1.67139V105.2H94.6714V400.2H26.8714V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-1-mask)"
-                            />
-                        </g>
+                <h1 class="hero-title">
+                    Adorn<br>
+                    <em>your finest</em><br>
+                    <span class="mj-gold-text">moments.</span>
+                </h1>
 
-                        <g
-                            class="text-[#F3BEC7] opacity-100 transition-all delay-400 duration-750 dark:text-[#4B0600] starting:opacity-0 motion-safe:starting:-translate-x-[26px]"
-                        >
-                            <mask
-                                id="path-2-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="25.3357"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="25.3357"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M260.6 400.8C229.8 400.8 204.6 392.4 185 375.6C165.8 358.8 156.2 337 156.2 310.2H226.4C226.4 318.2 229.4 324.8 235.4 330C241.4 335.2 249.4 337.8 259.4 337.8C269 337.8 276.8 335 282.8 329.4C289.2 323.8 292.4 316.6 292.4 307.8C292.4 299.8 289.6 293.2 284 288C278.4 282.8 271.2 280.2 262.4 280.2H225.2V218.4H262.4C269.2 218.4 275 216 279.8 211.2C284.6 206.4 287 200.4 287 193.2C287 184.8 284.4 178.2 279.2 173.4C274 168.6 267.4 166.2 259.4 166.2C252.2 166.2 246 168.4 240.8 172.8C236 177.2 233.6 182.8 233.6 189.6H167C167 164.8 175.8 144.6 193.4 129C211 113 233.6 105 261.2 105C288.8 105 311.2 112.2 328.4 126.6C346 141 354.8 160 354.8 183.6C354.8 200.8 350.2 214.8 341 225.6C331.8 236 320 243.2 305.6 247.2C322.8 252 336.4 260.2 346.4 271.8C356.8 283.4 362 298 362 315.6C362 340.4 352.6 360.8 333.8 376.8C315 392.8 290.6 400.8 260.6 400.8Z"
-                                />
-                                <path
-                                    d="M52.5357 167.6H27.3357V105.2H120.336V400.2H52.5357V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M260.6 400.8C229.8 400.8 204.6 392.4 185 375.6C165.8 358.8 156.2 337 156.2 310.2H226.4C226.4 318.2 229.4 324.8 235.4 330C241.4 335.2 249.4 337.8 259.4 337.8C269 337.8 276.8 335 282.8 329.4C289.2 323.8 292.4 316.6 292.4 307.8C292.4 299.8 289.6 293.2 284 288C278.4 282.8 271.2 280.2 262.4 280.2H225.2V218.4H262.4C269.2 218.4 275 216 279.8 211.2C284.6 206.4 287 200.4 287 193.2C287 184.8 284.4 178.2 279.2 173.4C274 168.6 267.4 166.2 259.4 166.2C252.2 166.2 246 168.4 240.8 172.8C236 177.2 233.6 182.8 233.6 189.6H167C167 164.8 175.8 144.6 193.4 129C211 113 233.6 105 261.2 105C288.8 105 311.2 112.2 328.4 126.6C346 141 354.8 160 354.8 183.6C354.8 200.8 350.2 214.8 341 225.6C331.8 236 320 243.2 305.6 247.2C322.8 252 336.4 260.2 346.4 271.8C356.8 283.4 362 298 362 315.6C362 340.4 352.6 360.8 333.8 376.8C315 392.8 290.6 400.8 260.6 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M52.5357 167.6H27.3357V105.2H120.336V400.2H52.5357V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M260.6 400.8C229.8 400.8 204.6 392.4 185 375.6C165.8 358.8 156.2 337 156.2 310.2H226.4C226.4 318.2 229.4 324.8 235.4 330C241.4 335.2 249.4 337.8 259.4 337.8C269 337.8 276.8 335 282.8 329.4C289.2 323.8 292.4 316.6 292.4 307.8C292.4 299.8 289.6 293.2 284 288C278.4 282.8 271.2 280.2 262.4 280.2H225.2V218.4H262.4C269.2 218.4 275 216 279.8 211.2C284.6 206.4 287 200.4 287 193.2C287 184.8 284.4 178.2 279.2 173.4C274 168.6 267.4 166.2 259.4 166.2C252.2 166.2 246 168.4 240.8 172.8C236 177.2 233.6 182.8 233.6 189.6H167C167 164.8 175.8 144.6 193.4 129C211 113 233.6 105 261.2 105C288.8 105 311.2 112.2 328.4 126.6C346 141 354.8 160 354.8 183.6C354.8 200.8 350.2 214.8 341 225.6C331.8 236 320 243.2 305.6 247.2C322.8 252 336.4 260.2 346.4 271.8C356.8 283.4 362 298 362 315.6C362 340.4 352.6 360.8 333.8 376.8C315 392.8 290.6 400.8 260.6 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-2-mask)"
-                            />
-                            <path
-                                d="M52.5357 167.6H27.3357V105.2H120.336V400.2H52.5357V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-2-mask)"
-                            />
-                        </g>
+                <p class="hero-body">
+                    Handcrafted gold &amp; diamond ornaments for generations of celebrations.
+                    Every piece tells a story of tradition and artistry.
+                </p>
 
-                        <g
-                            class="text-[#F8B803] opacity-100 mix-blend-color transition-all delay-400 duration-750 dark:text-[#391800] dark:mix-blend-hard-light starting:opacity-0 motion-safe:starting:-translate-x-[51px]"
-                        >
-                            <mask
-                                id="path-3-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="51"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="51"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M286.264 400.8C255.464 400.8 230.264 392.4 210.664 375.6C191.464 358.8 181.864 337 181.864 310.2H252.064C252.064 318.2 255.064 324.8 261.064 330C267.064 335.2 275.064 337.8 285.064 337.8C294.664 337.8 302.464 335 308.464 329.4C314.864 323.8 318.064 316.6 318.064 307.8C318.064 299.8 315.264 293.2 309.664 288C304.064 282.8 296.864 280.2 288.064 280.2H250.864V218.4H288.064C294.864 218.4 300.664 216 305.464 211.2C310.264 206.4 312.664 200.4 312.664 193.2C312.664 184.8 310.064 178.2 304.864 173.4C299.664 168.6 293.064 166.2 285.064 166.2C277.864 166.2 271.664 168.4 266.464 172.8C261.664 177.2 259.264 182.8 259.264 189.6H192.664C192.664 164.8 201.464 144.6 219.064 129C236.664 113 259.264 105 286.864 105C314.464 105 336.864 112.2 354.064 126.6C371.664 141 380.464 160 380.464 183.6C380.464 200.8 375.864 214.8 366.664 225.6C357.464 236 345.664 243.2 331.264 247.2C348.464 252 362.064 260.2 372.064 271.8C382.464 283.4 387.664 298 387.664 315.6C387.664 340.4 378.264 360.8 359.464 376.8C340.664 392.8 316.264 400.8 286.264 400.8Z"
-                                />
-                                <path
-                                    d="M78.2 167.6H53V105.2H146V400.2H78.2V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M286.264 400.8C255.464 400.8 230.264 392.4 210.664 375.6C191.464 358.8 181.864 337 181.864 310.2H252.064C252.064 318.2 255.064 324.8 261.064 330C267.064 335.2 275.064 337.8 285.064 337.8C294.664 337.8 302.464 335 308.464 329.4C314.864 323.8 318.064 316.6 318.064 307.8C318.064 299.8 315.264 293.2 309.664 288C304.064 282.8 296.864 280.2 288.064 280.2H250.864V218.4H288.064C294.864 218.4 300.664 216 305.464 211.2C310.264 206.4 312.664 200.4 312.664 193.2C312.664 184.8 310.064 178.2 304.864 173.4C299.664 168.6 293.064 166.2 285.064 166.2C277.864 166.2 271.664 168.4 266.464 172.8C261.664 177.2 259.264 182.8 259.264 189.6H192.664C192.664 164.8 201.464 144.6 219.064 129C236.664 113 259.264 105 286.864 105C314.464 105 336.864 112.2 354.064 126.6C371.664 141 380.464 160 380.464 183.6C380.464 200.8 375.864 214.8 366.664 225.6C357.464 236 345.664 243.2 331.264 247.2C348.464 252 362.064 260.2 372.064 271.8C382.464 283.4 387.664 298 387.664 315.6C387.664 340.4 378.264 360.8 359.464 376.8C340.664 392.8 316.264 400.8 286.264 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M78.2 167.6H53V105.2H146V400.2H78.2V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M286.264 400.8C255.464 400.8 230.264 392.4 210.664 375.6C191.464 358.8 181.864 337 181.864 310.2H252.064C252.064 318.2 255.064 324.8 261.064 330C267.064 335.2 275.064 337.8 285.064 337.8C294.664 337.8 302.464 335 308.464 329.4C314.864 323.8 318.064 316.6 318.064 307.8C318.064 299.8 315.264 293.2 309.664 288C304.064 282.8 296.864 280.2 288.064 280.2H250.864V218.4H288.064C294.864 218.4 300.664 216 305.464 211.2C310.264 206.4 312.664 200.4 312.664 193.2C312.664 184.8 310.064 178.2 304.864 173.4C299.664 168.6 293.064 166.2 285.064 166.2C277.864 166.2 271.664 168.4 266.464 172.8C261.664 177.2 259.264 182.8 259.264 189.6H192.664C192.664 164.8 201.464 144.6 219.064 129C236.664 113 259.264 105 286.864 105C314.464 105 336.864 112.2 354.064 126.6C371.664 141 380.464 160 380.464 183.6C380.464 200.8 375.864 214.8 366.664 225.6C357.464 236 345.664 243.2 331.264 247.2C348.464 252 362.064 260.2 372.064 271.8C382.464 283.4 387.664 298 387.664 315.6C387.664 340.4 378.264 360.8 359.464 376.8C340.664 392.8 316.264 400.8 286.264 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-3-mask)"
-                            />
-                            <path
-                                d="M78.2 167.6H53V105.2H146V400.2H78.2V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-3-mask)"
-                            />
-                        </g>
-
-                        <g
-                            class="text-[#F3BEC7] opacity-100 mix-blend-multiply transition-all delay-400 duration-750 dark:text-[#733000] dark:mix-blend-normal starting:opacity-0 motion-safe:starting:-translate-x-[78px]"
-                        >
-                            <mask
-                                id="path-4-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="76.6643"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="76.6643"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M311.929 400.8C281.129 400.8 255.929 392.4 236.329 375.6C217.129 358.8 207.529 337 207.529 310.2H277.729C277.729 318.2 280.729 324.8 286.729 330C292.729 335.2 300.729 337.8 310.729 337.8C320.329 337.8 328.129 335 334.129 329.4C340.529 323.8 343.729 316.6 343.729 307.8C343.729 299.8 340.929 293.2 335.329 288C329.729 282.8 322.529 280.2 313.729 280.2H276.529V218.4H313.729C320.529 218.4 326.329 216 331.129 211.2C335.929 206.4 338.329 200.4 338.329 193.2C338.329 184.8 335.729 178.2 330.529 173.4C325.329 168.6 318.729 166.2 310.729 166.2C303.529 166.2 297.329 168.4 292.129 172.8C287.329 177.2 284.929 182.8 284.929 189.6H218.329C218.329 164.8 227.129 144.6 244.729 129C262.329 113 284.929 105 312.529 105C340.129 105 362.529 112.2 379.729 126.6C397.329 141 406.129 160 406.129 183.6C406.129 200.8 401.529 214.8 392.329 225.6C383.129 236 371.329 243.2 356.929 247.2C374.129 252 387.729 260.2 397.729 271.8C408.129 283.4 413.329 298 413.329 315.6C413.329 340.4 403.929 360.8 385.129 376.8C366.329 392.8 341.929 400.8 311.929 400.8Z"
-                                />
-                                <path
-                                    d="M103.864 167.6H78.6643V105.2H171.664V400.2H103.864V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M311.929 400.8C281.129 400.8 255.929 392.4 236.329 375.6C217.129 358.8 207.529 337 207.529 310.2H277.729C277.729 318.2 280.729 324.8 286.729 330C292.729 335.2 300.729 337.8 310.729 337.8C320.329 337.8 328.129 335 334.129 329.4C340.529 323.8 343.729 316.6 343.729 307.8C343.729 299.8 340.929 293.2 335.329 288C329.729 282.8 322.529 280.2 313.729 280.2H276.529V218.4H313.729C320.529 218.4 326.329 216 331.129 211.2C335.929 206.4 338.329 200.4 338.329 193.2C338.329 184.8 335.729 178.2 330.529 173.4C325.329 168.6 318.729 166.2 310.729 166.2C303.529 166.2 297.329 168.4 292.129 172.8C287.329 177.2 284.929 182.8 284.929 189.6H218.329C218.329 164.8 227.129 144.6 244.729 129C262.329 113 284.929 105 312.529 105C340.129 105 362.529 112.2 379.729 126.6C397.329 141 406.129 160 406.129 183.6C406.129 200.8 401.529 214.8 392.329 225.6C383.129 236 371.329 243.2 356.929 247.2C374.129 252 387.729 260.2 397.729 271.8C408.129 283.4 413.329 298 413.329 315.6C413.329 340.4 403.929 360.8 385.129 376.8C366.329 392.8 341.929 400.8 311.929 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M103.864 167.6H78.6643V105.2H171.664V400.2H103.864V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M311.929 400.8C281.129 400.8 255.929 392.4 236.329 375.6C217.129 358.8 207.529 337 207.529 310.2H277.729C277.729 318.2 280.729 324.8 286.729 330C292.729 335.2 300.729 337.8 310.729 337.8C320.329 337.8 328.129 335 334.129 329.4C340.529 323.8 343.729 316.6 343.729 307.8C343.729 299.8 340.929 293.2 335.329 288C329.729 282.8 322.529 280.2 313.729 280.2H276.529V218.4H313.729C320.529 218.4 326.329 216 331.129 211.2C335.929 206.4 338.329 200.4 338.329 193.2C338.329 184.8 335.729 178.2 330.529 173.4C325.329 168.6 318.729 166.2 310.729 166.2C303.529 166.2 297.329 168.4 292.129 172.8C287.329 177.2 284.929 182.8 284.929 189.6H218.329C218.329 164.8 227.129 144.6 244.729 129C262.329 113 284.929 105 312.529 105C340.129 105 362.529 112.2 379.729 126.6C397.329 141 406.129 160 406.129 183.6C406.129 200.8 401.529 214.8 392.329 225.6C383.129 236 371.329 243.2 356.929 247.2C374.129 252 387.729 260.2 397.729 271.8C408.129 283.4 413.329 298 413.329 315.6C413.329 340.4 403.929 360.8 385.129 376.8C366.329 392.8 341.929 400.8 311.929 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-4-mask)"
-                            />
-                            <path
-                                d="M103.864 167.6H78.6643V105.2H171.664V400.2H103.864V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-4-mask)"
-                            />
-                        </g>
-
-                        <g
-                            class="text-[#F3BEC7] opacity-100 mix-blend-hard-light transition-all delay-400 duration-750 dark:text-[#4B0600] starting:opacity-0 motion-safe:starting:-translate-x-[102px]"
-                        >
-                            <mask
-                                id="path-5-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="102.329"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="102.329"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M337.593 400.8C306.793 400.8 281.593 392.4 261.993 375.6C242.793 358.8 233.193 337 233.193 310.2H303.393C303.393 318.2 306.393 324.8 312.393 330C318.393 335.2 326.393 337.8 336.393 337.8C345.993 337.8 353.793 335 359.793 329.4C366.193 323.8 369.393 316.6 369.393 307.8C369.393 299.8 366.593 293.2 360.993 288C355.393 282.8 348.193 280.2 339.393 280.2H302.193V218.4H339.393C346.193 218.4 351.993 216 356.793 211.2C361.593 206.4 363.993 200.4 363.993 193.2C363.993 184.8 361.393 178.2 356.193 173.4C350.993 168.6 344.393 166.2 336.393 166.2C329.193 166.2 322.993 168.4 317.793 172.8C312.993 177.2 310.593 182.8 310.593 189.6H243.993C243.993 164.8 252.793 144.6 270.393 129C287.993 113 310.593 105 338.193 105C365.793 105 388.193 112.2 405.393 126.6C422.993 141 431.793 160 431.793 183.6C431.793 200.8 427.193 214.8 417.993 225.6C408.793 236 396.993 243.2 382.593 247.2C399.793 252 413.393 260.2 423.393 271.8C433.793 283.4 438.993 298 438.993 315.6C438.993 340.4 429.593 360.8 410.793 376.8C391.993 392.8 367.593 400.8 337.593 400.8Z"
-                                />
-                                <path
-                                    d="M129.529 167.6H104.329V105.2H197.329V400.2H129.529V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M337.593 400.8C306.793 400.8 281.593 392.4 261.993 375.6C242.793 358.8 233.193 337 233.193 310.2H303.393C303.393 318.2 306.393 324.8 312.393 330C318.393 335.2 326.393 337.8 336.393 337.8C345.993 337.8 353.793 335 359.793 329.4C366.193 323.8 369.393 316.6 369.393 307.8C369.393 299.8 366.593 293.2 360.993 288C355.393 282.8 348.193 280.2 339.393 280.2H302.193V218.4H339.393C346.193 218.4 351.993 216 356.793 211.2C361.593 206.4 363.993 200.4 363.993 193.2C363.993 184.8 361.393 178.2 356.193 173.4C350.993 168.6 344.393 166.2 336.393 166.2C329.193 166.2 322.993 168.4 317.793 172.8C312.993 177.2 310.593 182.8 310.593 189.6H243.993C243.993 164.8 252.793 144.6 270.393 129C287.993 113 310.593 105 338.193 105C365.793 105 388.193 112.2 405.393 126.6C422.993 141 431.793 160 431.793 183.6C431.793 200.8 427.193 214.8 417.993 225.6C408.793 236 396.993 243.2 382.593 247.2C399.793 252 413.393 260.2 423.393 271.8C433.793 283.4 438.993 298 438.993 315.6C438.993 340.4 429.593 360.8 410.793 376.8C391.993 392.8 367.593 400.8 337.593 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M129.529 167.6H104.329V105.2H197.329V400.2H129.529V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M337.593 400.8C306.793 400.8 281.593 392.4 261.993 375.6C242.793 358.8 233.193 337 233.193 310.2H303.393C303.393 318.2 306.393 324.8 312.393 330C318.393 335.2 326.393 337.8 336.393 337.8C345.993 337.8 353.793 335 359.793 329.4C366.193 323.8 369.393 316.6 369.393 307.8C369.393 299.8 366.593 293.2 360.993 288C355.393 282.8 348.193 280.2 339.393 280.2H302.193V218.4H339.393C346.193 218.4 351.993 216 356.793 211.2C361.593 206.4 363.993 200.4 363.993 193.2C363.993 184.8 361.393 178.2 356.193 173.4C350.993 168.6 344.393 166.2 336.393 166.2C329.193 166.2 322.993 168.4 317.793 172.8C312.993 177.2 310.593 182.8 310.593 189.6H243.993C243.993 164.8 252.793 144.6 270.393 129C287.993 113 310.593 105 338.193 105C365.793 105 388.193 112.2 405.393 126.6C422.993 141 431.793 160 431.793 183.6C431.793 200.8 427.193 214.8 417.993 225.6C408.793 236 396.993 243.2 382.593 247.2C399.793 252 413.393 260.2 423.393 271.8C433.793 283.4 438.993 298 438.993 315.6C438.993 340.4 429.593 360.8 410.793 376.8C391.993 392.8 367.593 400.8 337.593 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-5-mask)"
-                            />
-                            <path
-                                d="M129.529 167.6H104.329V105.2H197.329V400.2H129.529V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-5-mask)"
-                            />
-                        </g>
-                    </svg>
-                    <div
-                        class="absolute inset-0 rounded-t-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] lg:rounded-t-none lg:rounded-r-lg dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"
-                    ></div>
+                <div class="hero-cta">
+                    <button class="mj-btn-gold" @click="navigate('collections')">Explore Collections</button>
+                    <button class="mj-btn-ghost" @click="navigate('contact')">Visit Store</button>
                 </div>
-            </main>
+
+                <div class="hero-stats">
+                    <div v-for="[num, label] in stats" :key="num" class="mj-stat">
+                        <span class="mj-stat-num">{{ num }}</span>
+                        <span class="mj-stat-label">{{ label }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: WebGL shader -->
+            <div class="mj-hero-shader">
+                <HeroShader />
+
+                <!-- Overlay: floating info pills -->
+                <div class="mj-shader-overlay">
+                    <div class="mj-hero-pill mj-hero-pill--tl">
+                        <span class="mj-pill-dot"></span>
+                        <span>22K Hallmarked Gold</span>
+                    </div>
+                    <div class="mj-hero-pill mj-hero-pill--tr">
+                        <span class="mj-pill-dot"></span>
+                        <span>BIS Certified</span>
+                    </div>
+                    <div class="mj-hero-pill mj-hero-pill--bl">
+                        <span class="mj-pill-dot"></span>
+                        <span>Custom Orders</span>
+                    </div>
+                </div>
+
+                <!-- Bottom arrival card -->
+                <div class="hero-image-card">
+                    <svg width="10" height="10" viewBox="0 0 8 8" style="flex-shrink:0">
+                        <rect x="4" y="0" width="4" height="4" transform="rotate(45 4 4)" fill="#C4922A"/>
+                    </svg>
+                    <div>
+                        <div class="mj-card-title">New Arrival — Bridal 2025</div>
+                        <div class="mj-card-sub">Navaratna necklace set · 22K gold</div>
+                    </div>
+                    <button class="mj-card-link" @click="navigate('collections')">View →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Marquee ─────────────────────────────────────── -->
+        <div class="mj-marquee-wrap">
+            <div class="mj-marquee-track">
+                <span v-for="(t, i) in marqueeItems" :key="i" class="mj-marquee-item">{{ t }}</span>
+            </div>
         </div>
-        <div class="hidden h-14.5 lg:block"></div>
+
+        <!-- ── Collections ──────────────────────────────────── -->
+        <section class="mj-collections-section">
+            <div class="mj-section-head">
+                <div>
+                    <div class="mj-eyebrow-row">
+                        <svg width="8" height="8" viewBox="0 0 8 8"><rect x="4" y="0" width="4" height="4" transform="rotate(45 4 4)" fill="#C4922A"/></svg>
+                        <span class="mj-eyebrow">Our Collections</span>
+                    </div>
+                    <h2 class="mj-section-h2">
+                        Crafted for every<br><em class="mj-crimson-i">occasion</em>
+                    </h2>
+                </div>
+                <button class="mj-view-all" @click="navigate('collections')">View All →</button>
+            </div>
+
+            <div class="collections-grid">
+                <div
+                    v-for="(col, i) in collections"
+                    :key="i"
+                    class="collection-item"
+                    @click="navigate('collections')"
+                >
+                    <div class="mj-col-thumb" :style="{ background: cardGradients[i] }">
+                        <div class="mj-col-ring mj-col-ring--1"></div>
+                        <div class="mj-col-ring mj-col-ring--2"></div>
+                        <span class="mj-col-icon">{{ col.icon }}</span>
+                        <div class="col-overlay">
+                            <span>Explore</span>
+                        </div>
+                    </div>
+                    <div class="mj-col-body">
+                        <div class="mj-col-row">
+                            <span class="mj-col-name">{{ col.name }}</span>
+                            <span class="mj-col-tag">{{ col.tag }}</span>
+                        </div>
+                        <p class="mj-col-desc">{{ col.desc }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Promise ──────────��───────────────────────────── -->
+        <section class="feature-section">
+            <div class="mj-promise-text">
+                <div class="mj-eyebrow-row">
+                    <svg width="8" height="8" viewBox="0 0 8 8"><rect x="4" y="0" width="4" height="4" transform="rotate(45 4 4)" fill="#E8C96D"/></svg>
+                    <span class="mj-eyebrow" style="color:var(--mj-gold-light)">Our Promise</span>
+                </div>
+                <h2 class="mj-promise-h2">
+                    Jewellery that carries<br>
+                    <em class="mj-gold-i">generations</em> of love
+                </h2>
+                <p class="mj-promise-body">
+                    For over 18 years, Maniratn Jewellers has been the trusted choice for families
+                    across the region — from first gold purchases to grand bridal sets.
+                </p>
+                <div class="mj-promise-grid">
+                    <div v-for="[title, desc] in featurePoints" :key="title" class="mj-promise-item">
+                        <div class="mj-pi-head">
+                            <svg width="6" height="6" viewBox="0 0 8 8"><rect x="4" y="0" width="4" height="4" transform="rotate(45 4 4)" fill="#C4922A"/></svg>
+                            <span class="mj-pi-title">{{ title }}</span>
+                        </div>
+                        <span class="mj-pi-desc">{{ desc }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mj-promise-deco">
+                <div class="mj-stats-grid">
+                    <div v-for="[num, label, sub] in promiseStats" :key="num" class="mj-pstat">
+                        <span class="mj-pstat-num">{{ num }}</span>
+                        <span class="mj-pstat-label">{{ label }}</span>
+                        <span class="mj-pstat-sub">{{ sub }}</span>
+                    </div>
+                </div>
+                <div class="mj-promise-badge">
+                    <svg width="14" height="14" viewBox="0 0 8 8"><rect x="4" y="0" width="4" height="4" transform="rotate(45 4 4)" fill="#C4922A"/></svg>
+                    <span>BIS Hallmarked · Trusted Since 2007</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── FAQ ──────────────��───────────────────────────── -->
+        <section class="faq-section">
+            <div class="mj-faq-inner">
+                <div class="mj-faq-head">
+                    <div class="mj-faq-orn">
+                        <div class="mj-gold-line"></div>
+                        <svg width="8" height="8" viewBox="0 0 8 8"><rect x="4" y="0" width="4" height="4" transform="rotate(45 4 4)" fill="#C4922A"/></svg>
+                        <div class="mj-gold-line"></div>
+                    </div>
+                    <span class="mj-eyebrow" style="display:block;text-align:center;margin-bottom:10px">Questions</span>
+                    <h2 class="mj-faq-h2">Frequently asked</h2>
+                </div>
+                <TheAccordion :items="faqItems" variant="light" />
+            </div>
+        </section>
+
+        <!-- ── CTA ───────────────────��────────────────���─────── -->
+        <section class="cta-section">
+            <div class="mj-cta-inner">
+                <svg width="28" height="28" viewBox="0 0 16 16" style="margin:0 auto 28px;display:block">
+                    <path d="M8 0 L9 7 L16 8 L9 9 L8 16 L7 9 L0 8 L7 7Z" fill="#C4922A" opacity="0.85"/>
+                </svg>
+                <h2 class="mj-cta-h2">Begin your jewellery journey</h2>
+                <p class="mj-cta-body">
+                    Visit our store or get in touch — we're here to help you find the perfect piece.
+                </p>
+                <div class="mj-cta-btns">
+                    <button class="mj-btn-gold mj-cta-btn" @click="navigate('contact')">Contact Us</button>
+                    <button class="mj-btn-ghost mj-cta-btn" @click="navigate('collections')">View Collections</button>
+                </div>
+                <div class="mj-cta-rule">
+                    <span></span>
+                    <svg width="8" height="8" viewBox="0 0 8 8"><rect x="4" y="0" width="4" height="4" transform="rotate(45 4 4)" fill="#C4922A" opacity="0.4"/></svg>
+                    <span></span>
+                </div>
+            </div>
+        </section>
+
+        <TheFooter />
     </div>
 </template>
+
+<script lang="ts">
+const promiseStats: [string, string, string][] = [
+    ['18+',   'Years',    'of service'],
+    ['5000+', 'Families', 'served'],
+    ['100%',  'Purity',   'guaranteed'],
+    ['0%',    'Compromise', 'on quality'],
+];
+</script>
+
+<style scoped>
+/* ── Page wrapper — kills all x-overflow ─────────────── */
+.mj-page {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* ── Hero ────────────────────��───────────────────────── */
+.mj-hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;                /* prevent shader canvas overflow */
+}
+
+.mj-hero-content {
+    background: var(--mj-crimson);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 64px 80px;
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.mj-hero-deco-ring {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+.mj-hero-deco-ring--tl {
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    border: 1px solid rgba(196,146,42,0.15);
+}
+.mj-hero-deco-ring--br {
+    bottom: 40px; left: -60px;
+    width: 220px; height: 220px;
+    border: 1px solid rgba(196,146,42,0.1);
+}
+
+/* Eyebrow */
+.hero-eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 22px;
+}
+.mj-ew-line { width: 32px; height: 0.5px; background: var(--mj-gold); flex-shrink: 0; }
+.hero-eyebrow span {
+    font-family: var(--mj-sans);
+    font-size: 11px; letter-spacing: 0.28em;
+    color: var(--mj-gold); text-transform: uppercase;
+}
+
+/* Title */
+.hero-title {
+    font-family: var(--mj-serif);
+    font-size: clamp(46px, 5vw, 74px);
+    font-weight: 300; line-height: 1.08;
+    color: var(--mj-cream);
+    margin-bottom: 28px; letter-spacing: 0.01em;
+}
+.hero-title em { font-weight: 400; font-style: italic; }
+
+/* Body */
+.hero-body {
+    font-family: var(--mj-sans);
+    font-size: 14px; line-height: 1.85;
+    color: rgba(253,248,240,0.62);
+    max-width: 340px; margin-bottom: 40px;
+    font-weight: 300;
+}
+
+/* CTA */
+.hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+
+/* Stats */
+.hero-stats {
+    display: flex; gap: 36px; flex-wrap: wrap;
+    margin-top: 56px; padding-top: 28px;
+    border-top: 1px solid rgba(196,146,42,0.18);
+}
+.mj-stat-num {
+    display: block;
+    font-family: var(--mj-serif); font-size: 30px;
+    font-weight: 500; color: var(--mj-gold-light); line-height: 1;
+}
+.mj-stat-label {
+    display: block;
+    font-family: var(--mj-sans); font-size: 10px;
+    letter-spacing: 0.16em; color: rgba(253,248,240,0.4);
+    text-transform: uppercase; margin-top: 4px;
+}
+
+/* ── Shader panel ────────────────────────────────────── */
+.mj-hero-shader {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    min-width: 0;
+}
+
+/* Floating overlay pills */
+.mj-shader-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+.mj-hero-pill {
+    position: absolute;
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(10,4,4,0.55);
+    border: 1px solid rgba(196,146,42,0.3);
+    backdrop-filter: blur(8px);
+    padding: 9px 16px;
+    font-family: var(--mj-sans); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(232,201,109,0.9);
+    white-space: nowrap;
+}
+.mj-hero-pill--tl { top: 18%; left: 8%; }
+.mj-hero-pill--tr { top: 30%; right: 8%; }
+.mj-hero-pill--bl { bottom: 28%; left: 8%; }
+.mj-pill-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--mj-gold); flex-shrink: 0;
+    animation: mj-blink 2.4s ease-in-out infinite;
+}
+@keyframes mj-blink {
+    0%, 100% { opacity: 1; } 50% { opacity: 0.35; }
+}
+
+/* Bottom card on shader panel */
+.hero-image-card {
+    position: absolute; bottom: 32px; left: 24px; right: 24px;
+    background: rgba(10,4,4,0.75);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(196,146,42,0.25);
+    border-top: 2px solid var(--mj-gold);
+    padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px;
+    z-index: 2;
+}
+.mj-card-title {
+    font-family: var(--mj-serif); font-size: 15px;
+    font-weight: 500; color: var(--mj-cream); line-height: 1;
+}
+.mj-card-sub {
+    font-family: var(--mj-sans); font-size: 11px;
+    color: rgba(232,201,109,0.65); margin-top: 3px;
+}
+.mj-card-link {
+    margin-left: auto;
+    background: none; border: none; cursor: pointer;
+    font-family: var(--mj-sans); font-size: 11px;
+    letter-spacing: 0.1em; color: var(--mj-gold);
+    font-weight: 500; white-space: nowrap;
+    transition: color 0.2s;
+}
+.mj-card-link:hover { color: var(--mj-gold-light); }
+
+/* ── Marquee ────────────���────────────────────────────── */
+.mj-marquee-wrap {
+    background: var(--mj-gold);
+    padding: 13px 0;
+    overflow: hidden;          /* critical: prevent x scroll */
+    width: 100%;
+}
+.mj-marquee-track {
+    display: flex; gap: 48px;
+    width: max-content;        /* let it grow, clipped by parent */
+    animation: mj-marquee 22s linear infinite;
+}
+.mj-marquee-item {
+    font-family: var(--mj-sans); font-size: 11px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--mj-crimson-dark); font-weight: 600;
+    white-space: nowrap;
+}
+@keyframes mj-marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* ── Shared eyebrow ────────���─────────────────────────── */
+.mj-eyebrow-row { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.mj-eyebrow {
+    font-family: var(--mj-sans); font-size: 11px;
+    letter-spacing: 0.26em; color: var(--mj-gold); text-transform: uppercase;
+}
+
+/* ── Collections ──────────────���──────────────────────── */
+.mj-collections-section {
+    padding: 100px 60px;
+    background: linear-gradient(180deg, #FEFBF5 0%, var(--mj-cream) 100%);
+    overflow: hidden;
+}
+.mj-section-head {
+    display: flex; justify-content: space-between;
+    align-items: flex-end; margin-bottom: 48px;
+    gap: 16px; flex-wrap: wrap;
+}
+.mj-section-h2 {
+    font-family: var(--mj-serif);
+    font-size: clamp(34px, 4vw, 54px);
+    font-weight: 300; color: var(--mj-ink);
+    letter-spacing: 0.01em; line-height: 1.15;
+}
+.mj-crimson-i { color: var(--mj-crimson); font-style: italic; }
+.mj-view-all {
+    font-family: var(--mj-sans); font-size: 12px;
+    letter-spacing: 0.15em; color: var(--mj-gold);
+    text-transform: uppercase; cursor: pointer;
+    border: none; background: none;
+    border-bottom: 1px solid var(--mj-gold); padding-bottom: 2px;
+    white-space: nowrap;
+}
+
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+.collection-item {
+    cursor: pointer; overflow: hidden;
+    border: 1px solid rgba(196,146,42,0.2);
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.collection-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(26,15,10,0.13);
+    border-color: rgba(196,146,42,0.5);
+}
+.collection-item:hover .col-overlay { opacity: 1; }
+
+.mj-col-thumb {
+    height: 260px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+}
+.mj-col-ring {
+    position: absolute; border-radius: 50%;
+}
+.mj-col-ring--1 { width: 120px; height: 120px; border: 1px solid rgba(196,146,42,0.22); }
+.mj-col-ring--2 { width: 80px;  height: 80px;  border: 1px solid rgba(196,146,42,0.16); }
+.mj-col-icon { position: relative; z-index: 1; font-size: 38px; }
+.col-overlay {
+    position: absolute; inset: 0;
+    background: rgba(107,18,18,0.72);
+    opacity: 0; transition: opacity 0.3s ease;
+    display: flex; align-items: center; justify-content: center;
+}
+.col-overlay span {
+    font-family: var(--mj-sans); font-size: 11px;
+    letter-spacing: 0.22em; color: var(--mj-cream);
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(232,201,109,0.5); padding-bottom: 2px;
+}
+.mj-col-body { padding: 16px 14px 14px; background: #fff; }
+.mj-col-row {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 6px;
+}
+.mj-col-name { font-family: var(--mj-serif); font-size: 17px; font-weight: 500; color: var(--mj-ink); }
+.mj-col-tag {
+    font-family: var(--mj-sans); font-size: 9px;
+    letter-spacing: 0.15em; color: var(--mj-crimson);
+    text-transform: uppercase;
+    border: 1px solid rgba(107,18,18,0.28); padding: 2px 7px;
+}
+.mj-col-desc { font-family: var(--mj-sans); font-size: 12px; color: var(--mj-ink-soft); line-height: 1.6; }
+
+/* ── Promise / Feature ───────────────��───────────────── */
+.feature-section {
+    display: grid; grid-template-columns: 1fr 1fr;
+    background: var(--mj-crimson-dark);
+    overflow: hidden;
+}
+.mj-promise-text { padding: 96px 64px; min-width: 0; }
+.mj-promise-h2 {
+    font-family: var(--mj-serif);
+    font-size: clamp(30px, 3.5vw, 48px);
+    font-weight: 300; color: var(--mj-cream);
+    line-height: 1.18; margin-bottom: 24px;
+}
+.mj-gold-i { color: #E8C96D; font-style: italic; }
+.mj-promise-body {
+    font-family: var(--mj-sans); font-size: 14px;
+    line-height: 1.9; color: rgba(253,248,240,0.55);
+    margin-bottom: 36px; font-weight: 300; max-width: 380px;
+}
+.mj-promise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 28px; }
+.mj-pi-head { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.mj-pi-title { font-family: var(--mj-serif); font-size: 16px; font-weight: 500; color: var(--mj-cream); }
+.mj-pi-desc { font-family: var(--mj-sans); font-size: 12px; color: rgba(253,248,240,0.42); line-height: 1.5; }
+
+.mj-promise-deco {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 20px; padding: 64px 40px;
+    min-width: 0;
+}
+.mj-stats-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; width: 100%; max-width: 320px;
+}
+.mj-pstat {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 28px 12px;
+    background: rgba(253,248,240,0.04);
+    border: 1px solid rgba(196,146,42,0.12);
+    text-align: center;
+    transition: background 0.22s;
+}
+.mj-pstat:hover { background: rgba(196,146,42,0.07); }
+.mj-pstat-num {
+    font-family: var(--mj-serif); font-size: 32px;
+    font-weight: 500; color: #E8C96D; line-height: 1;
+}
+.mj-pstat-label {
+    font-family: var(--mj-sans); font-size: 10px;
+    letter-spacing: 0.14em; color: rgba(253,248,240,0.65);
+    text-transform: uppercase; margin-top: 5px;
+}
+.mj-pstat-sub {
+    font-family: var(--mj-sans); font-size: 9px;
+    color: rgba(253,248,240,0.28); margin-top: 2px;
+}
+.mj-promise-badge {
+    display: flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(196,146,42,0.18);
+    padding: 10px 20px;
+    background: rgba(253,248,240,0.03);
+}
+.mj-promise-badge span {
+    font-family: var(--mj-sans); font-size: 11px;
+    letter-spacing: 0.1em; color: rgba(232,201,109,0.6);
+    text-transform: uppercase;
+}
+
+/* ── FAQ ───────────��─────────────────────────────────── */
+.faq-section { padding: 96px 60px; background: #fff; overflow: hidden; }
+.mj-faq-inner { max-width: 800px; margin: 0 auto; }
+.mj-faq-head { text-align: center; margin-bottom: 44px; }
+.mj-faq-orn { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px; }
+.mj-faq-h2 {
+    font-family: var(--mj-serif);
+    font-size: clamp(30px, 3vw, 44px);
+    font-weight: 300; color: var(--mj-ink);
+}
+
+/* ── CTA ────────────────────���───────────────────���────── */
+.cta-section {
+    background: linear-gradient(155deg, var(--mj-crimson) 0%, var(--mj-crimson-dark) 100%);
+    overflow: hidden;
+    position: relative;
+}
+.cta-section::before {
+    content: '';
+    position: absolute; top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: min(600px, 90vw); height: min(600px, 90vw);
+    border-radius: 50%;
+    border: 1px solid rgba(196,146,42,0.1);
+    pointer-events: none;
+}
+.mj-cta-inner {
+    position: relative; z-index: 1;
+    text-align: center; padding: 96px 60px;
+}
+.mj-cta-h2 {
+    font-family: var(--mj-serif);
+    font-size: clamp(28px, 3.5vw, 46px);
+    font-weight: 300; color: var(--mj-cream);
+    margin-bottom: 14px; line-height: 1.2;
+}
+.mj-cta-body {
+    font-family: var(--mj-sans); font-size: 14px;
+    color: rgba(253,248,240,0.55);
+    margin: 0 auto 40px; max-width: 400px; line-height: 1.7;
+}
+.mj-cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.mj-cta-btn { min-width: 160px; padding: 15px 36px; }
+.mj-cta-rule {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; margin-top: 52px;
+}
+.mj-cta-rule span {
+    display: block; width: 80px; height: 0.5px;
+    background: rgba(196,146,42,0.28);
+}
+
+/* ── Responsive ────────────────���─────────────────────── */
+@media (max-width: 1100px) {
+    .mj-hero { grid-template-columns: 1fr; min-height: auto; }
+    .mj-hero-content { padding: 120px 32px 56px; }
+    .mj-hero-shader { min-height: 55vh; }
+    .collections-grid { grid-template-columns: repeat(2, 1fr); }
+    .feature-section { grid-template-columns: 1fr; }
+    .mj-promise-text { padding: 72px 40px; }
+    .mj-promise-deco { padding: 48px 40px; }
+}
+
+@media (max-width: 720px) {
+    .mj-hero-content { padding: 110px 24px 52px; }
+    .hero-cta { flex-direction: column; }
+    .hero-stats { gap: 16px 24px; }
+    .mj-collections-section, .faq-section { padding: 72px 20px; }
+    .collections-grid { grid-template-columns: 1fr; }
+    .mj-promise-text { padding: 56px 24px; }
+    .mj-cta-inner { padding: 72px 24px; }
+    .mj-hero-pill--tr { display: none; }
+    .mj-stats-grid { max-width: 100%; }
+    .faq-section { padding-inline: 20px; }
+}
+</style>

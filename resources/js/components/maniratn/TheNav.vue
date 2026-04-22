@@ -1,0 +1,459 @@
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref, watch } from 'vue';
+import { router } from '@inertiajs/vue3';
+import gsap from 'gsap';
+import { about, collections, contact, home } from '@/routes';
+
+const props = defineProps<{
+    currentPage: string;
+    /** pass "dark" when page starts with a dark hero (crimson/black bg) */
+    heroVariant?: 'dark' | 'light';
+}>();
+
+const menuOpen = ref(false);
+const scrolled = ref(false);
+
+const navItems = [
+    { label: 'Home', key: 'home' },
+    { label: 'Collections', key: 'collections' },
+    { label: 'About', key: 'about' },
+];
+
+function onScroll(): void {
+    scrolled.value = window.scrollY > 60;
+}
+
+function resolveRoute(page: string) {
+    switch (page) {
+        case 'collections': return collections();
+        case 'about': return about();
+        case 'contact': return contact();
+        default: return home();
+    }
+}
+
+function navigate(page: string): void {
+    menuOpen.value = false;
+    router.visit(resolveRoute(page));
+    window.scrollTo(0, 0);
+}
+
+watch(menuOpen, (isOpen) => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+onMounted(() => {
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    gsap.fromTo('.mj-navbar',
+        { y: -20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', delay: 0.1 }
+    );
+});
+
+onUnmounted(() => {
+    document.body.style.overflow = '';
+    window.removeEventListener('scroll', onScroll);
+});
+</script>
+
+<template>
+    <!-- Thin gold top accent bar -->
+    <div class="mj-topbar"></div>
+
+    <header
+        class="mj-navbar"
+        :class="{
+            'is-scrolled': scrolled,
+            'hero-dark': !scrolled && (heroVariant === 'dark' || currentPage === 'home' || currentPage === 'contact'),
+        }"
+    >
+        <!-- Left links -->
+        <nav class="mj-nav-left">
+            <button
+                v-for="item in navItems"
+                :key="item.key"
+                type="button"
+                class="mj-nav-link"
+                :class="{ active: currentPage === item.key }"
+                @click="navigate(item.key)"
+            >{{ item.label }}</button>
+        </nav>
+
+        <!-- Center brand -->
+        <button class="mj-nav-brand" type="button" @click="navigate('home')">
+            <span class="mj-brand-name">Maniratn</span>
+            <div class="mj-brand-rule">
+                <span class="mj-brand-rule-line"></span>
+                <span class="mj-brand-sub">Jewellers</span>
+                <span class="mj-brand-rule-line"></span>
+            </div>
+            <span class="mj-brand-since">Since 2007</span>
+        </button>
+
+        <!-- Right actions -->
+        <div class="mj-nav-right">
+            <button
+                type="button"
+                class="mj-nav-link"
+                :class="{ active: currentPage === 'contact' }"
+                @click="navigate('contact')"
+            >Contact</button>
+            <button type="button" class="mj-nav-cta" @click="navigate('contact')">
+                Visit Store
+            </button>
+        </div>
+
+        <!-- Mobile toggle -->
+        <button
+            type="button"
+            class="mj-mobile-toggle"
+            :aria-expanded="menuOpen"
+            @click="menuOpen = !menuOpen"
+        >
+            <span class="mj-toggle-bar" :class="{ open: menuOpen }"></span>
+            <span class="mj-toggle-bar" :class="{ open: menuOpen }"></span>
+            <span class="mj-toggle-bar" :class="{ open: menuOpen }"></span>
+        </button>
+    </header>
+
+    <!-- Mobile drawer -->
+    <transition name="mj-drawer">
+        <div v-if="menuOpen" class="mj-drawer-overlay" @click.self="menuOpen = false">
+            <nav class="mj-drawer-panel">
+                <div class="mj-drawer-brand">
+                    <span class="mj-brand-name" style="font-size:1.8rem;">Maniratn</span>
+                    <span class="mj-brand-sub" style="display:block; margin-top:2px;">Jewellers · Since 2007</span>
+                </div>
+                <div class="mj-drawer-links">
+                    <button
+                        v-for="item in [...navItems, { label: 'Contact', key: 'contact' }]"
+                        :key="item.key"
+                        type="button"
+                        class="mj-drawer-link"
+                        :class="{ active: currentPage === item.key }"
+                        @click="navigate(item.key)"
+                    >
+                        <svg width="6" height="6" viewBox="0 0 8 8"><rect x="4" y="0" width="4" height="4" transform="rotate(45 4 4)" fill="#C4922A" /></svg>
+                        {{ item.label }}
+                    </button>
+                </div>
+                <button type="button" class="mj-drawer-cta" @click="navigate('contact')">
+                    Book a Visit
+                </button>
+            </nav>
+        </div>
+    </transition>
+</template>
+
+<style scoped>
+/* ── Top accent bar ──────────────────────────────────── */
+.mj-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #C4922A 30%, #E8C96D 50%, #C4922A 70%, transparent 100%);
+    z-index: 102;
+}
+
+/* ── Main navbar ─────────────────────────────────────── */
+.mj-navbar {
+    position: fixed;
+    top: 2px;          /* sits below the gold topbar */
+    left: 0;
+    right: 0;
+    z-index: 101;
+    height: 76px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0 48px;
+    background: transparent;
+    transition: background 0.35s ease, height 0.35s ease, box-shadow 0.35s ease, border-bottom-color 0.35s ease;
+    border-bottom: 1px solid transparent;
+}
+
+/* Scrolled state — cream bg */
+.mj-navbar.is-scrolled {
+    height: 66px;
+    background: rgba(253, 248, 240, 0.97);
+    backdrop-filter: blur(16px);
+    border-bottom-color: rgba(196, 146, 42, 0.2);
+    box-shadow: 0 4px 24px rgba(26, 15, 10, 0.06);
+}
+
+/* ── Link colors: dark hero (transparent over crimson) ── */
+.mj-navbar.hero-dark .mj-nav-link { color: rgba(253,248,240,0.75); }
+.mj-navbar.hero-dark .mj-nav-link:hover,
+.mj-navbar.hero-dark .mj-nav-link.active { color: #E8C96D; border-bottom-color: #E8C96D; }
+.mj-navbar.hero-dark .mj-brand-name { filter: brightness(1.1); }
+.mj-navbar.hero-dark .mj-brand-sub { color: rgba(232,201,109,0.85); }
+.mj-navbar.hero-dark .mj-brand-since { color: rgba(232,201,109,0.45); }
+.mj-navbar.hero-dark .mj-brand-rule-line { background: rgba(196,146,42,0.5); }
+.mj-navbar.hero-dark .mj-nav-cta {
+    border-color: rgba(232,201,109,0.45);
+    color: rgba(253,248,240,0.85);
+    background: rgba(253,248,240,0.08);
+}
+.mj-navbar.hero-dark .mj-nav-cta:hover {
+    border-color: rgba(232,201,109,0.8);
+    background: rgba(253,248,240,0.15);
+    color: #E8C96D;
+}
+.mj-navbar.hero-dark .mj-mobile-toggle .mj-toggle-bar { background: rgba(253,248,240,0.8); }
+
+/* ── Left nav links ──────────────────────────────────── */
+.mj-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.mj-nav-link {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--mj-sans);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--mj-ink-mid);
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.22s, border-color 0.22s;
+    white-space: nowrap;
+}
+.mj-nav-link:hover,
+.mj-nav-link.active {
+    color: var(--mj-crimson);
+    border-bottom-color: var(--mj-gold);
+}
+
+/* ── Center brand ────────────────────────────────────── */
+.mj-nav-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0 24px;
+    flex-shrink: 0;
+}
+
+.mj-brand-name {
+    font-family: var(--mj-serif);
+    font-size: 1.7rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    background: linear-gradient(135deg, #C4922A 0%, #E8C96D 45%, #C4922A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: filter 0.2s;
+}
+.mj-nav-brand:hover .mj-brand-name { filter: brightness(1.15); }
+
+.mj-brand-rule {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 2px;
+}
+.mj-brand-rule-line {
+    display: block;
+    width: 22px;
+    height: 0.5px;
+    background: rgba(196,146,42,0.55);
+    transition: background 0.3s;
+}
+.mj-nav-brand:hover .mj-brand-rule-line { background: #C4922A; }
+
+.mj-brand-sub {
+    font-family: var(--mj-sans);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--mj-gold);
+    font-weight: 400;
+    white-space: nowrap;
+}
+.mj-brand-since {
+    font-family: var(--mj-sans);
+    font-size: 8.5px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mj-ink-soft);
+    margin-top: 1px;
+}
+
+/* ── Right actions ───────────────────────────────────── */
+.mj-nav-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 28px;
+}
+
+.mj-nav-cta {
+    border: 1px solid rgba(196,146,42,0.45);
+    background: transparent;
+    color: var(--mj-crimson);
+    cursor: pointer;
+    font-family: var(--mj-sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 9px 20px;
+    transition: all 0.22s ease;
+    white-space: nowrap;
+}
+.mj-nav-cta:hover {
+    background: var(--mj-gold);
+    border-color: var(--mj-gold);
+    color: var(--mj-crimson-dark);
+}
+
+/* ── Mobile toggle (hamburger) ───────────────────────── */
+.mj-mobile-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 4px;
+    grid-column: 3;
+    justify-self: end;
+}
+.mj-toggle-bar {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--mj-ink-mid);
+    transition: transform 0.25s ease, opacity 0.25s ease, width 0.25s ease;
+    transform-origin: center;
+}
+.mj-toggle-bar:nth-child(2).open { opacity: 0; }
+.mj-toggle-bar:nth-child(1).open { transform: translateY(6.5px) rotate(45deg); }
+.mj-toggle-bar:nth-child(3).open { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ── Mobile drawer ───────────────────────────────────── */
+.mj-drawer-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    background: rgba(26,10,6,0.55);
+    backdrop-filter: blur(3px);
+}
+.mj-drawer-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(320px, 88vw);
+    background: var(--mj-cream);
+    border-left: 1px solid rgba(196,146,42,0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 40px 28px 32px;
+    gap: 0;
+}
+.mj-drawer-brand {
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(196,146,42,0.15);
+    margin-bottom: 28px;
+}
+.mj-drawer-brand .mj-brand-name {
+    font-family: var(--mj-serif);
+    font-size: 1.8rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #C4922A, #E8C96D, #C4922A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.mj-drawer-brand .mj-brand-sub {
+    font-family: var(--mj-sans);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mj-gold);
+    margin-top: 4px;
+}
+.mj-drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+.mj-drawer-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: none;
+    background: transparent;
+    text-align: left;
+    padding: 14px 4px;
+    font-family: var(--mj-sans);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mj-ink-mid);
+    border-bottom: 1px solid rgba(196,146,42,0.1);
+    cursor: pointer;
+    transition: color 0.2s, padding-left 0.2s;
+}
+.mj-drawer-link:hover,
+.mj-drawer-link.active {
+    color: var(--mj-crimson);
+    padding-left: 8px;
+}
+.mj-drawer-cta {
+    margin-top: 24px;
+    width: 100%;
+    padding: 14px;
+    background: var(--mj-crimson);
+    border: none;
+    color: var(--mj-cream);
+    font-family: var(--mj-sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.mj-drawer-cta:hover { background: var(--mj-crimson-dark); }
+
+/* ── Drawer transition ───────────────────────────────── */
+.mj-drawer-enter-active,
+.mj-drawer-leave-active { transition: opacity 0.25s ease; }
+.mj-drawer-enter-active .mj-drawer-panel,
+.mj-drawer-leave-active .mj-drawer-panel { transition: transform 0.3s ease; }
+.mj-drawer-enter-from,
+.mj-drawer-leave-to { opacity: 0; }
+.mj-drawer-enter-from .mj-drawer-panel,
+.mj-drawer-leave-to .mj-drawer-panel { transform: translateX(100%); }
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 900px) {
+    .mj-navbar { padding: 0 24px; grid-template-columns: auto 1fr auto; }
+    .mj-nav-left, .mj-nav-right { display: none; }
+    .mj-nav-brand { padding: 0 12px; justify-self: center; }
+    .mj-mobile-toggle { display: flex; }
+    .mj-brand-name { font-size: 1.4rem; }
+}
+
+@media (max-width: 480px) {
+    .mj-navbar { padding: 0 16px; }
+}
+</style>
