@@ -83,13 +83,12 @@ onUnmounted(() => {
 
         <!-- Center brand -->
         <button class="mj-nav-brand" type="button" @click="navigate('home')">
-            <span class="mj-brand-name">Maniratn</span>
-            <div class="mj-brand-rule">
-                <span class="mj-brand-rule-line"></span>
-                <span class="mj-brand-sub">Jewellers</span>
-                <span class="mj-brand-rule-line"></span>
-            </div>
-            <span class="mj-brand-since">Since 2007</span>
+            <img
+                :src="scrolled ? '/main-logo.png' : '/logo.png'"
+                alt="Maniratn Jewellers"
+                class="mj-brand-logo"
+                :class="{ 'is-scrolled-logo': scrolled }"
+            />
         </button>
 
         <!-- Right actions -->
@@ -123,8 +122,7 @@ onUnmounted(() => {
         <div v-if="menuOpen" class="mj-drawer-overlay" @click.self="menuOpen = false">
             <nav class="mj-drawer-panel">
                 <div class="mj-drawer-brand">
-                    <span class="mj-brand-name" style="font-size:1.8rem;">Maniratn</span>
-                    <span class="mj-brand-sub" style="display:block; margin-top:2px;">Jewellers · Since 2007</span>
+                    <img src="/logo.png" alt="Maniratn Jewellers" class="mj-drawer-logo" />
                 </div>
                 <div class="mj-drawer-links">
                     <button
@@ -166,7 +164,7 @@ onUnmounted(() => {
     left: 0;
     right: 0;
     z-index: 101;
-    height: 76px;
+    height: 84px;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
@@ -189,10 +187,6 @@ onUnmounted(() => {
 .mj-navbar.hero-dark .mj-nav-link { color: rgba(253,248,240,0.75); }
 .mj-navbar.hero-dark .mj-nav-link:hover,
 .mj-navbar.hero-dark .mj-nav-link.active { color: #E8C96D; border-bottom-color: #E8C96D; }
-.mj-navbar.hero-dark .mj-brand-name { filter: brightness(1.1); }
-.mj-navbar.hero-dark .mj-brand-sub { color: rgba(232,201,109,0.85); }
-.mj-navbar.hero-dark .mj-brand-since { color: rgba(232,201,109,0.45); }
-.mj-navbar.hero-dark .mj-brand-rule-line { background: rgba(196,146,42,0.5); }
 .mj-navbar.hero-dark .mj-nav-cta {
     border-color: rgba(232,201,109,0.45);
     color: rgba(253,248,240,0.85);
@@ -236,62 +230,29 @@ onUnmounted(() => {
 /* ── Center brand ────────────────────────────────────── */
 .mj-nav-brand {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 1px;
+    justify-content: center;
     border: none;
     background: transparent;
     cursor: pointer;
-    padding: 0 24px;
+    padding: 0 16px;
     flex-shrink: 0;
 }
 
-.mj-brand-name {
-    font-family: var(--mj-serif);
-    font-size: 1.7rem;
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: 0.02em;
-    background: linear-gradient(135deg, #C4922A 0%, #E8C96D 45%, #C4922A 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    transition: filter 0.2s;
-}
-.mj-nav-brand:hover .mj-brand-name { filter: brightness(1.15); }
-
-.mj-brand-rule {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    margin-top: 2px;
-}
-.mj-brand-rule-line {
+.mj-brand-logo {
+    height: 76px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
     display: block;
-    width: 22px;
-    height: 0.5px;
-    background: rgba(196,146,42,0.55);
-    transition: background 0.3s;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    transition: height 0.35s ease, opacity 0.2s;
 }
-.mj-nav-brand:hover .mj-brand-rule-line { background: #C4922A; }
-
-.mj-brand-sub {
-    font-family: var(--mj-sans);
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--mj-gold);
-    font-weight: 400;
-    white-space: nowrap;
+.mj-brand-logo.is-scrolled-logo {
+    height: 52px;
 }
-.mj-brand-since {
-    font-family: var(--mj-sans);
-    font-size: 8.5px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--mj-ink-soft);
-    margin-top: 1px;
-}
+.mj-nav-brand:hover .mj-brand-logo { opacity: 0.85; }
 
 /* ── Right actions ───────────────────────────────────── */
 .mj-nav-right {
@@ -372,22 +333,14 @@ onUnmounted(() => {
     border-bottom: 1px solid rgba(196,146,42,0.15);
     margin-bottom: 28px;
 }
-.mj-drawer-brand .mj-brand-name {
-    font-family: var(--mj-serif);
-    font-size: 1.8rem;
-    font-weight: 600;
-    background: linear-gradient(135deg, #C4922A, #E8C96D, #C4922A);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-.mj-drawer-brand .mj-brand-sub {
-    font-family: var(--mj-sans);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--mj-gold);
-    margin-top: 4px;
+.mj-drawer-logo {
+    height: 72px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    display: block;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 .mj-drawer-links {
     display: flex;
@@ -450,7 +403,8 @@ onUnmounted(() => {
     .mj-nav-left, .mj-nav-right { display: none; }
     .mj-nav-brand { padding: 0 12px; justify-self: center; }
     .mj-mobile-toggle { display: flex; }
-    .mj-brand-name { font-size: 1.4rem; }
+    .mj-brand-logo { height: 56px; }
+    .mj-brand-logo.is-scrolled-logo { height: 44px; }
 }
 
 @media (max-width: 480px) {

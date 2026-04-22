@@ -36,7 +36,14 @@ function loop() {
     raf = requestAnimationFrame(loop);
 }
 
+const isTouch = ref(false);
+
 onMounted(() => {
+    // Disable on touch/mobile devices — they have no pointer
+    if (window.matchMedia('(pointer: coarse)').matches) {
+        isTouch.value = true;
+        return;
+    }
     window.addEventListener('mousemove', onMove, { passive: true });
     window.addEventListener('mousedown', onDown);
     window.addEventListener('mouseup',   onUp);
@@ -46,6 +53,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+    if (isTouch.value) return;
     window.removeEventListener('mousemove', onMove);
     window.removeEventListener('mousedown', onDown);
     window.removeEventListener('mouseup',   onUp);
@@ -56,24 +64,28 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <!-- Dot: small solid diamond -->
-    <div
-        class="mj-cur-dot"
-        :class="{ hovered: hovered, clicking: clicking }"
-        :style="{ transform: `translate(${x}px, ${y}px)` }"
-    ></div>
+    <template v-if="!isTouch">
+        <!-- Dot: small solid diamond -->
+        <div
+            class="mj-cur-dot"
+            :class="{ hovered: hovered, clicking: clicking }"
+            :style="{ transform: `translate(${x}px, ${y}px)` }"
+        ></div>
 
-    <!-- Ring: outer circle, lags slightly more -->
-    <div
-        class="mj-cur-ring"
-        :class="{ hovered: hovered, clicking: clicking }"
-        :style="{ transform: `translate(${x}px, ${y}px)` }"
-    ></div>
+        <!-- Ring: outer circle, lags slightly more -->
+        <div
+            class="mj-cur-ring"
+            :class="{ hovered: hovered, clicking: clicking }"
+            :style="{ transform: `translate(${x}px, ${y}px)` }"
+        ></div>
+    </template>
 </template>
 
 <style>
-/* Not scoped — must affect body */
-* { cursor: none !important; }
+/* Hide default cursor only on non-touch devices */
+@media (pointer: fine) {
+    * { cursor: none !important; }
+}
 </style>
 
 <style scoped>
