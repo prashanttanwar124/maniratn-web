@@ -1,27 +1,21 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, watch } from 'vue';
 import { router } from '@inertiajs/vue3';
 import gsap from 'gsap';
+import { onMounted, onUnmounted, ref, watch } from 'vue';
 import { about, collections, contact, home } from '@/routes';
 
-const props = defineProps<{
+defineProps<{
     currentPage: string;
-    /** pass "dark" when page starts with a dark hero (crimson/black bg) */
     heroVariant?: 'dark' | 'light';
 }>();
 
 const menuOpen = ref(false);
-const scrolled = ref(false);
 
 const navItems = [
     { label: 'Home', key: 'home' },
     { label: 'Collections', key: 'collections' },
     { label: 'About', key: 'about' },
 ];
-
-function onScroll(): void {
-    scrolled.value = window.scrollY > 60;
-}
 
 function resolveRoute(page: string) {
     switch (page) {
@@ -43,18 +37,14 @@ watch(menuOpen, (isOpen) => {
 });
 
 onMounted(() => {
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-
     gsap.fromTo('.mj-navbar',
-        { y: -20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', delay: 0.1 }
+        { y: -10, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }
     );
 });
 
 onUnmounted(() => {
     document.body.style.overflow = '';
-    window.removeEventListener('scroll', onScroll);
 });
 </script>
 
@@ -62,13 +52,7 @@ onUnmounted(() => {
     <!-- Thin gold top accent bar -->
     <div class="mj-topbar"></div>
 
-    <header
-        class="mj-navbar"
-        :class="{
-            'is-scrolled': scrolled,
-            'hero-dark': !scrolled && (heroVariant === 'dark' || currentPage === 'home' || currentPage === 'contact'),
-        }"
-    >
+    <header class="mj-navbar" :class="`mj-navbar-${heroVariant ?? 'dark'}`">
         <!-- Left links -->
         <nav class="mj-nav-left">
             <button
@@ -84,10 +68,9 @@ onUnmounted(() => {
         <!-- Center brand -->
         <button class="mj-nav-brand" type="button" @click="navigate('home')">
             <img
-                :src="scrolled ? '/main-logo.png' : '/logo.png'"
+                src="/logo.png"
                 alt="Maniratn Jewellers"
                 class="mj-brand-logo"
-                :class="{ 'is-scrolled-logo': scrolled }"
             />
         </button>
 
@@ -148,7 +131,7 @@ onUnmounted(() => {
 <style scoped>
 /* ── Top accent bar ──────────────────────────────────── */
 .mj-topbar {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -159,8 +142,8 @@ onUnmounted(() => {
 
 /* ── Main navbar ─────────────────────────────────────── */
 .mj-navbar {
-    position: fixed;
-    top: 2px;          /* sits below the gold topbar */
+    position: absolute;
+    top: 2px;
     left: 0;
     right: 0;
     z-index: 101;
@@ -170,34 +153,9 @@ onUnmounted(() => {
     align-items: center;
     padding: 0 48px;
     background: transparent;
-    transition: background 0.35s ease, height 0.35s ease, box-shadow 0.35s ease, border-bottom-color 0.35s ease;
     border-bottom: 1px solid transparent;
+    transition: background 0.35s ease, border-bottom-color 0.35s ease;
 }
-
-/* Scrolled state — cream bg */
-.mj-navbar.is-scrolled {
-    height: 66px;
-    background: rgba(253, 248, 240, 0.97);
-    backdrop-filter: blur(16px);
-    border-bottom-color: rgba(196, 146, 42, 0.2);
-    box-shadow: 0 4px 24px rgba(26, 15, 10, 0.06);
-}
-
-/* ── Link colors: dark hero (transparent over crimson) ── */
-.mj-navbar.hero-dark .mj-nav-link { color: rgba(253,248,240,0.75); }
-.mj-navbar.hero-dark .mj-nav-link:hover,
-.mj-navbar.hero-dark .mj-nav-link.active { color: #E8C96D; border-bottom-color: #E8C96D; }
-.mj-navbar.hero-dark .mj-nav-cta {
-    border-color: rgba(232,201,109,0.45);
-    color: rgba(253,248,240,0.85);
-    background: rgba(253,248,240,0.08);
-}
-.mj-navbar.hero-dark .mj-nav-cta:hover {
-    border-color: rgba(232,201,109,0.8);
-    background: rgba(253,248,240,0.15);
-    color: #E8C96D;
-}
-.mj-navbar.hero-dark .mj-mobile-toggle .mj-toggle-bar { background: rgba(253,248,240,0.8); }
 
 /* ── Left nav links ──────────────────────────────────── */
 .mj-nav-left {
@@ -215,7 +173,7 @@ onUnmounted(() => {
     letter-spacing: 0.2em;
     text-transform: uppercase;
     font-weight: 400;
-    color: var(--mj-ink-mid);
+    color: rgba(253,248,240,0.72);
     padding-bottom: 3px;
     border-bottom: 1px solid transparent;
     transition: color 0.22s, border-color 0.22s;
@@ -223,8 +181,32 @@ onUnmounted(() => {
 }
 .mj-nav-link:hover,
 .mj-nav-link.active {
+    color: #E8C96D;
+    border-bottom-color: #E8C96D;
+}
+
+/* ── Light variant (cream pages) ─────────────────────── */
+.mj-navbar-light .mj-nav-link {
+    color: rgba(74,55,40,0.72);
+    font-weight: 500;
+}
+.mj-navbar-light .mj-nav-link:hover,
+.mj-navbar-light .mj-nav-link.active {
     color: var(--mj-crimson);
     border-bottom-color: var(--mj-gold);
+}
+.mj-navbar-light .mj-nav-cta {
+    border-color: rgba(196,146,42,0.55);
+    background: rgba(255,255,255,0.4);
+    color: var(--mj-ink);
+}
+.mj-navbar-light .mj-nav-cta:hover {
+    background: var(--mj-crimson);
+    border-color: var(--mj-crimson);
+    color: var(--mj-cream);
+}
+.mj-navbar-light .mj-toggle-bar {
+    background: rgba(26,15,10,0.78);
 }
 
 /* ── Center brand ────────────────────────────────────── */
@@ -249,9 +231,6 @@ onUnmounted(() => {
     image-rendering: crisp-edges;
     transition: height 0.35s ease, opacity 0.2s;
 }
-.mj-brand-logo.is-scrolled-logo {
-    height: 52px;
-}
 .mj-nav-brand:hover .mj-brand-logo { opacity: 0.85; }
 
 /* ── Right actions ───────────────────────────────────── */
@@ -263,9 +242,9 @@ onUnmounted(() => {
 }
 
 .mj-nav-cta {
-    border: 1px solid rgba(196,146,42,0.45);
-    background: transparent;
-    color: var(--mj-crimson);
+    border: 1px solid rgba(232,201,109,0.45);
+    background: rgba(253,248,240,0.08);
+    color: rgba(253,248,240,0.85);
     cursor: pointer;
     font-family: var(--mj-sans);
     font-size: 10px;
@@ -299,7 +278,7 @@ onUnmounted(() => {
     display: block;
     width: 22px;
     height: 1.5px;
-    background: var(--mj-ink-mid);
+    background: rgba(253,248,240,0.8);
     transition: transform 0.25s ease, opacity 0.25s ease, width 0.25s ease;
     transform-origin: center;
 }

@@ -5,7 +5,7 @@ const canvas = ref<HTMLCanvasElement | null>(null);
 let gl: WebGLRenderingContext | null = null;
 let program: WebGLProgram | null = null;
 let animId = 0;
-let startTime = Date.now();
+const startTime = Date.now();
 
 const VERT = `
 attribute vec2 a_pos;
@@ -94,6 +94,7 @@ function compileShader(type: number, src: string): WebGLShader {
     const s = gl!.createShader(type)!;
     gl!.shaderSource(s, src);
     gl!.compileShader(s);
+
     return s;
 }
 
@@ -102,13 +103,17 @@ function buildProgram(): WebGLProgram {
     gl!.attachShader(p, compileShader(gl!.VERTEX_SHADER, VERT));
     gl!.attachShader(p, compileShader(gl!.FRAGMENT_SHADER, FRAG));
     gl!.linkProgram(p);
+
     return p;
 }
 
 function init() {
     const c = canvas.value!;
     gl = c.getContext('webgl', { antialias: false, alpha: false }) as WebGLRenderingContext;
-    if (!gl) return;
+
+    if (!gl) {
+return;
+}
 
     program = buildProgram();
     gl.useProgram(program);
@@ -128,7 +133,11 @@ function init() {
 
 function resize() {
     const c = canvas.value;
-    if (!c || !gl) return;
+
+    if (!c || !gl) {
+return;
+}
+
     const dpr = Math.min(window.devicePixelRatio, 2);
     c.width  = c.offsetWidth  * dpr;
     c.height = c.offsetHeight * dpr;
@@ -137,7 +146,11 @@ function resize() {
 
 function render() {
     animId = requestAnimationFrame(render);
-    if (!gl || !program) return;
+
+    if (!gl || !program) {
+return;
+}
+
     const t = (Date.now() - startTime) / 1000;
     const uTime = gl.getUniformLocation(program, 'u_time');
     const uRes  = gl.getUniformLocation(program, 'u_res');

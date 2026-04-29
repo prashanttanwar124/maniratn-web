@@ -15,16 +15,26 @@ function onMove(e: MouseEvent) {
     ty = e.clientY;
 }
 
-function onDown() { clicking.value = true; }
-function onUp()   { clicking.value = false; }
+function onDown() {
+ clicking.value = true; 
+}
+function onUp()   {
+ clicking.value = false; 
+}
 
 function onEnter(e: Event) {
     const el = e.target as HTMLElement;
-    if (el.closest('a,button,[data-cursor]')) hovered.value = true;
+
+    if (el.closest('a,button,[data-cursor]')) {
+hovered.value = true;
+}
 }
 function onLeave(e: Event) {
     const el = e.target as HTMLElement;
-    if (!el.closest('a,button,[data-cursor]')) hovered.value = false;
+
+    if (!el.closest('a,button,[data-cursor]')) {
+hovered.value = false;
+}
 }
 
 function loop() {
@@ -39,11 +49,13 @@ function loop() {
 const isTouch = ref(false);
 
 onMounted(() => {
-    // Disable on touch/mobile devices — they have no pointer
     if (window.matchMedia('(pointer: coarse)').matches) {
         isTouch.value = true;
+
         return;
     }
+
+    document.documentElement.classList.add('mj-cursor-active');
     window.addEventListener('mousemove', onMove, { passive: true });
     window.addEventListener('mousedown', onDown);
     window.addEventListener('mouseup',   onUp);
@@ -53,7 +65,11 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-    if (isTouch.value) return;
+    if (isTouch.value) {
+return;
+}
+
+    document.documentElement.classList.remove('mj-cursor-active');
     window.removeEventListener('mousemove', onMove);
     window.removeEventListener('mousedown', onDown);
     window.removeEventListener('mouseup',   onUp);
@@ -82,9 +98,11 @@ onUnmounted(() => {
 </template>
 
 <style>
-/* Hide default cursor only on non-touch devices */
-@media (pointer: fine) {
-    * { cursor: none !important; }
+html.mj-cursor-active,
+html.mj-cursor-active *,
+html.mj-cursor-active *::before,
+html.mj-cursor-active *::after {
+    cursor: none !important;
 }
 </style>
 

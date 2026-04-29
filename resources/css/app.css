@@ -16,6 +16,14 @@
     --mj-sans: 'DM Sans', sans-serif;
 }
 
+/* ── Custom cursor: hide native cursor when custom cursor is active ─── */
+html.mj-cursor-active,
+html.mj-cursor-active *,
+html.mj-cursor-active *::before,
+html.mj-cursor-active *::after {
+    cursor: none !important;
+}
+
 /* ── Maniratn Global Resets ──────────────────────────────────── */
 .mj-gold-text {
     background: linear-gradient(135deg, #C4922A 0%, #E8C96D 40%, #C4922A 70%, #F5E8C0 100%);
