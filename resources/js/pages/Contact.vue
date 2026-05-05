@@ -2,7 +2,7 @@
 import { Head } from '@inertiajs/vue3';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { onMounted, onUnmounted, ref } from 'vue';
+import { nextTick, onMounted, onUnmounted, ref } from 'vue';
 import CustomCursor from '@/components/maniratn/CustomCursor.vue';
 import TheAccordion from '@/components/maniratn/TheAccordion.vue';
 import TheFooter from '@/components/maniratn/TheFooter.vue';
@@ -13,6 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 const form = ref({ name: '', phone: '', email: '', subject: '', message: '' });
 const sent = ref(false);
 const errors = ref<Record<string, string>>({});
+const messageField = ref<HTMLTextAreaElement | null>(null);
 
 const subjectOptions = [
     'General Enquiry',
@@ -29,15 +30,15 @@ const channels = [
         title: 'Visit the showroom',
         lines: [
             'Maniratn Jewellers',
-            'Main Bazaar Road, Opp. Town Hall',
-            'Pune — 411 001',
+            'Bolinj Rd, Gokul Twp, Virar West',
+            'Vasai-Virar, Maharashtra 401303',
         ],
         cta: 'Get directions',
         mark: '◈',
     },
     {
         title: 'Call or WhatsApp',
-        lines: ['+91 98765 43210', '+91 98765 43211', 'Mon–Sat · 10 AM – 8 PM'],
+        lines: ['+91 98928 20518', 'WhatsApp available', 'Mon–Sat · 10 AM – 8 PM'],
         cta: 'Tap to call',
         mark: '◇',
     },
@@ -82,7 +83,7 @@ const infoAccordion = [
 ];
 
 const trustStrip: [string, string, string][] = [
-    ['18+', 'Years', 'serving Pune'],
+    ['18+', 'Years', 'serving Virar'],
     ['5000+', 'Families', 'served'],
     ['<24h', 'Reply', 'on enquiries'],
     ['100%', 'Hallmark', 'on every piece'],
@@ -120,6 +121,18 @@ function resetForm(): void {
     sent.value = false;
     errors.value = {};
     form.value = { name: '', phone: '', email: '', subject: '', message: '' };
+    void nextTick(() => {
+        resizeMessageField();
+    });
+}
+
+function resizeMessageField(): void {
+    if (!messageField.value) {
+        return;
+    }
+
+    messageField.value.style.height = 'auto';
+    messageField.value.style.height = `${messageField.value.scrollHeight}px`;
 }
 
 onMounted(() => {
@@ -157,6 +170,10 @@ onMounted(() => {
         opacity: 0,
         duration: 0.65,
         ease: 'power3.out',
+    });
+
+    void nextTick(() => {
+        resizeMessageField();
     });
 });
 
@@ -257,7 +274,7 @@ onUnmounted(() => {
                         Thank you for writing to Maniratn. A member of our team
                         will respond within twenty-four working hours. If your
                         enquiry is urgent, please call us at
-                        <strong>+91 98765 43210</strong>.
+                        <strong>+91 98928 20518</strong>.
                     </p>
                     <button @click="resetForm" class="mj-btn-crimson">
                         Send another
@@ -340,11 +357,13 @@ onUnmounted(() => {
                             >Message <em>required</em></label
                         >
                         <textarea
+                            ref="messageField"
                             v-model="form.message"
                             class="ct-input ct-textarea"
                             :class="{ 'ct-input-error': errors.message }"
                             rows="5"
                             placeholder="Sketches, photographs, or a few lines about what you have in mind…"
+                            @input="resizeMessageField"
                         />
                         <span v-if="errors.message" class="ct-field-error">{{
                             errors.message
@@ -368,11 +387,11 @@ onUnmounted(() => {
                     <span class="mj-eyebrow" style="color: var(--mj-gold)"
                         >The atelier</span
                     >
-                    <h2>Find us in Pune.</h2>
+                    <h2>Find us in Virar West.</h2>
                     <p>
-                        Tucked into the lanes of Main Bazaar, opposite the Town
-                        Hall — our showroom and atelier sit under the same roof.
-                        Walk in, or book a private consultation.
+                        Visit our showroom on Bolinj Road in Gokul Township,
+                        Virar West. Walk in for a browse, or book a private
+                        consultation with our team.
                     </p>
                 </div>
 
@@ -392,7 +411,7 @@ onUnmounted(() => {
                             >Maniratn Jewellers</span
                         >
                         <span class="ct-map-label-addr"
-                            >Main Bazaar Road · Pune</span
+                            >Bolinj Rd · Virar West</span
                         >
                     </div>
                 </div>
@@ -456,7 +475,7 @@ onUnmounted(() => {
 <style scoped>
 .ct-page {
     background: var(--mj-cream);
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 /* ── Hero ────────────────────────────────────────────── */
@@ -767,7 +786,8 @@ onUnmounted(() => {
     background-repeat: no-repeat;
 }
 .ct-textarea {
-    resize: vertical;
+    overflow-y: hidden;
+    resize: none;
     min-height: 110px;
 }
 .ct-field-error {

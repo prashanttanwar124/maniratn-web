@@ -10,6 +10,7 @@ defineProps<{
 }>();
 
 const menuOpen = ref(false);
+const scrolled = ref(false);
 
 const navItems = [
     { label: 'Home', key: 'home' },
@@ -32,11 +33,18 @@ function navigate(page: string): void {
     window.scrollTo(0, 0);
 }
 
+function syncScrollState(): void {
+    scrolled.value = window.scrollY > 12;
+}
+
 watch(menuOpen, (isOpen) => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
 });
 
 onMounted(() => {
+    syncScrollState();
+    window.addEventListener('scroll', syncScrollState, { passive: true });
+
     gsap.fromTo('.mj-navbar',
         { y: -10, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }
@@ -45,14 +53,24 @@ onMounted(() => {
 
 onUnmounted(() => {
     document.body.style.overflow = '';
+    window.removeEventListener('scroll', syncScrollState);
 });
 </script>
 
 <template>
     <!-- Thin gold top accent bar -->
-    <div class="mj-topbar"></div>
+    <div class="mj-topbar" :class="{ 'is-scrolled': scrolled }"></div>
 
-    <header class="mj-navbar" :class="`mj-navbar-${heroVariant ?? 'dark'}`">
+    <header
+        class="mj-navbar"
+        :class="[
+            `mj-navbar-${heroVariant ?? 'dark'}`,
+            {
+                'is-menu-open': menuOpen,
+                'is-scrolled': scrolled,
+            },
+        ]"
+    >
         <!-- Left links -->
         <nav class="mj-nav-left">
             <button
@@ -71,6 +89,7 @@ onUnmounted(() => {
                 src="/logo.png"
                 alt="Maniratn Jewellers"
                 class="mj-brand-logo"
+                :class="{ 'is-scrolled-logo': scrolled }"
             />
         </button>
 
@@ -131,18 +150,23 @@ onUnmounted(() => {
 <style scoped>
 /* ── Top accent bar ──────────────────────────────────── */
 .mj-topbar {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent 0%, #C4922A 30%, #E8C96D 50%, #C4922A 70%, transparent 100%);
     z-index: 102;
+    transition: opacity 0.35s ease;
+}
+
+.mj-topbar.is-scrolled {
+    opacity: 0.92;
 }
 
 /* ── Main navbar ─────────────────────────────────────── */
 .mj-navbar {
-    position: absolute;
+    position: fixed;
     top: 2px;
     left: 0;
     right: 0;
@@ -154,7 +178,21 @@ onUnmounted(() => {
     padding: 0 48px;
     background: transparent;
     border-bottom: 1px solid transparent;
-    transition: background 0.35s ease, border-bottom-color 0.35s ease;
+    transition:
+        background 0.35s ease,
+        border-bottom-color 0.35s ease,
+        box-shadow 0.35s ease,
+        height 0.35s ease,
+        backdrop-filter 0.35s ease;
+}
+
+.mj-navbar.is-scrolled,
+.mj-navbar.is-menu-open {
+    height: 74px;
+    backdrop-filter: blur(18px);
+    background: rgba(26, 10, 6, 0.86);
+    border-bottom-color: rgba(196, 146, 42, 0.28);
+    box-shadow: 0 18px 40px rgba(26, 10, 6, 0.16);
 }
 
 /* ── Left nav links ──────────────────────────────────── */
@@ -209,6 +247,11 @@ onUnmounted(() => {
     background: rgba(26,15,10,0.78);
 }
 
+.mj-navbar-light.is-scrolled,
+.mj-navbar-light.is-menu-open {
+    background: rgba(253, 248, 240, 0.9);
+}
+
 /* ── Center brand ────────────────────────────────────── */
 .mj-nav-brand {
     display: flex;
@@ -231,6 +274,11 @@ onUnmounted(() => {
     image-rendering: crisp-edges;
     transition: height 0.35s ease, opacity 0.2s;
 }
+
+.mj-brand-logo.is-scrolled-logo {
+    height: 62px;
+}
+
 .mj-nav-brand:hover .mj-brand-logo { opacity: 0.85; }
 
 /* ── Right actions ───────────────────────────────────── */

@@ -555,9 +555,7 @@ onUnmounted(() => {
 <template>
     <Head title="Maniratn Jewellers — Since 2007" />
 
-    <!-- Global custom cursor -->
     <CustomCursor />
-
     <TheNav current-page="home" hero-variant="dark" />
 
     <div class="mj-page">

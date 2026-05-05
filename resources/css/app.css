@@ -18,9 +18,13 @@
 
 /* ── Custom cursor: hide native cursor when custom cursor is active ─── */
 html.mj-cursor-active,
+body.mj-cursor-active,
 html.mj-cursor-active *,
+body.mj-cursor-active *,
 html.mj-cursor-active *::before,
-html.mj-cursor-active *::after {
+body.mj-cursor-active *::before,
+html.mj-cursor-active *::after,
+body.mj-cursor-active *::after {
     cursor: none !important;
 }
 

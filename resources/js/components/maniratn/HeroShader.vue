@@ -4,8 +4,17 @@ import { onMounted, onUnmounted, ref } from 'vue';
 const canvas = ref<HTMLCanvasElement | null>(null);
 let gl: WebGLRenderingContext | null = null;
 let program: WebGLProgram | null = null;
+let vertexBuffer: WebGLBuffer | null = null;
+let uTimeLocation: WebGLUniformLocation | null = null;
+let uResolutionLocation: WebGLUniformLocation | null = null;
+let resizeMediaQuery: MediaQueryList | null = null;
+let intersectionObserver: IntersectionObserver | null = null;
 let animId = 0;
-const startTime = Date.now();
+let isVisible = true;
+let isTabVisible = true;
+let lastFrameTime = 0;
+let pixelRatioCap = 1.5;
+let targetFrameDuration = 1000 / 30;
 
 const VERT = `
 attribute vec2 a_pos;
@@ -100,62 +109,113 @@ function compileShader(type: number, src: string): WebGLShader {
 
 function buildProgram(): WebGLProgram {
     const p = gl!.createProgram()!;
-    gl!.attachShader(p, compileShader(gl!.VERTEX_SHADER, VERT));
-    gl!.attachShader(p, compileShader(gl!.FRAGMENT_SHADER, FRAG));
+    const vertexShader = compileShader(gl!.VERTEX_SHADER, VERT);
+    const fragmentShader = compileShader(gl!.FRAGMENT_SHADER, FRAG);
+
+    gl!.attachShader(p, vertexShader);
+    gl!.attachShader(p, fragmentShader);
     gl!.linkProgram(p);
+    gl!.deleteShader(vertexShader);
+    gl!.deleteShader(fragmentShader);
 
     return p;
 }
 
-function init() {
+function updatePerformanceProfile(): void {
+    const prefersReducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)',
+    ).matches;
+    const lowPowerDevice =
+        navigator.hardwareConcurrency !== undefined &&
+        navigator.hardwareConcurrency <= 4;
+
+    targetFrameDuration = prefersReducedMotion ? 1000 / 12 : 1000 / 30;
+    pixelRatioCap = prefersReducedMotion || lowPowerDevice ? 1 : 1.5;
+}
+
+function shouldRenderFrame(now: number): boolean {
+    return isVisible && isTabVisible && now - lastFrameTime >= targetFrameDuration;
+}
+
+function handleVisibilityChange(): void {
+    isTabVisible = !document.hidden;
+}
+
+function init(): void {
     const c = canvas.value!;
-    gl = c.getContext('webgl', { antialias: false, alpha: false }) as WebGLRenderingContext;
+    gl = c.getContext('webgl', {
+        antialias: false,
+        alpha: false,
+        powerPreference: 'low-power',
+        preserveDrawingBuffer: false,
+    }) as WebGLRenderingContext;
 
     if (!gl) {
-return;
-}
+        return;
+    }
 
     program = buildProgram();
     gl.useProgram(program);
+    uTimeLocation = gl.getUniformLocation(program, 'u_time');
+    uResolutionLocation = gl.getUniformLocation(program, 'u_res');
 
-    const buf = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    vertexBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
 
     const loc = gl.getAttribLocation(program, 'a_pos');
     gl.enableVertexAttribArray(loc);
     gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
 
+    updatePerformanceProfile();
     resize();
+    resizeMediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     window.addEventListener('resize', resize);
+    resizeMediaQuery.addEventListener('change', resize);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    intersectionObserver = new IntersectionObserver(
+        ([entry]) => {
+            isVisible = entry?.isIntersecting ?? true;
+        },
+        { threshold: 0.01 },
+    );
+    intersectionObserver.observe(c);
+
     render();
 }
 
-function resize() {
+function resize(): void {
     const c = canvas.value;
 
     if (!c || !gl) {
-return;
-}
+        return;
+    }
 
-    const dpr = Math.min(window.devicePixelRatio, 2);
+    updatePerformanceProfile();
+
+    const dpr = Math.min(window.devicePixelRatio, pixelRatioCap);
     c.width  = c.offsetWidth  * dpr;
     c.height = c.offsetHeight * dpr;
     gl.viewport(0, 0, c.width, c.height);
 }
 
-function render() {
+function render(now = performance.now()): void {
     animId = requestAnimationFrame(render);
 
     if (!gl || !program) {
-return;
-}
+        return;
+    }
 
-    const t = (Date.now() - startTime) / 1000;
-    const uTime = gl.getUniformLocation(program, 'u_time');
-    const uRes  = gl.getUniformLocation(program, 'u_res');
-    gl.uniform1f(uTime, t);
-    gl.uniform2f(uRes, canvas.value!.width, canvas.value!.height);
+    if (!shouldRenderFrame(now)) {
+        return;
+    }
+
+    lastFrameTime = now;
+    const t = now / 1000;
+
+    gl.uniform1f(uTimeLocation, t);
+    gl.uniform2f(uResolutionLocation, canvas.value!.width, canvas.value!.height);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 }
 
@@ -163,6 +223,14 @@ onMounted(init);
 onUnmounted(() => {
     cancelAnimationFrame(animId);
     window.removeEventListener('resize', resize);
+    resizeMediaQuery?.removeEventListener('change', resize);
+    document.removeEventListener('visibilitychange', handleVisibilityChange);
+    intersectionObserver?.disconnect();
+    gl?.deleteBuffer(vertexBuffer);
+    gl?.deleteProgram(program);
+
+    const loseContext = gl?.getExtension('WEBGL_lose_context');
+    loseContext?.loseContext();
 });
 </script>
 

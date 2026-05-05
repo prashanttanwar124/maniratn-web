@@ -5,48 +5,48 @@ const x = ref(-100);
 const y = ref(-100);
 const hovered = ref(false);
 const clicking = ref(false);
+const isTouch = ref(false);
 
 let raf = 0;
-let tx = -100, ty = -100;
-let cx = -100, cy = -100;
+let targetX = -100;
+let targetY = -100;
+let currentX = -100;
+let currentY = -100;
 
-function onMove(e: MouseEvent) {
-    tx = e.clientX;
-    ty = e.clientY;
-}
-
-function onDown() {
- clicking.value = true; 
-}
-function onUp()   {
- clicking.value = false; 
+function onMove(event: MouseEvent): void {
+    targetX = event.clientX;
+    targetY = event.clientY;
 }
 
-function onEnter(e: Event) {
-    const el = e.target as HTMLElement;
-
-    if (el.closest('a,button,[data-cursor]')) {
-hovered.value = true;
-}
-}
-function onLeave(e: Event) {
-    const el = e.target as HTMLElement;
-
-    if (!el.closest('a,button,[data-cursor]')) {
-hovered.value = false;
-}
+function onDown(): void {
+    clicking.value = true;
 }
 
-function loop() {
-    // smooth lerp
-    cx += (tx - cx) * 0.14;
-    cy += (ty - cy) * 0.14;
-    x.value = cx;
-    y.value = cy;
+function onUp(): void {
+    clicking.value = false;
+}
+
+function onEnter(event: Event): void {
+    const element = event.target as HTMLElement;
+
+    hovered.value = Boolean(element.closest('a,button,[data-cursor]'));
+}
+
+function onLeave(event: Event): void {
+    const element = event.target as HTMLElement;
+
+    if (!element.closest('a,button,[data-cursor]')) {
+        hovered.value = false;
+    }
+}
+
+function loop(): void {
+    currentX += (targetX - currentX) * 0.14;
+    currentY += (targetY - currentY) * 0.14;
+    x.value = currentX;
+    y.value = currentY;
     raf = requestAnimationFrame(loop);
 }
-
-const isTouch = ref(false);
 
 onMounted(() => {
     if (window.matchMedia('(pointer: coarse)').matches) {
@@ -56,117 +56,133 @@ onMounted(() => {
     }
 
     document.documentElement.classList.add('mj-cursor-active');
+    document.body.classList.add('mj-cursor-active');
+    document.documentElement.style.cursor = 'none';
+    document.body.style.cursor = 'none';
     window.addEventListener('mousemove', onMove, { passive: true });
     window.addEventListener('mousedown', onDown);
-    window.addEventListener('mouseup',   onUp);
-    document.addEventListener('mouseover',  onEnter);
-    document.addEventListener('mouseout',   onLeave);
+    window.addEventListener('mouseup', onUp);
+    document.addEventListener('mouseover', onEnter);
+    document.addEventListener('mouseout', onLeave);
     loop();
 });
 
 onUnmounted(() => {
     if (isTouch.value) {
-return;
-}
+        return;
+    }
 
     document.documentElement.classList.remove('mj-cursor-active');
+    document.body.classList.remove('mj-cursor-active');
+    document.documentElement.style.removeProperty('cursor');
+    document.body.style.removeProperty('cursor');
     window.removeEventListener('mousemove', onMove);
     window.removeEventListener('mousedown', onDown);
-    window.removeEventListener('mouseup',   onUp);
-    document.removeEventListener('mouseover',  onEnter);
-    document.removeEventListener('mouseout',   onLeave);
+    window.removeEventListener('mouseup', onUp);
+    document.removeEventListener('mouseover', onEnter);
+    document.removeEventListener('mouseout', onLeave);
     cancelAnimationFrame(raf);
 });
 </script>
 
 <template>
-    <template v-if="!isTouch">
-        <!-- Dot: small solid diamond -->
-        <div
-            class="mj-cur-dot"
-            :class="{ hovered: hovered, clicking: clicking }"
-            :style="{ transform: `translate(${x}px, ${y}px)` }"
-        ></div>
-
-        <!-- Ring: outer circle, lags slightly more -->
-        <div
-            class="mj-cur-ring"
-            :class="{ hovered: hovered, clicking: clicking }"
-            :style="{ transform: `translate(${x}px, ${y}px)` }"
-        ></div>
-    </template>
+    <div
+        v-if="!isTouch"
+        class="mj-cur-ring"
+        :class="{ hovered, clicking }"
+        :style="{ transform: `translate(${x}px, ${y}px)` }"
+    ></div>
 </template>
 
-<style>
-html.mj-cursor-active,
-html.mj-cursor-active *,
-html.mj-cursor-active *::before,
-html.mj-cursor-active *::after {
-    cursor: none !important;
-}
-</style>
-
 <style scoped>
-.mj-cur-dot,
 .mj-cur-ring {
     position: fixed;
-    top: 0; left: 0;
-    pointer-events: none;
-    z-index: 9999;
-    will-change: transform;
-    transition: width 0.18s ease, height 0.18s ease, opacity 0.18s ease, background 0.18s ease;
-}
-
-/* ── Dot: rotated gold diamond ───────────��─────────── */
-.mj-cur-dot {
-    width: 8px;
-    height: 8px;
-    margin-left: -4px;
-    margin-top: -4px;
-    background: var(--mj-gold);
-    transform-origin: center;
-    rotate: 45deg;
-    box-shadow: 0 0 6px rgba(196,146,42,0.5);
-}
-.mj-cur-dot.hovered {
-    width: 12px;
-    height: 12px;
-    margin-left: -6px;
-    margin-top: -6px;
-    background: var(--mj-gold-light);
-    box-shadow: 0 0 12px rgba(232,201,109,0.7);
-}
-.mj-cur-dot.clicking {
-    width: 6px;
-    height: 6px;
-    margin-left: -3px;
-    margin-top: -3px;
-    background: #fff;
-}
-
-/* ── Ring: circular outline ────────────────────────── */
-.mj-cur-ring {
+    top: 0;
+    left: 0;
     width: 28px;
     height: 28px;
     margin-left: -14px;
     margin-top: -14px;
-    border: 1px solid rgba(196,146,42,0.55);
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform;
+    display: grid;
+    place-items: center;
+    border: 1.5px solid rgba(196, 146, 42, 0.9);
     border-radius: 50%;
-    transition: width 0.22s ease, height 0.22s ease, margin 0.22s ease,
-                border-color 0.22s ease, opacity 0.22s ease;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(232, 201, 109, 0.16),
+            rgba(196, 146, 42, 0.05) 58%,
+            transparent 72%
+        );
+    box-shadow:
+        0 0 12px rgba(196, 146, 42, 0.18),
+        inset 0 0 16px rgba(232, 201, 109, 0.08);
+    transition:
+        width 0.18s ease,
+        height 0.18s ease,
+        margin 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.02s linear;
 }
+
+.mj-cur-ring::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: linear-gradient(
+        135deg,
+        var(--mj-gold-light) 0%,
+        var(--mj-gold) 100%
+    );
+    transform: rotate(45deg);
+    border-radius: 1px;
+    box-shadow: 0 0 8px rgba(232, 201, 109, 0.45);
+}
+
 .mj-cur-ring.hovered {
-    width: 44px;
-    height: 44px;
-    margin-left: -22px;
-    margin-top: -22px;
-    border-color: rgba(196,146,42,0.9);
+    width: 40px;
+    height: 40px;
+    margin-left: -20px;
+    margin-top: -20px;
+    border-color: rgba(232, 201, 109, 0.95);
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(232, 201, 109, 0.22),
+            rgba(196, 146, 42, 0.08) 58%,
+            transparent 76%
+        );
+    box-shadow:
+        0 0 18px rgba(232, 201, 109, 0.22),
+        inset 0 0 20px rgba(232, 201, 109, 0.12);
 }
+
+.mj-cur-ring.hovered::after {
+    width: 9px;
+    height: 9px;
+}
+
 .mj-cur-ring.clicking {
-    width: 22px;
-    height: 22px;
-    margin-left: -11px;
-    margin-top: -11px;
-    border-color: rgba(255,255,255,0.7);
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+    margin-top: -10px;
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.18),
+        inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.mj-cur-ring.clicking::after {
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 </style>
