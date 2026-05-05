@@ -21,6 +21,142 @@
 
         {{-- Inline style to set the HTML background color based on our theme in app.css --}}
         <style>
+            @font-face {
+                font-family: 'Instrument Sans';
+                src: url('{{ asset('fonts/instrument-sans-400.woff2') }}') format('woff2');
+                font-style: normal;
+                font-weight: 400;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'Instrument Sans';
+                src: url('{{ asset('fonts/instrument-sans-500.woff2') }}') format('woff2');
+                font-style: normal;
+                font-weight: 500;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'Instrument Sans';
+                src: url('{{ asset('fonts/instrument-sans-600.woff2') }}') format('woff2');
+                font-style: normal;
+                font-weight: 600;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'Instrument Sans';
+                src: url('{{ asset('fonts/instrument-sans-700.woff2') }}') format('woff2');
+                font-style: normal;
+                font-weight: 700;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'DM Sans';
+                src: url('{{ asset('fonts/dm-sans-300.woff2') }}') format('woff2');
+                font-style: normal;
+                font-weight: 300;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'DM Sans';
+                src: url('{{ asset('fonts/dm-sans-400.woff2') }}') format('woff2');
+                font-style: normal;
+                font-weight: 400;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'DM Sans';
+                src: url('{{ asset('fonts/dm-sans-500.woff2') }}') format('woff2');
+                font-style: normal;
+                font-weight: 500;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'DM Sans';
+                src: url('{{ asset('fonts/dm-sans-600.woff2') }}') format('woff2');
+                font-style: normal;
+                font-weight: 600;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'DM Sans';
+                src: url('{{ asset('fonts/dm-sans-700.woff2') }}') format('woff2');
+                font-style: normal;
+                font-weight: 700;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'Cormorant Garamond';
+                src: url('{{ asset('fonts/cormorant-garamond-300.woff2') }}') format('woff2');
+                font-style: normal;
+                font-weight: 300;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'Cormorant Garamond';
+                src: url('{{ asset('fonts/cormorant-garamond-400.woff2') }}') format('woff2');
+                font-style: normal;
+                font-weight: 400;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'Cormorant Garamond';
+                src: url('{{ asset('fonts/cormorant-garamond-500.woff2') }}') format('woff2');
+                font-style: normal;
+                font-weight: 500;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'Cormorant Garamond';
+                src: url('{{ asset('fonts/cormorant-garamond-600.woff2') }}') format('woff2');
+                font-style: normal;
+                font-weight: 600;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'Cormorant Garamond';
+                src: url('{{ asset('fonts/cormorant-garamond-700.woff2') }}') format('woff2');
+                font-style: normal;
+                font-weight: 700;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'Cormorant Garamond';
+                src: url('{{ asset('fonts/cormorant-garamond-300-italic.woff2') }}') format('woff2');
+                font-style: italic;
+                font-weight: 300;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'Cormorant Garamond';
+                src: url('{{ asset('fonts/cormorant-garamond-400-italic.woff2') }}') format('woff2');
+                font-style: italic;
+                font-weight: 400;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'Cormorant Garamond';
+                src: url('{{ asset('fonts/cormorant-garamond-500-italic.woff2') }}') format('woff2');
+                font-style: italic;
+                font-weight: 500;
+                font-display: swap;
+            }
+
             html {
                 background-color: oklch(1 0 0);
             }
@@ -33,12 +169,6 @@
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
         @vite(['resources/css/app.css', 'resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
         <x-inertia::head>
