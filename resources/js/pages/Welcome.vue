@@ -593,7 +593,7 @@ onUnmounted(() => {
                 </div>
 
                 <h1 class="hero-title">
-                    Adorn<br />
+                    Adorn test<br />
                     <em>your finest</em><br />
                     <span class="mj-gold-text">moments.</span>
                 </h1>
