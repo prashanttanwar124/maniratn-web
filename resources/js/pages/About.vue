@@ -54,7 +54,7 @@ const milestones = [
     {
         year: '2007',
         title: 'A bench, a belief',
-        body: 'A small showroom opens in Pune with a single goldsmith and a single principle: craft cannot be hurried.',
+        body: 'A small showroom opens in Virar with a single goldsmith and a single principle: craft cannot be hurried.',
     },
     {
         year: '2011',
@@ -63,7 +63,7 @@ const milestones = [
     },
     {
         year: '2013',
-        title: 'Bridal atelier',
+        title: 'Bridal team',
         body: 'A private commission studio opens, dedicated entirely to wedding sets and heirloom redesigns.',
     },
     {
@@ -73,8 +73,8 @@ const milestones = [
     },
     {
         year: '2019',
-        title: 'Diamond programme',
-        body: 'Direct sourcing from certified ateliers; every solitaire arrives with an internationally recognised report.',
+        title: 'Coloured stone studio',
+        body: 'A dedicated studio for ruby, emerald, and sapphire work; every stone independently valued and certified.',
     },
     {
         year: '2024',
@@ -92,7 +92,7 @@ const team = [
     },
     {
         name: 'The Setter',
-        role: 'Stone-setting Atelier',
+        role: 'Stone-setting Team',
         detail: 'Works under magnification, often for hours on a single ring. Trained in Surat, joined Maniratn in 2014.',
         mark: 'S',
     },
@@ -277,7 +277,7 @@ onUnmounted(() => {
                         class="ab-btn-ghost-light"
                         @click="navigate('contact')"
                     >
-                        Visit the Atelier →
+                        Meet the team →
                     </button>
                 </div>
 
@@ -293,8 +293,8 @@ onUnmounted(() => {
                     </div>
                 </div>
 
-                <aside class="ab-hero-panel" aria-label="Atelier promise">
-                    <span class="ab-hero-panel-kicker">Atelier Promise</span>
+                <aside class="ab-hero-panel" aria-label="Team promise">
+                    <span class="ab-hero-panel-kicker">Team Promise</span>
                     <div class="ab-hero-panel-mark" aria-hidden="true">M</div>
                     <h2>One master signs every finished ornament.</h2>
                     <p>
@@ -340,7 +340,7 @@ onUnmounted(() => {
                             >
                             <span
                                 class="ab-story-frame-tag ab-story-frame-tag-fade"
-                                >Goldsmiths · Pune</span
+                                >Goldsmiths · Virar</span
                             >
                         </div>
                         <div class="ab-story-frame-foot">
@@ -379,18 +379,18 @@ onUnmounted(() => {
                         if it can be set anew for his bride.
                     </p>
                     <p>
-                        Every ornament that leaves our atelier is shaped by hand
-                        at our bench in Pune — not on a production line. We only
+                        Every ornament that leaves our team is shaped by hand
+                        at our bench in Virar — not on a production line. We only
                         finish a piece when our master craftsman signs off on
                         it. That, more than anything else, is the Maniratn
                         promise.
                     </p>
                     <div class="ab-story-sign">
                         <span class="ab-story-sign-name"
-                            >— The Maniratn Atelier</span
+                            >— The Maniratn Team</span
                         >
                         <span class="ab-story-sign-place"
-                            >Pune · Est. 2007</span
+                            >Virar · Est. 2007</span
                         >
                     </div>
                 </div>
@@ -477,7 +477,7 @@ onUnmounted(() => {
             </div>
         </section>
 
-        <!-- ── Team / Atelier ──────────────────────────────── -->
+        <!-- ── Team ──────────────────────────────── -->
         <section class="ab-team-section">
             <div class="ab-team-head">
                 <div class="mj-eyebrow-row" style="justify-content: center">
@@ -491,7 +491,7 @@ onUnmounted(() => {
                             fill="#C4922A"
                         />
                     </svg>
-                    <span class="mj-eyebrow">The Atelier</span>
+                    <span class="mj-eyebrow">The Team</span>
                 </div>
                 <h2 class="ab-team-h2">
                     The hands behind<br /><em class="mj-gold-i"

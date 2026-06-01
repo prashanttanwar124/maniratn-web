@@ -63,7 +63,7 @@ const infoAccordion = [
     {
         title: 'Custom orders & appointments',
         content:
-            'Bespoke commissions begin with a private consultation at our atelier. Bookings should be made at least 3 days in advance. Available Monday to Saturday, 11 AM to 6 PM. Evening slots can be arranged on request.',
+            'Bespoke commissions begin with a private consultation at our team. Bookings should be made at least 3 days in advance. Available Monday to Saturday, 11 AM to 6 PM. Evening slots can be arranged on request.',
     },
     {
         title: 'Exchange & buy-back policy',
@@ -215,7 +215,7 @@ onUnmounted(() => {
                 </h1>
                 <p class="ct-lead">
                     Whether it is a custom commission, a question of
-                    availability, or simply a moment of advice from our atelier
+                    availability, or simply a moment of advice from our team
                     — we would be glad to hear from you.
                 </p>
 
@@ -290,7 +290,7 @@ onUnmounted(() => {
                         <p>
                             Most enquiries are answered the same working day.
                             Bridal and bespoke briefs are routed directly to our
-                            atelier lead.
+                            team lead.
                         </p>
                     </div>
 
@@ -385,7 +385,7 @@ onUnmounted(() => {
             <aside class="ct-info-card">
                 <div class="ct-info-head">
                     <span class="mj-eyebrow" style="color: var(--mj-gold)"
-                        >The atelier</span
+                        >The team</span
                     >
                     <h2>Find us in Virar West.</h2>
                     <p>
@@ -464,7 +464,7 @@ onUnmounted(() => {
                     will not promise what we cannot make in time — and we will
                     not finish a piece a day before it is ready.
                 </p>
-                <span class="ct-faq-sign">— The Maniratn Atelier</span>
+                <span class="ct-faq-sign">— The Maniratn Team</span>
             </div>
         </section>
     </main>

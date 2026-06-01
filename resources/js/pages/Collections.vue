@@ -18,7 +18,7 @@ function navigate(): void {
 type Collection = {
     title: string;
     desc: string;
-    tag: 'Bridal' | 'Heritage' | 'Everyday' | 'Diamond' | 'Men';
+    tag: 'Bridal' | 'Heritage' | 'Everyday' | 'Men';
     purity: string;
     pieces: string;
     mark: string;
@@ -31,7 +31,6 @@ const filters: Array<{ key: 'all' | Collection['tag']; label: string }> = [
     { key: 'Bridal', label: 'Bridal' },
     { key: 'Heritage', label: 'Heritage' },
     { key: 'Everyday', label: 'Everyday' },
-    { key: 'Diamond', label: 'Diamond' },
     { key: 'Men', label: 'Men' },
 ];
 
@@ -69,22 +68,12 @@ const collections: Collection[] = [
         gradient: 'linear-gradient(135deg,#3A2010 0%,#5C3818 55%,#7A4F22 100%)',
     },
     {
-        title: 'Diamond Solitaires',
-        desc: 'Certified solitaires in clean, considered settings. Each stone arrives with a recognised grading report.',
-        tag: 'Diamond',
-        purity: '18K Gold + Diamond',
-        pieces: '42 pieces',
-        mark: 'S',
-        accent: '#DCD7FF',
-        gradient: 'linear-gradient(135deg,#0A0A1A 0%,#1A1A3A 55%,#2A2A5A 100%)',
-    },
-    {
-        title: 'Polki & Kundan',
-        desc: 'Uncut diamonds and lac-set kundan, finished by hand. Intended for occasions that warrant the heaviest pieces.',
+        title: 'Kundan Sets',
+        desc: 'Lac-set kundan and antique gold, finished by hand. Intended for occasions that warrant the heaviest pieces.',
         tag: 'Heritage',
-        purity: '22K + Polki',
+        purity: '22K + Kundan',
         pieces: '18 pieces',
-        mark: 'P',
+        mark: 'K',
         accent: '#F5E8C0',
         gradient: 'linear-gradient(135deg,#3A0F0F 0%,#5A1818 55%,#7B2424 100%)',
     },
@@ -100,8 +89,8 @@ const collections: Collection[] = [
     },
     {
         title: 'Engagement Rings',
-        desc: 'Solitaire and three-stone settings, with diamond, ruby, emerald, and sapphire centres. Sized in-store within the week.',
-        tag: 'Diamond',
+        desc: 'Single-stone and three-stone settings, with ruby, emerald, and sapphire centres. Sized in-store within the week.',
+        tag: 'Bridal',
         purity: '18K Gold + Stones',
         pieces: '34 pieces',
         mark: 'E',
@@ -133,8 +122,8 @@ const materials = [
         mark: '◈',
     },
     {
-        title: 'Certified Diamonds',
-        desc: 'Internationally graded solitaires, sourced from select cutting ateliers.',
+        title: 'BIS Silver',
+        desc: 'Certified BIS-standard silver for daily wear, gifting, and traditional pieces.',
         mark: '◇',
     },
     {
@@ -143,8 +132,8 @@ const materials = [
         mark: '✦',
     },
     {
-        title: 'Pearls & Polki',
-        desc: 'Hand-strung pearls and lac-set polki for heritage and traditional pieces.',
+        title: 'Pearls & Kundan',
+        desc: 'Hand-strung pearls and lac-set kundan for heritage and traditional pieces.',
         mark: '◆',
     },
 ];
@@ -461,11 +450,11 @@ onUnmounted(() => {
                 <p class="cl-cta-body">
                     Most of our finest pieces never make it to the catalogue. If
                     you have a sketch, a photograph, or simply an idea — speak
-                    with our atelier.
+                    with our team.
                 </p>
                 <div class="cl-cta-btns">
                     <button class="mj-btn-gold" @click="navigate">
-                        Speak with the Atelier
+                        Speak with the team
                     </button>
                     <button class="mj-btn-ghost" @click="navigate">
                         Book an Appointment

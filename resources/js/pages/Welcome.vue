@@ -48,12 +48,12 @@ const collections = [
         accent: '#F2D98D',
     },
     {
-        name: 'Diamond Solitaires',
-        desc: 'Certified sparkle, clean settings, and brilliant cuts selected with care.',
+        name: 'Gemstone Sets',
+        desc: 'Ruby, emerald, and sapphire centres set in warm hallmarked gold.',
         tag: 'Premium',
-        note: 'Certified stones',
-        mark: 'S',
-        accent: '#DCD7FF',
+        note: 'Coloured stones',
+        mark: 'G',
+        accent: '#E8B4B8',
     },
 ];
 
@@ -61,7 +61,7 @@ const faqItems = [
     {
         title: 'What materials do you use?',
         content:
-            'All our ornaments are crafted from 22K and 24K hallmarked gold, certified BIS-standard silver, and ethically sourced gemstones including diamonds, rubies, emeralds, and sapphires. Every piece comes with a quality certificate.',
+            'All our ornaments are crafted from 22K and 24K hallmarked gold, certified BIS-standard silver, and ethically sourced gemstones including rubies, emeralds, and sapphires. Every piece comes with a quality certificate.',
     },
     {
         title: 'Do you offer custom jewellery?',
@@ -136,7 +136,7 @@ const marqueeItems = Array(4)
         '✦ Custom Orders',
         '✦ Lifetime Exchange',
         '✦ 18 Years of Trust',
-        '✦ Diamond Certified',
+        '✦ Certified Silver',
     ])
     .flat();
 
@@ -334,17 +334,17 @@ const heritageBeats = [
     {
         year: '2007',
         title: 'The first showroom',
-        body: 'A modest workshop opened in Pune with a single goldsmith and a single belief — that craft cannot be hurried.',
+        body: 'A modest workshop opened in Virar with a single goldsmith and a single belief — that craft cannot be hurried.',
     },
     {
         year: '2013',
-        title: 'Bridal atelier',
+        title: 'Bridal team',
         body: 'Demand for bespoke bridal sets grew. We opened a private commission studio dedicated to the wedding family.',
     },
     {
         year: '2019',
-        title: 'Diamond programme',
-        body: 'Direct sourcing from certified ateliers. Every solitaire is now accompanied by an internationally recognised grading report.',
+        title: 'Coloured stone studio',
+        body: 'A dedicated studio for ruby, emerald, and sapphire work — every stone independently valued and certified.',
     },
     {
         year: '2024',
@@ -593,15 +593,14 @@ onUnmounted(() => {
                 </div>
 
                 <h1 class="hero-title">
-                    Adorn test<br />
+                    Adorn<br />
                     <em>your finest</em><br />
                     <span class="mj-gold-text">moments.</span>
                 </h1>
 
                 <p class="hero-body">
-                    Handcrafted gold &amp; diamond ornaments for generations of
-                    celebrations. Every piece tells a story of tradition and
-                    artistry.
+                    Handcrafted gold ornaments for generations of celebrations.
+                    Every piece tells a story of tradition and artistry.
                 </p>
 
                 <div class="hero-cta">
@@ -703,16 +702,16 @@ onUnmounted(() => {
                         grown, the principle has not.
                     </p>
                     <p class="mj-heritage-lead">
-                        Every piece that leaves our atelier carries the same
-                        quiet patience of the first one we ever made. It is the
-                        only way we know how to work.
+                        Every piece that leaves our team carries the same quiet
+                        patience of the first one we ever made. It is the only
+                        way we know how to work.
                     </p>
                     <div class="mj-heritage-sign">
                         <span class="mj-heritage-sign-name"
-                            >— The Maniratn Atelier</span
+                            >— The Maniratn Team</span
                         >
                         <span class="mj-heritage-sign-place"
-                            >Pune · Est. 2007</span
+                            >Virar · Est. 2007</span
                         >
                     </div>
                 </div>
@@ -747,7 +746,7 @@ onUnmounted(() => {
                             >
                             <span
                                 class="mj-heritage-frame-tag mj-heritage-frame-tag-fade"
-                                >Goldsmiths · Pune</span
+                                >Goldsmiths · Virar</span
                             >
                         </div>
                     </div>
