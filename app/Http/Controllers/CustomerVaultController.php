@@ -27,6 +27,15 @@ class CustomerVaultController extends Controller
                 return view('vault.show', $data);
             }
 
+            if (config('app.debug') && ! $response->successful() && $response->status() !== 404) {
+                return response()->json([
+                    'debug_error' => 'ERP API returned failure status',
+                    'status' => $response->status(),
+                    'erp_url' => "{$erpBaseUrl}/api/website/vault/{$token}",
+                    'response' => $response->json() ?? $response->body(),
+                ], 500);
+            }
+
             return view('vault.inactive', [
                 'token' => $token,
                 'message' => $response->json('message') ?? 'Vault pass is currently inactive or not found.',
@@ -34,6 +43,10 @@ class CustomerVaultController extends Controller
             ]);
         } catch (\Throwable $e) {
             Log::error('Failed to fetch customer vault from ERP: ' . $e->getMessage());
+
+            if (config('app.debug')) {
+                throw $e;
+            }
 
             return view('vault.inactive', [
                 'token' => $token,
@@ -74,16 +87,33 @@ class CustomerVaultController extends Controller
             }
 
             if ($response->status() === 403) {
-                abort(403, 'Unauthorized access: This invoice does not belong to this vault pass.');
+                abort(403, $response->json('message') ?? 'Unauthorized access: This invoice does not belong to this vault pass.');
             }
 
-            abort(404, 'Invoice not found.');
+            if ($response->status() === 404) {
+                abort(404, $response->json('message') ?? 'Invoice not found.');
+            }
+
+            if (config('app.debug')) {
+                return response()->json([
+                    'debug_error' => 'Failed to fetch invoice from ERP API',
+                    'status' => $response->status(),
+                    'erp_url' => "{$erpBaseUrl}/api/website/vault/{$token}/invoices/{$invoice}/print",
+                    'response' => $response->json() ?? $response->body(),
+                ], 500);
+            }
+
+            abort(500, 'Unable to load invoice at this time.');
         } catch (\Symfony\Component\HttpKernel\Exception\HttpException $e) {
             throw $e;
         } catch (\Throwable $e) {
             Log::error('Failed to generate invoice PDF: ' . $e->getMessage());
 
-            abort(500, 'Unable to load invoice at this time.');
+            if (config('app.debug')) {
+                throw $e;
+            }
+
+            abort(500, 'Unable to load invoice: ' . $e->getMessage());
         }
     }
 }
