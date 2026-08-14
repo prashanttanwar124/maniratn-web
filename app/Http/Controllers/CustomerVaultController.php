@@ -71,15 +71,22 @@ class CustomerVaultController extends Controller
             if ($response->successful() && $response->json('success')) {
                 $data = $response->json();
 
+                $fontDir = storage_path('fonts');
+                if (! is_dir($fontDir)) {
+                    @mkdir($fontDir, 0775, true);
+                }
+
                 $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.tax-invoice', [
                     'invoice' => $data['invoice'] ?? [],
                     'business' => $data['business'] ?? [],
                 ])
                 ->setPaper('a4', 'portrait')
+                ->setOption('fontDir', $fontDir)
+                ->setOption('fontCache', $fontDir)
                 ->setOption('defaultFont', 'DejaVu Sans')
                 ->setOption('isRemoteEnabled', true)
                 ->setOption('isHtml5ParserEnabled', true)
-                ->setOption('chroot', [public_path(), base_path()]);
+                ->setOption('chroot', [public_path(), base_path(), storage_path()]);
 
                 $invoiceNum = $data['invoice']['invoice_number'] ?? 'Invoice';
 
