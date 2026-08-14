@@ -410,16 +410,26 @@
             fn (array $item): float => (float) ($item['net_weight'] ?? 0),
         );
         $itemCount = $invoiceItems->count();
+        $logoBase64 = '';
+        if (file_exists(public_path('logo.png'))) {
+            $logoBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents(public_path('logo.png')));
+        }
     @endphp
 
     <table class="masthead">
         <tr>
             <td class="logo-cell">
-                <img
-                    class="brand-logo"
-                    src="file://{{ public_path('logo.png') }}"
-                    alt="{{ $business['store_name'] ?? 'Maniratn Jewellers' }}"
-                >
+                @if(! empty($logoBase64))
+                    <img
+                        class="brand-logo"
+                        src="{{ $logoBase64 }}"
+                        alt="{{ $business['store_name'] ?? 'Maniratn Jewellers' }}"
+                    >
+                @else
+                    <div style="font-size: 14px; font-weight: bold; color: #ffffff; letter-spacing: 1px; text-transform: uppercase;">
+                        {{ $business['store_name'] ?? 'MANIRATN' }}
+                    </div>
+                @endif
             </td>
             <td class="business-cell">
                 <div class="eyebrow">Hallmarked Jewellery &bull; Digital Vault</div>

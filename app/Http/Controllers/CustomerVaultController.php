@@ -64,7 +64,9 @@ class CustomerVaultController extends Controller
                 ])
                 ->setPaper('a4', 'portrait')
                 ->setOption('defaultFont', 'DejaVu Sans')
-                ->setOption('isRemoteEnabled', true);
+                ->setOption('isRemoteEnabled', true)
+                ->setOption('isHtml5ParserEnabled', true)
+                ->setOption('chroot', [public_path(), base_path()]);
 
                 $invoiceNum = $data['invoice']['invoice_number'] ?? 'Invoice';
 
