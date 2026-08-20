@@ -50,35 +50,35 @@
 
         .logo-cell {
             background: #5b0d13;
-            padding: 8px 12px;
+            padding: 8px 10px;
             text-align: center;
             vertical-align: middle;
-            width: 24%;
+            width: 29%;
         }
 
         .brand-logo {
             display: block;
             height: auto;
             margin: 0 auto;
-            max-height: 54px;
-            max-width: 95px;
+            max-height: 72px;
+            max-width: 135px;
         }
 
         .business-cell {
             background: #5b0d13;
             border-left: 1px solid #7c262c;
-            padding: 10px 14px;
+            padding: 10px 12px;
             vertical-align: middle;
-            width: 44%;
+            width: 41%;
         }
 
         .document-cell {
             background: #fdfaf3;
             border-left: 1.5px solid #c4922a;
-            padding: 12px 14px;
+            padding: 10px 12px;
             text-align: right;
             vertical-align: middle;
-            width: 32%;
+            width: 30%;
         }
 
         .store-title {
