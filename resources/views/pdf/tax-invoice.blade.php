@@ -19,22 +19,16 @@
         }
 
         @page {
-            margin: 14mm 16mm 12mm 16mm;
-            size: A4 portrait;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            margin: 28pt 36pt 24pt 36pt;
+            size: a4 portrait;
         }
 
         body {
             background: #ffffff;
             color: #2b2824;
             font-family: 'Poppins', 'DejaVu Sans', sans-serif;
-            font-size: 8.2px;
-            line-height: 1.4;
+            font-size: 8.5px;
+            line-height: 1.45;
             margin: 0;
             padding: 0;
         }
@@ -46,15 +40,17 @@
 
         /* Top Header / Masthead */
         .masthead {
-            border-bottom: 2.5px solid #c4922a;
-            margin-bottom: 12px;
+            border: 1.5px solid #c4922a;
+            border-radius: 4px;
+            margin-bottom: 14px;
+            overflow: hidden;
             table-layout: fixed;
             width: 100%;
         }
 
         .logo-cell {
             background: #5b0d13;
-            padding: 10px 14px;
+            padding: 12px 14px;
             text-align: center;
             vertical-align: middle;
             width: 24%;
@@ -65,22 +61,21 @@
             height: auto;
             margin: 0 auto;
             max-height: 52px;
-            max-width: 100px;
+            max-width: 95px;
         }
 
         .business-cell {
             background: #5b0d13;
             border-left: 1px solid #7c262c;
-            padding: 10px 14px;
+            padding: 12px 14px;
             vertical-align: middle;
             width: 44%;
         }
 
         .document-cell {
             background: #fdfaf3;
-            border-right: 1px solid #e7dcce;
-            border-top: 1px solid #e7dcce;
-            padding: 10px 14px;
+            border-left: 1.5px solid #c4922a;
+            padding: 12px 14px;
             text-align: right;
             vertical-align: middle;
             width: 32%;
@@ -88,7 +83,7 @@
 
         .store-title {
             color: #ffffff;
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: bold;
             letter-spacing: 0.8px;
             margin-bottom: 2px;
@@ -97,16 +92,16 @@
 
         .eyebrow {
             color: #f3d484;
-            font-size: 6.8px;
+            font-size: 7px;
             font-weight: bold;
             letter-spacing: 0.8px;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
             text-transform: uppercase;
         }
 
         .brand-address {
             color: #f7edea;
-            font-size: 7px;
+            font-size: 7.2px;
             line-height: 1.4;
         }
 
@@ -117,17 +112,17 @@
 
         .document-label {
             color: #5b0d13;
-            font-size: 15px;
+            font-size: 15.5px;
             font-weight: bold;
             letter-spacing: 1px;
             line-height: 1.1;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
             text-transform: uppercase;
         }
 
         .document-number {
             color: #2b2824;
-            font-size: 9.5px;
+            font-size: 9.8px;
             font-weight: bold;
             margin-bottom: 4px;
         }
@@ -138,7 +133,7 @@
             border-radius: 3px;
             color: #7b5b18;
             display: inline-block;
-            font-size: 6.5px;
+            font-size: 6.8px;
             font-weight: bold;
             letter-spacing: 0.5px;
             padding: 2px 7px;
@@ -149,17 +144,18 @@
         .void-banner {
             background: #fee2e2;
             border: 1.5px solid #dc2626;
+            border-radius: 3px;
             color: #991b1b;
             font-weight: bold;
-            margin-bottom: 10px;
-            padding: 5px 12px;
+            margin-bottom: 12px;
+            padding: 6px 12px;
             text-align: center;
             font-size: 8.5px;
         }
 
         /* Meta Information Table */
         .meta-table {
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             table-layout: fixed;
             width: 100%;
         }
@@ -167,41 +163,38 @@
         .meta-cell {
             background: #faf8f5;
             border: 1px solid #e8e2d8;
-            padding: 8px 10px;
+            border-radius: 3px;
+            padding: 9px 12px;
             vertical-align: top;
-            width: 50%;
+            width: 48.5%;
         }
 
-        .meta-cell.left {
-            border-right: 4px solid #ffffff;
-        }
-
-        .meta-cell.right {
-            border-left: 4px solid #ffffff;
+        .meta-cell-spacer {
+            width: 3%;
         }
 
         .section-kicker {
             border-bottom: 1px solid #e2d9cc;
             color: #9a7328;
-            font-size: 7px;
+            font-size: 7.2px;
             font-weight: bold;
             letter-spacing: 0.8px;
-            margin-bottom: 5px;
-            padding-bottom: 2px;
+            margin-bottom: 6px;
+            padding-bottom: 2.5px;
             text-transform: uppercase;
         }
 
         .meta-name {
             color: #1f1c18;
-            font-size: 10.5px;
+            font-size: 11px;
             font-weight: bold;
             margin-bottom: 3px;
         }
 
         .meta-line {
             color: #5c564e;
-            font-size: 7.6px;
-            margin-bottom: 2px;
+            font-size: 7.8px;
+            margin-bottom: 2.5px;
         }
 
         .meta-line strong {
@@ -214,8 +207,8 @@
         }
 
         .detail-table td {
-            font-size: 7.6px;
-            padding-bottom: 2px;
+            font-size: 7.8px;
+            padding-bottom: 2.5px;
         }
 
         .detail-label {
@@ -235,20 +228,20 @@
             border-radius: 2px;
             color: #8c6211;
             display: inline-block;
-            font-size: 7.2px;
+            font-size: 7.4px;
             font-weight: bold;
             padding: 1px 5px;
         }
 
         /* Items Section */
         .items-heading-table {
-            margin-bottom: 4px;
+            margin-bottom: 5px;
             width: 100%;
         }
 
         .items-heading {
             color: #5b0d13;
-            font-size: 8.5px;
+            font-size: 8.8px;
             font-weight: bold;
             letter-spacing: 0.6px;
             text-transform: uppercase;
@@ -256,12 +249,15 @@
 
         .items-overview {
             color: #7b7367;
-            font-size: 7.2px;
+            font-size: 7.5px;
             text-align: right;
         }
 
         .items-table {
-            margin-bottom: 12px;
+            border: 1px solid #ebe5dc;
+            border-radius: 3px;
+            margin-bottom: 14px;
+            overflow: hidden;
             table-layout: fixed;
             width: 100%;
         }
@@ -279,10 +275,10 @@
             border: 1px solid #5b0d13;
             border-bottom: 2px solid #c4922a;
             color: #ffffff;
-            font-size: 7px;
+            font-size: 7.2px;
             font-weight: bold;
             letter-spacing: 0.4px;
-            padding: 6px 5px;
+            padding: 6.5px 6px;
             text-align: left;
             text-transform: uppercase;
         }
@@ -290,8 +286,8 @@
         .items-table td {
             border: 1px solid #ebe5dc;
             color: #3b3731;
-            font-size: 7.8px;
-            padding: 6px 5px;
+            font-size: 8px;
+            padding: 6.5px 6px;
             vertical-align: middle;
         }
 
@@ -309,20 +305,20 @@
 
         .item-index {
             color: #9f968a;
-            font-size: 7.2px;
+            font-size: 7.4px;
             font-weight: bold;
         }
 
         .item-name {
             color: #1f1c18;
-            font-size: 8.5px;
+            font-size: 8.8px;
             font-weight: bold;
         }
 
         .item-sub {
             color: #7a7266;
-            font-size: 7px;
-            margin-top: 1px;
+            font-size: 7.2px;
+            margin-top: 1.5px;
         }
 
         .huid-tag {
@@ -331,9 +327,9 @@
             border-radius: 2px;
             color: #7a550d;
             display: inline-block;
-            font-size: 6.5px;
+            font-size: 6.8px;
             font-weight: bold;
-            padding: 0.5px 3.5px;
+            padding: 0.5px 4px;
         }
 
         .purity-tag {
@@ -342,9 +338,9 @@
             border-radius: 2px;
             color: #785311;
             display: inline-block;
-            font-size: 6.8px;
+            font-size: 7px;
             font-weight: bold;
-            padding: 1px 4px;
+            padding: 1px 4.5px;
             white-space: nowrap;
         }
 
@@ -355,7 +351,7 @@
 
         /* Summary & Calculations */
         .summary-table {
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             page-break-inside: avoid;
             table-layout: fixed;
             width: 100%;
@@ -364,27 +360,28 @@
         .left-summary-cell {
             padding-right: 8px;
             vertical-align: top;
-            width: 53%;
+            width: 52%;
         }
 
         .right-summary-cell {
-            padding-left: 6px;
+            padding-left: 8px;
             vertical-align: top;
-            width: 47%;
+            width: 48%;
         }
 
         /* Amount in Words Box */
         .words-box {
             background: #fcfbf8;
             border: 1px solid #e8e2d7;
-            border-left: 2.5px solid #c4922a;
-            margin-bottom: 8px;
-            padding: 6px 8px;
+            border-left: 3px solid #c4922a;
+            border-radius: 3px;
+            margin-bottom: 9px;
+            padding: 7px 10px;
         }
 
         .words-title {
             color: #8c671a;
-            font-size: 6.8px;
+            font-size: 7px;
             font-weight: bold;
             letter-spacing: 0.5px;
             margin-bottom: 2px;
@@ -393,7 +390,7 @@
 
         .words-text {
             color: #27241f;
-            font-size: 7.6px;
+            font-size: 7.8px;
             font-weight: bold;
             line-height: 1.35;
         }
@@ -402,15 +399,16 @@
         .payment-box {
             background: #faf8f4;
             border: 1px solid #e6ded2;
-            padding: 6px 8px;
+            border-radius: 3px;
+            padding: 7px 10px;
         }
 
         .payment-title {
             color: #5b0d13;
-            font-size: 7px;
+            font-size: 7.2px;
             font-weight: bold;
             letter-spacing: 0.5px;
-            margin-bottom: 3px;
+            margin-bottom: 4px;
             text-transform: uppercase;
         }
 
@@ -421,8 +419,8 @@
         .payment-table td {
             border-bottom: 1px solid #eee8de;
             color: #534d45;
-            font-size: 7.4px;
-            padding: 2.5px 0;
+            font-size: 7.6px;
+            padding: 3px 0;
         }
 
         .payment-table td.amt {
@@ -434,6 +432,8 @@
         /* Calculation Breakdown */
         .calc-table {
             border: 1px solid #e6dfd3;
+            border-radius: 3px;
+            overflow: hidden;
             width: 100%;
         }
 
@@ -441,8 +441,8 @@
             background: #fcfbf8;
             border-bottom: 1px solid #eee7db;
             color: #696257;
-            font-size: 7.6px;
-            padding: 4px 7px;
+            font-size: 7.8px;
+            padding: 4.5px 8px;
         }
 
         .calc-row td.val {
@@ -462,22 +462,22 @@
 
         .calc-row.tax td {
             color: #5a5349;
-            font-size: 7.4px;
+            font-size: 7.6px;
         }
 
         .grand-total-row td {
             background: #5b0d13;
             border-top: 2px solid #c4922a;
             color: #ffffff;
-            font-size: 8.8px;
+            font-size: 9px;
             font-weight: bold;
-            padding: 6px 7px;
+            padding: 7px 8px;
             text-transform: uppercase;
         }
 
         .grand-total-row td.val {
             color: #f7df96;
-            font-size: 11px;
+            font-size: 11.5px;
             text-align: right;
             white-space: nowrap;
         }
@@ -485,7 +485,9 @@
         /* QR Codes & Bottom Modules */
         .bottom-modules {
             border: 1px solid #e7ded2;
-            margin-bottom: 10px;
+            border-radius: 3px;
+            margin-bottom: 12px;
+            overflow: hidden;
             page-break-inside: avoid;
             table-layout: fixed;
             width: 100%;
@@ -493,7 +495,7 @@
 
         .qr-card {
             background: #faf8f5;
-            padding: 6px 8px;
+            padding: 7px 10px;
             vertical-align: middle;
         }
 
@@ -509,13 +511,13 @@
         .qr-img {
             border: 1px solid #ddcdba;
             display: block;
-            height: 44px;
-            width: 44px;
+            height: 46px;
+            width: 46px;
         }
 
         .qr-title {
             color: #5b0d13;
-            font-size: 7.2px;
+            font-size: 7.4px;
             font-weight: bold;
             letter-spacing: 0.3px;
             margin-bottom: 2px;
@@ -524,7 +526,7 @@
 
         .qr-desc {
             color: #6b6459;
-            font-size: 6.8px;
+            font-size: 7px;
             line-height: 1.3;
         }
 
@@ -533,17 +535,18 @@
             background: #fdfcf9;
             border: 1px solid #e8e1d5;
             border-left: 3px solid #c4922a;
+            border-radius: 3px;
             color: #6e675b;
-            font-size: 6.8px;
-            line-height: 1.4;
-            margin-bottom: 10px;
+            font-size: 7px;
+            line-height: 1.45;
+            margin-bottom: 12px;
             page-break-inside: avoid;
-            padding: 5px 8px;
+            padding: 6px 10px;
         }
 
         .terms-heading {
             color: #5b0d13;
-            font-size: 7px;
+            font-size: 7.2px;
             font-weight: bold;
             margin-bottom: 2px;
             text-transform: uppercase;
@@ -553,14 +556,14 @@
         .invoice-footer {
             border-top: 1px solid #ded5c7;
             color: #8b8376;
-            font-size: 7px;
-            padding-top: 5px;
+            font-size: 7.2px;
+            padding-top: 6px;
             text-align: center;
         }
 
         .thanks-msg {
             color: #5b0d13;
-            font-size: 7.6px;
+            font-size: 8px;
             font-weight: bold;
         }
     </style>
@@ -733,7 +736,7 @@
     <!-- Meta Information: Billed To & Invoice Details -->
     <table class="meta-table">
         <tr>
-            <td class="meta-cell left">
+            <td class="meta-cell">
                 <div class="section-kicker">Customer Details (Billed To)</div>
                 <div class="meta-name">{{ $invoice['customer']['name'] ?? 'Retail Customer' }}</div>
                 @if(! empty($invoice['customer']['mobile']))
@@ -751,7 +754,8 @@
                     <div class="meta-line">Loyalty / Vault ID: <strong>{{ $invoice['customer']['membership_id'] }}</strong></div>
                 @endif
             </td>
-            <td class="meta-cell right">
+            <td class="meta-cell-spacer"></td>
+            <td class="meta-cell">
                 <div class="section-kicker">Invoice & Rate Details</div>
                 <table class="detail-table">
                     <tr>
