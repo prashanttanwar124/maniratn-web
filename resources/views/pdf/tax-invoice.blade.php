@@ -606,7 +606,9 @@
         }
 
         $logoBase64 = '';
-        if (file_exists(public_path('main-logo.png'))) {
+        if (file_exists(public_path('maniratn-logo.jpg'))) {
+            $logoBase64 = 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('maniratn-logo.jpg')));
+        } elseif (file_exists(public_path('main-logo.png'))) {
             $logoBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents(public_path('main-logo.png')));
         } elseif (file_exists(public_path('logo.png'))) {
             $logoBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents(public_path('logo.png')));
