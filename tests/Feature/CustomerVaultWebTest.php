@@ -88,26 +88,50 @@ test('tax invoice renders as a pdf with the local invoice font', function () {
     Http::fake([
         '*/api/website/vault/vault_TEST123/invoices/1/print' => Http::response([
             'success' => true,
+            'vault_url' => 'http://127.0.0.1:8000/vault/vault_TEST123',
+            'qr_code_base64' => null,
+            'google_review_url' => 'https://g.page/r/maniratn/review',
+            'google_review_qr_base64' => null,
             'invoice' => [
                 'invoice_number' => 'INV-001',
                 'date' => '2026-08-14',
+                'gold_rate_applied' => 7000,
+                'silver_rate_applied' => 90,
+                'subtotal' => 87500,
                 'total_amount' => 90125,
                 'tax_amount' => 2625,
                 'discount_amount' => 0,
+                'created_by' => 'Senior Goldsmith',
                 'customer' => [
                     'name' => 'Arjun Solanki',
                     'mobile' => '9892000000',
                     'city' => 'Mumbai',
+                    'pan_no' => 'ABCDE1234F',
+                    'membership_id' => 'MJ-1001',
                 ],
                 'items' => [
                     [
                         'description' => 'Gold Ring 22K',
                         'purity' => '22K (916)',
+                        'gross_weight' => 12.5,
                         'net_weight' => 12.5,
+                        'rate' => 7000,
+                        'making_charges' => 500,
+                        'making_charge_type' => 'flat',
                         'huid' => 'HUID1234',
                         'final_price' => 87500,
                     ],
                 ],
+                'transactions' => [
+                    [
+                        'payment_method' => 'UPI',
+                        'reference_number' => 'UPI-12345',
+                        'amount' => 90125,
+                        'date' => '14 Aug 2026',
+                    ],
+                ],
+                'paid_amount' => 90125,
+                'balance_due' => 0,
             ],
             'business' => [
                 'store_name' => 'Maniratn Jewellers',

@@ -79,6 +79,11 @@ class CustomerVaultController extends Controller
                 $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('pdf.tax-invoice', [
                     'invoice' => $data['invoice'] ?? [],
                     'business' => $data['business'] ?? [],
+                    'token' => $token,
+                    'vaultUrl' => $data['vault_url'] ?? url("/vault/{$token}"),
+                    'qrCodeBase64' => $data['qr_code_base64'] ?? null,
+                    'googleReviewUrl' => $data['google_review_url'] ?? null,
+                    'googleReviewQrBase64' => $data['google_review_qr_base64'] ?? null,
                 ])
                 ->setPaper('a4', 'portrait')
                 ->setOption('fontDir', $fontDir)
