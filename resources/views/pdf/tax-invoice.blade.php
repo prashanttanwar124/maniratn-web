@@ -19,7 +19,7 @@
         }
 
         @page {
-            margin: 7mm 11mm 6mm 11mm;
+            margin: 14mm 16mm 12mm 16mm;
             size: A4 portrait;
         }
 
@@ -33,8 +33,8 @@
             background: #ffffff;
             color: #2b2824;
             font-family: 'Poppins', 'DejaVu Sans', sans-serif;
-            font-size: 7.8px;
-            line-height: 1.35;
+            font-size: 8.2px;
+            line-height: 1.4;
             margin: 0;
             padding: 0;
         }
@@ -46,15 +46,15 @@
 
         /* Top Header / Masthead */
         .masthead {
-            border-bottom: 2px solid #c4922a;
-            margin-bottom: 7px;
+            border-bottom: 2.5px solid #c4922a;
+            margin-bottom: 12px;
             table-layout: fixed;
             width: 100%;
         }
 
         .logo-cell {
             background: #5b0d13;
-            padding: 6px 10px;
+            padding: 10px 14px;
             text-align: center;
             vertical-align: middle;
             width: 24%;
@@ -64,14 +64,14 @@
             display: block;
             height: auto;
             margin: 0 auto;
-            max-height: 48px;
-            max-width: 95px;
+            max-height: 52px;
+            max-width: 100px;
         }
 
         .business-cell {
             background: #5b0d13;
             border-left: 1px solid #7c262c;
-            padding: 6px 10px;
+            padding: 10px 14px;
             vertical-align: middle;
             width: 44%;
         }
@@ -80,7 +80,7 @@
             background: #fdfaf3;
             border-right: 1px solid #e7dcce;
             border-top: 1px solid #e7dcce;
-            padding: 6px 10px;
+            padding: 10px 14px;
             text-align: right;
             vertical-align: middle;
             width: 32%;
@@ -88,16 +88,16 @@
 
         .store-title {
             color: #ffffff;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: bold;
             letter-spacing: 0.8px;
-            margin-bottom: 1px;
+            margin-bottom: 2px;
             text-transform: uppercase;
         }
 
         .eyebrow {
             color: #f3d484;
-            font-size: 6.5px;
+            font-size: 6.8px;
             font-weight: bold;
             letter-spacing: 0.8px;
             margin-bottom: 2px;
@@ -106,8 +106,8 @@
 
         .brand-address {
             color: #f7edea;
-            font-size: 6.8px;
-            line-height: 1.35;
+            font-size: 7px;
+            line-height: 1.4;
         }
 
         .brand-address strong {
@@ -117,7 +117,7 @@
 
         .document-label {
             color: #5b0d13;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: bold;
             letter-spacing: 1px;
             line-height: 1.1;
@@ -127,9 +127,9 @@
 
         .document-number {
             color: #2b2824;
-            font-size: 9px;
+            font-size: 9.5px;
             font-weight: bold;
-            margin-bottom: 3px;
+            margin-bottom: 4px;
         }
 
         .verified-badge {
@@ -138,10 +138,10 @@
             border-radius: 3px;
             color: #7b5b18;
             display: inline-block;
-            font-size: 6.2px;
+            font-size: 6.5px;
             font-weight: bold;
             letter-spacing: 0.5px;
-            padding: 1.5px 6px;
+            padding: 2px 7px;
             text-transform: uppercase;
         }
 
@@ -151,15 +151,15 @@
             border: 1.5px solid #dc2626;
             color: #991b1b;
             font-weight: bold;
-            margin-bottom: 7px;
-            padding: 4px 10px;
+            margin-bottom: 10px;
+            padding: 5px 12px;
             text-align: center;
-            font-size: 8px;
+            font-size: 8.5px;
         }
 
         /* Meta Information Table */
         .meta-table {
-            margin-bottom: 7px;
+            margin-bottom: 12px;
             table-layout: fixed;
             width: 100%;
         }
@@ -167,41 +167,41 @@
         .meta-cell {
             background: #faf8f5;
             border: 1px solid #e8e2d8;
-            padding: 6px 8px;
+            padding: 8px 10px;
             vertical-align: top;
             width: 50%;
         }
 
         .meta-cell.left {
-            border-right: 3px solid #ffffff;
+            border-right: 4px solid #ffffff;
         }
 
         .meta-cell.right {
-            border-left: 3px solid #ffffff;
+            border-left: 4px solid #ffffff;
         }
 
         .section-kicker {
             border-bottom: 1px solid #e2d9cc;
             color: #9a7328;
-            font-size: 6.5px;
+            font-size: 7px;
             font-weight: bold;
             letter-spacing: 0.8px;
-            margin-bottom: 4px;
-            padding-bottom: 1.5px;
+            margin-bottom: 5px;
+            padding-bottom: 2px;
             text-transform: uppercase;
         }
 
         .meta-name {
             color: #1f1c18;
-            font-size: 9.8px;
+            font-size: 10.5px;
             font-weight: bold;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
         .meta-line {
             color: #5c564e;
-            font-size: 7.2px;
-            margin-bottom: 1.5px;
+            font-size: 7.6px;
+            margin-bottom: 2px;
         }
 
         .meta-line strong {
@@ -214,8 +214,8 @@
         }
 
         .detail-table td {
-            font-size: 7.2px;
-            padding-bottom: 1.5px;
+            font-size: 7.6px;
+            padding-bottom: 2px;
         }
 
         .detail-label {
@@ -235,20 +235,20 @@
             border-radius: 2px;
             color: #8c6211;
             display: inline-block;
-            font-size: 6.8px;
+            font-size: 7.2px;
             font-weight: bold;
-            padding: 1px 4px;
+            padding: 1px 5px;
         }
 
         /* Items Section */
         .items-heading-table {
-            margin-bottom: 3px;
+            margin-bottom: 4px;
             width: 100%;
         }
 
         .items-heading {
             color: #5b0d13;
-            font-size: 7.8px;
+            font-size: 8.5px;
             font-weight: bold;
             letter-spacing: 0.6px;
             text-transform: uppercase;
@@ -256,12 +256,12 @@
 
         .items-overview {
             color: #7b7367;
-            font-size: 6.8px;
+            font-size: 7.2px;
             text-align: right;
         }
 
         .items-table {
-            margin-bottom: 7px;
+            margin-bottom: 12px;
             table-layout: fixed;
             width: 100%;
         }
@@ -279,10 +279,10 @@
             border: 1px solid #5b0d13;
             border-bottom: 2px solid #c4922a;
             color: #ffffff;
-            font-size: 6.5px;
+            font-size: 7px;
             font-weight: bold;
             letter-spacing: 0.4px;
-            padding: 5px 4px;
+            padding: 6px 5px;
             text-align: left;
             text-transform: uppercase;
         }
@@ -290,8 +290,8 @@
         .items-table td {
             border: 1px solid #ebe5dc;
             color: #3b3731;
-            font-size: 7.5px;
-            padding: 5px 4px;
+            font-size: 7.8px;
+            padding: 6px 5px;
             vertical-align: middle;
         }
 
@@ -309,19 +309,19 @@
 
         .item-index {
             color: #9f968a;
-            font-size: 6.8px;
+            font-size: 7.2px;
             font-weight: bold;
         }
 
         .item-name {
             color: #1f1c18;
-            font-size: 8px;
+            font-size: 8.5px;
             font-weight: bold;
         }
 
         .item-sub {
             color: #7a7266;
-            font-size: 6.5px;
+            font-size: 7px;
             margin-top: 1px;
         }
 
@@ -331,9 +331,9 @@
             border-radius: 2px;
             color: #7a550d;
             display: inline-block;
-            font-size: 6.2px;
+            font-size: 6.5px;
             font-weight: bold;
-            padding: 0.5px 3px;
+            padding: 0.5px 3.5px;
         }
 
         .purity-tag {
@@ -342,9 +342,9 @@
             border-radius: 2px;
             color: #785311;
             display: inline-block;
-            font-size: 6.5px;
+            font-size: 6.8px;
             font-weight: bold;
-            padding: 1px 3.5px;
+            padding: 1px 4px;
             white-space: nowrap;
         }
 
@@ -355,7 +355,7 @@
 
         /* Summary & Calculations */
         .summary-table {
-            margin-bottom: 7px;
+            margin-bottom: 12px;
             page-break-inside: avoid;
             table-layout: fixed;
             width: 100%;
@@ -368,7 +368,7 @@
         }
 
         .right-summary-cell {
-            padding-left: 5px;
+            padding-left: 6px;
             vertical-align: top;
             width: 47%;
         }
@@ -378,36 +378,36 @@
             background: #fcfbf8;
             border: 1px solid #e8e2d7;
             border-left: 2.5px solid #c4922a;
-            margin-bottom: 6px;
-            padding: 4px 7px;
+            margin-bottom: 8px;
+            padding: 6px 8px;
         }
 
         .words-title {
             color: #8c671a;
-            font-size: 6.2px;
+            font-size: 6.8px;
             font-weight: bold;
             letter-spacing: 0.5px;
-            margin-bottom: 1.5px;
+            margin-bottom: 2px;
             text-transform: uppercase;
         }
 
         .words-text {
             color: #27241f;
-            font-size: 7.2px;
+            font-size: 7.6px;
             font-weight: bold;
-            line-height: 1.3;
+            line-height: 1.35;
         }
 
         /* Payments Table */
         .payment-box {
             background: #faf8f4;
             border: 1px solid #e6ded2;
-            padding: 4px 7px;
+            padding: 6px 8px;
         }
 
         .payment-title {
             color: #5b0d13;
-            font-size: 6.5px;
+            font-size: 7px;
             font-weight: bold;
             letter-spacing: 0.5px;
             margin-bottom: 3px;
@@ -421,8 +421,8 @@
         .payment-table td {
             border-bottom: 1px solid #eee8de;
             color: #534d45;
-            font-size: 7px;
-            padding: 2px 0;
+            font-size: 7.4px;
+            padding: 2.5px 0;
         }
 
         .payment-table td.amt {
@@ -441,8 +441,8 @@
             background: #fcfbf8;
             border-bottom: 1px solid #eee7db;
             color: #696257;
-            font-size: 7.2px;
-            padding: 3px 6px;
+            font-size: 7.6px;
+            padding: 4px 7px;
         }
 
         .calc-row td.val {
@@ -462,22 +462,22 @@
 
         .calc-row.tax td {
             color: #5a5349;
-            font-size: 7px;
+            font-size: 7.4px;
         }
 
         .grand-total-row td {
             background: #5b0d13;
             border-top: 2px solid #c4922a;
             color: #ffffff;
-            font-size: 8.2px;
+            font-size: 8.8px;
             font-weight: bold;
-            padding: 5.5px 6px;
+            padding: 6px 7px;
             text-transform: uppercase;
         }
 
         .grand-total-row td.val {
             color: #f7df96;
-            font-size: 10.5px;
+            font-size: 11px;
             text-align: right;
             white-space: nowrap;
         }
@@ -485,7 +485,7 @@
         /* QR Codes & Bottom Modules */
         .bottom-modules {
             border: 1px solid #e7ded2;
-            margin-bottom: 6px;
+            margin-bottom: 10px;
             page-break-inside: avoid;
             table-layout: fixed;
             width: 100%;
@@ -493,7 +493,7 @@
 
         .qr-card {
             background: #faf8f5;
-            padding: 4px 6px;
+            padding: 6px 8px;
             vertical-align: middle;
         }
 
@@ -509,79 +509,43 @@
         .qr-img {
             border: 1px solid #ddcdba;
             display: block;
-            height: 42px;
-            width: 42px;
+            height: 44px;
+            width: 44px;
         }
 
         .qr-title {
             color: #5b0d13;
-            font-size: 6.8px;
+            font-size: 7.2px;
             font-weight: bold;
             letter-spacing: 0.3px;
-            margin-bottom: 1.5px;
+            margin-bottom: 2px;
             text-transform: uppercase;
         }
 
         .qr-desc {
             color: #6b6459;
-            font-size: 6.5px;
-            line-height: 1.25;
+            font-size: 6.8px;
+            line-height: 1.3;
         }
 
-        /* Terms & Signatures */
-        .terms-sign-table {
-            margin-bottom: 4px;
-            page-break-inside: avoid;
-            table-layout: fixed;
-            width: 100%;
-        }
-
-        .terms-col {
-            padding-right: 10px;
-            vertical-align: bottom;
-            width: 54%;
-        }
-
-        .terms-content {
+        /* Terms Box */
+        .terms-box {
             background: #fdfcf9;
-            border-left: 2px solid #c4922a;
+            border: 1px solid #e8e1d5;
+            border-left: 3px solid #c4922a;
             color: #6e675b;
-            font-size: 6.3px;
-            line-height: 1.35;
-            padding: 3.5px 6px;
+            font-size: 6.8px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            page-break-inside: avoid;
+            padding: 5px 8px;
         }
 
         .terms-heading {
             color: #5b0d13;
-            font-size: 6.5px;
+            font-size: 7px;
             font-weight: bold;
-            margin-bottom: 1px;
-            text-transform: uppercase;
-        }
-
-        .sign-col {
-            vertical-align: bottom;
-            width: 46%;
-        }
-
-        .sign-table {
-            width: 100%;
-        }
-
-        .sign-box {
-            padding-top: 16px;
-            text-align: center;
-            vertical-align: bottom;
-            width: 50%;
-        }
-
-        .sign-line {
-            border-top: 1px solid #9e9587;
-            color: #453f36;
-            font-size: 6.5px;
-            font-weight: bold;
-            margin: 0 5px;
-            padding-top: 2.5px;
+            margin-bottom: 2px;
             text-transform: uppercase;
         }
 
@@ -589,14 +553,14 @@
         .invoice-footer {
             border-top: 1px solid #ded5c7;
             color: #8b8376;
-            font-size: 6.5px;
-            padding-top: 3px;
+            font-size: 7px;
+            padding-top: 5px;
             text-align: center;
         }
 
         .thanks-msg {
             color: #5b0d13;
-            font-size: 7px;
+            font-size: 7.6px;
             font-weight: bold;
         }
     </style>
@@ -623,14 +587,20 @@
         $cgstAmount = round($taxAmount / 2, 2);
         $sgstAmount = $taxAmount - $cgstAmount;
 
-        $paidAmount = (float) ($invoice['paid_amount'] ?? 0);
-        $balanceDue = (float) ($invoice['balance_due'] ?? max($totalAmount - $paidAmount, 0));
-
         // Filter transactions strictly for PAYMENT records
         $transactions = collect($invoice['transactions'] ?? [])->filter(function ($t) {
             $type = strtoupper($t['type'] ?? 'PAYMENT');
             return $type === 'PAYMENT' || $type === 'RECEIPT';
         });
+
+        $paidAmount = (float) ($invoice['paid_amount'] ?? 0);
+        if ($paidAmount == 0 && $transactions->isEmpty()) {
+            $paidAmount = $totalAmount;
+        }
+        $balanceDue = (float) ($invoice['balance_due'] ?? max($totalAmount - $paidAmount, 0));
+        if ($transactions->isEmpty()) {
+            $balanceDue = 0;
+        }
 
         $logoBase64 = '';
         if (file_exists(public_path('main-logo.png'))) {
@@ -713,7 +683,7 @@
                         alt="{{ $business['store_name'] ?? 'Maniratn Jewellers' }}"
                     >
                 @else
-                    <div style="font-size: 12px; font-weight: bold; color: #ffffff; letter-spacing: 1px; text-transform: uppercase;">
+                    <div style="font-size: 13px; font-weight: bold; color: #ffffff; letter-spacing: 1px; text-transform: uppercase;">
                         {{ $business['store_name'] ?? 'MANIRATN' }}
                     </div>
                 @endif
@@ -908,7 +878,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" style="padding: 12px; text-align: center; color: #7f786d;">
+                    <td colspan="8" style="padding: 14px; text-align: center; color: #7f786d;">
                         No line items recorded for this invoice.
                     </td>
                 </tr>
@@ -947,17 +917,17 @@
                             @endforeach
                         @else
                             <tr>
-                                <td>Payment Mode: <strong>{{ $invoice['payment_method'] ?? 'CARD' }}</strong></td>
-                                <td class="amt">&#8377;&nbsp;{{ number_format($paidAmount > 0 ? $paidAmount : $totalAmount, 2) }}</td>
+                                <td>Payment Status: <strong>Settled in Full</strong></td>
+                                <td class="amt">&#8377;&nbsp;{{ number_format($paidAmount, 2) }}</td>
                             </tr>
                         @endif
                         <tr>
-                            <td style="padding-top: 2.5px; font-weight: bold; color: #221e1a;">Total Paid / Settled</td>
-                            <td class="amt" style="padding-top: 2.5px; color: #15803d;">
-                                &#8377;&nbsp;{{ number_format($paidAmount > 0 ? $paidAmount : $totalAmount, 2) }}
+                            <td style="padding-top: 3px; font-weight: bold; color: #221e1a;">Total Paid / Settled</td>
+                            <td class="amt" style="padding-top: 3px; color: #15803d;">
+                                &#8377;&nbsp;{{ number_format($paidAmount, 2) }}
                             </td>
                         </tr>
-                        @if($balanceDue > 0)
+                        @if($balanceDue > 0.01)
                             <tr>
                                 <td style="color: #b91c1c; font-weight: bold;">Balance Due</td>
                                 <td class="amt" style="color: #b91c1c;">
@@ -1015,7 +985,7 @@
                                 <img class="qr-img" src="{{ $qrCodeBase64 }}" alt="Customer Vault QR Code">
                             </td>
                         @endif
-                        <td style="vertical-align: middle; padding-left: {{ ! empty($qrCodeBase64) ? '7px' : '0' }};">
+                        <td style="vertical-align: middle; padding-left: {{ ! empty($qrCodeBase64) ? '8px' : '0' }};">
                             <div class="qr-title">Digital Vault & Warranty</div>
                             <div class="qr-desc">
                                 Scan this QR code to access your digital passbook, lifetime certificates, and portfolio valuation on the Maniratn web portal.
@@ -1032,7 +1002,7 @@
                                 <img class="qr-img" src="{{ $googleReviewQrBase64 }}" alt="Google Review QR Code">
                             </td>
                         @endif
-                        <td style="vertical-align: middle; padding-left: {{ ! empty($googleReviewQrBase64) ? '7px' : '0' }};">
+                        <td style="vertical-align: middle; padding-left: {{ ! empty($googleReviewQrBase64) ? '8px' : '0' }};">
                             <div class="qr-title" style="color: #b45309;">
                                 Rate Us on Google &bull; &#9733;&#9733;&#9733;&#9733;&#9733;
                             </div>
@@ -1046,31 +1016,13 @@
         </tr>
     </table>
 
-    <!-- Terms & Signatures -->
-    <table class="terms-sign-table">
-        <tr>
-            <td class="terms-col">
-                <div class="terms-content">
-                    <div class="terms-heading">Terms & Conditions of Sale</div>
-                    1. 100% BIS Hallmarked purity guaranteed. Keep this invoice for all future exchange/buyback.<br>
-                    2. Exchange allowed within 7 days in original unworn condition against purchase bill.<br>
-                    3. Lifetime gold buyback & exchange at prevailing store market rates.
-                </div>
-            </td>
-            <td class="sign-col">
-                <table class="sign-table">
-                    <tr>
-                        <td class="sign-box">
-                            <div class="sign-line">Customer's Signature</div>
-                        </td>
-                        <td class="sign-box">
-                            <div class="sign-line">Authorized Signatory</div>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+    <!-- Terms & Conditions -->
+    <div class="terms-box">
+        <div class="terms-heading">Terms & Conditions of Sale</div>
+        1. 100% BIS Hallmarked fine jewellery purity guaranteed. Keep this digital invoice for all future exchange and buyback.<br>
+        2. Exchange allowed within 7 days in original unworn condition against purchase bill.<br>
+        3. Lifetime gold buyback & exchange at prevailing store market rates.
+    </div>
 
     <!-- Footer Note -->
     <div class="invoice-footer">
