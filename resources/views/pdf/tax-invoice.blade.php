@@ -49,27 +49,27 @@
         }
 
         .logo-cell {
-            background: #5b0d13;
-            padding: 12px 14px;
+            background: #631511;
+            padding: 8px 10px;
             text-align: center;
             vertical-align: middle;
-            width: 24%;
+            width: 25%;
         }
 
         .brand-logo {
             display: block;
             height: auto;
             margin: 0 auto;
-            max-height: 52px;
-            max-width: 95px;
+            max-height: 58px;
+            max-width: 105px;
         }
 
         .business-cell {
-            background: #5b0d13;
-            border-left: 1px solid #7c262c;
-            padding: 12px 14px;
+            background: #631511;
+            border-left: 1px solid #7e2420;
+            padding: 10px 14px;
             vertical-align: middle;
-            width: 44%;
+            width: 43%;
         }
 
         .document-cell {
