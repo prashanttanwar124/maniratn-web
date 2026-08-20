@@ -19,7 +19,7 @@
         }
 
         @page {
-            margin: 8mm 10mm 10mm;
+            margin: 7mm 11mm 6mm 11mm;
             size: A4 portrait;
         }
 
@@ -33,8 +33,8 @@
             background: #ffffff;
             color: #2b2824;
             font-family: 'Poppins', 'DejaVu Sans', sans-serif;
-            font-size: 8px;
-            line-height: 1.4;
+            font-size: 7.8px;
+            line-height: 1.35;
             margin: 0;
             padding: 0;
         }
@@ -46,15 +46,15 @@
 
         /* Top Header / Masthead */
         .masthead {
-            border-bottom: 2.5px solid #c4922a;
-            margin-bottom: 10px;
+            border-bottom: 2px solid #c4922a;
+            margin-bottom: 7px;
             table-layout: fixed;
             width: 100%;
         }
 
         .logo-cell {
             background: #5b0d13;
-            padding: 8px 12px;
+            padding: 6px 10px;
             text-align: center;
             vertical-align: middle;
             width: 24%;
@@ -64,14 +64,14 @@
             display: block;
             height: auto;
             margin: 0 auto;
-            max-height: 52px;
-            max-width: 100px;
+            max-height: 48px;
+            max-width: 95px;
         }
 
         .business-cell {
             background: #5b0d13;
             border-left: 1px solid #7c262c;
-            padding: 8px 12px;
+            padding: 6px 10px;
             vertical-align: middle;
             width: 44%;
         }
@@ -80,7 +80,7 @@
             background: #fdfaf3;
             border-right: 1px solid #e7dcce;
             border-top: 1px solid #e7dcce;
-            padding: 8px 12px;
+            padding: 6px 10px;
             text-align: right;
             vertical-align: middle;
             width: 32%;
@@ -88,26 +88,26 @@
 
         .store-title {
             color: #ffffff;
-            font-size: 13px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 0.8px;
+            margin-bottom: 1px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow {
+            color: #f3d484;
+            font-size: 6.5px;
             font-weight: bold;
             letter-spacing: 0.8px;
             margin-bottom: 2px;
             text-transform: uppercase;
         }
 
-        .eyebrow {
-            color: #f3d484;
-            font-size: 6.8px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            margin-bottom: 3px;
-            text-transform: uppercase;
-        }
-
         .brand-address {
             color: #f7edea;
-            font-size: 7px;
-            line-height: 1.45;
+            font-size: 6.8px;
+            line-height: 1.35;
         }
 
         .brand-address strong {
@@ -117,19 +117,19 @@
 
         .document-label {
             color: #5b0d13;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
-            letter-spacing: 1.2px;
+            letter-spacing: 1px;
             line-height: 1.1;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             text-transform: uppercase;
         }
 
         .document-number {
             color: #2b2824;
-            font-size: 9.5px;
+            font-size: 9px;
             font-weight: bold;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .verified-badge {
@@ -138,10 +138,10 @@
             border-radius: 3px;
             color: #7b5b18;
             display: inline-block;
-            font-size: 6.5px;
+            font-size: 6.2px;
             font-weight: bold;
-            letter-spacing: 0.6px;
-            padding: 2px 7px;
+            letter-spacing: 0.5px;
+            padding: 1.5px 6px;
             text-transform: uppercase;
         }
 
@@ -151,15 +151,15 @@
             border: 1.5px solid #dc2626;
             color: #991b1b;
             font-weight: bold;
-            margin-bottom: 10px;
-            padding: 6px 12px;
+            margin-bottom: 7px;
+            padding: 4px 10px;
             text-align: center;
-            font-size: 8.5px;
+            font-size: 8px;
         }
 
         /* Meta Information Table */
         .meta-table {
-            margin-bottom: 10px;
+            margin-bottom: 7px;
             table-layout: fixed;
             width: 100%;
         }
@@ -167,7 +167,7 @@
         .meta-cell {
             background: #faf8f5;
             border: 1px solid #e8e2d8;
-            padding: 8px 10px;
+            padding: 6px 8px;
             vertical-align: top;
             width: 50%;
         }
@@ -183,25 +183,25 @@
         .section-kicker {
             border-bottom: 1px solid #e2d9cc;
             color: #9a7328;
-            font-size: 6.8px;
+            font-size: 6.5px;
             font-weight: bold;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-            padding-bottom: 2px;
+            letter-spacing: 0.8px;
+            margin-bottom: 4px;
+            padding-bottom: 1.5px;
             text-transform: uppercase;
         }
 
         .meta-name {
             color: #1f1c18;
-            font-size: 10.5px;
+            font-size: 9.8px;
             font-weight: bold;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         .meta-line {
             color: #5c564e;
-            font-size: 7.5px;
-            margin-bottom: 2px;
+            font-size: 7.2px;
+            margin-bottom: 1.5px;
         }
 
         .meta-line strong {
@@ -214,8 +214,8 @@
         }
 
         .detail-table td {
-            font-size: 7.5px;
-            padding-bottom: 2px;
+            font-size: 7.2px;
+            padding-bottom: 1.5px;
         }
 
         .detail-label {
@@ -235,33 +235,33 @@
             border-radius: 2px;
             color: #8c6211;
             display: inline-block;
-            font-size: 7px;
+            font-size: 6.8px;
             font-weight: bold;
             padding: 1px 4px;
         }
 
         /* Items Section */
         .items-heading-table {
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             width: 100%;
         }
 
         .items-heading {
             color: #5b0d13;
-            font-size: 8px;
+            font-size: 7.8px;
             font-weight: bold;
-            letter-spacing: 0.8px;
+            letter-spacing: 0.6px;
             text-transform: uppercase;
         }
 
         .items-overview {
             color: #7b7367;
-            font-size: 7px;
+            font-size: 6.8px;
             text-align: right;
         }
 
         .items-table {
-            margin-bottom: 10px;
+            margin-bottom: 7px;
             table-layout: fixed;
             width: 100%;
         }
@@ -279,10 +279,10 @@
             border: 1px solid #5b0d13;
             border-bottom: 2px solid #c4922a;
             color: #ffffff;
-            font-size: 6.8px;
+            font-size: 6.5px;
             font-weight: bold;
-            letter-spacing: 0.5px;
-            padding: 6px 5px;
+            letter-spacing: 0.4px;
+            padding: 5px 4px;
             text-align: left;
             text-transform: uppercase;
         }
@@ -290,8 +290,8 @@
         .items-table td {
             border: 1px solid #ebe5dc;
             color: #3b3731;
-            font-size: 7.8px;
-            padding: 6px 5px;
+            font-size: 7.5px;
+            padding: 5px 4px;
             vertical-align: middle;
         }
 
@@ -309,20 +309,20 @@
 
         .item-index {
             color: #9f968a;
-            font-size: 7px;
+            font-size: 6.8px;
             font-weight: bold;
         }
 
         .item-name {
             color: #1f1c18;
-            font-size: 8.2px;
+            font-size: 8px;
             font-weight: bold;
         }
 
         .item-sub {
             color: #7a7266;
-            font-size: 6.8px;
-            margin-top: 1.5px;
+            font-size: 6.5px;
+            margin-top: 1px;
         }
 
         .huid-tag {
@@ -331,7 +331,7 @@
             border-radius: 2px;
             color: #7a550d;
             display: inline-block;
-            font-size: 6.5px;
+            font-size: 6.2px;
             font-weight: bold;
             padding: 0.5px 3px;
         }
@@ -342,9 +342,9 @@
             border-radius: 2px;
             color: #785311;
             display: inline-block;
-            font-size: 6.8px;
+            font-size: 6.5px;
             font-weight: bold;
-            padding: 1.5px 4px;
+            padding: 1px 3.5px;
             white-space: nowrap;
         }
 
@@ -355,63 +355,62 @@
 
         /* Summary & Calculations */
         .summary-table {
-            margin-bottom: 10px;
+            margin-bottom: 7px;
             page-break-inside: avoid;
             table-layout: fixed;
             width: 100%;
         }
 
         .left-summary-cell {
-            padding-right: 10px;
+            padding-right: 8px;
             vertical-align: top;
-            width: 54%;
+            width: 53%;
         }
 
         .right-summary-cell {
-            padding-left: 6px;
+            padding-left: 5px;
             vertical-align: top;
-            width: 46%;
+            width: 47%;
         }
 
         /* Amount in Words Box */
         .words-box {
             background: #fcfbf8;
             border: 1px solid #e8e2d7;
-            border-left: 3px solid #c4922a;
-            margin-bottom: 8px;
-            padding: 6px 8px;
+            border-left: 2.5px solid #c4922a;
+            margin-bottom: 6px;
+            padding: 4px 7px;
         }
 
         .words-title {
             color: #8c671a;
-            font-size: 6.5px;
+            font-size: 6.2px;
             font-weight: bold;
-            letter-spacing: 0.6px;
-            margin-bottom: 2px;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5px;
             text-transform: uppercase;
         }
 
         .words-text {
             color: #27241f;
-            font-size: 7.5px;
+            font-size: 7.2px;
             font-weight: bold;
-            line-height: 1.35;
+            line-height: 1.3;
         }
 
         /* Payments Table */
         .payment-box {
             background: #faf8f4;
             border: 1px solid #e6ded2;
-            margin-bottom: 8px;
-            padding: 6px 8px;
+            padding: 4px 7px;
         }
 
         .payment-title {
             color: #5b0d13;
-            font-size: 6.8px;
+            font-size: 6.5px;
             font-weight: bold;
-            letter-spacing: 0.6px;
-            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
             text-transform: uppercase;
         }
 
@@ -422,8 +421,8 @@
         .payment-table td {
             border-bottom: 1px solid #eee8de;
             color: #534d45;
-            font-size: 7.2px;
-            padding: 2.5px 0;
+            font-size: 7px;
+            padding: 2px 0;
         }
 
         .payment-table td.amt {
@@ -442,8 +441,8 @@
             background: #fcfbf8;
             border-bottom: 1px solid #eee7db;
             color: #696257;
-            font-size: 7.5px;
-            padding: 4px 7px;
+            font-size: 7.2px;
+            padding: 3px 6px;
         }
 
         .calc-row td.val {
@@ -463,22 +462,22 @@
 
         .calc-row.tax td {
             color: #5a5349;
-            font-size: 7.2px;
+            font-size: 7px;
         }
 
         .grand-total-row td {
             background: #5b0d13;
             border-top: 2px solid #c4922a;
             color: #ffffff;
-            font-size: 8.5px;
+            font-size: 8.2px;
             font-weight: bold;
-            padding: 7px 7px;
+            padding: 5.5px 6px;
             text-transform: uppercase;
         }
 
         .grand-total-row td.val {
             color: #f7df96;
-            font-size: 11px;
+            font-size: 10.5px;
             text-align: right;
             white-space: nowrap;
         }
@@ -486,7 +485,7 @@
         /* QR Codes & Bottom Modules */
         .bottom-modules {
             border: 1px solid #e7ded2;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             page-break-inside: avoid;
             table-layout: fixed;
             width: 100%;
@@ -494,7 +493,7 @@
 
         .qr-card {
             background: #faf8f5;
-            padding: 6px 8px;
+            padding: 4px 6px;
             vertical-align: middle;
         }
 
@@ -510,59 +509,59 @@
         .qr-img {
             border: 1px solid #ddcdba;
             display: block;
-            height: 48px;
-            width: 48px;
+            height: 42px;
+            width: 42px;
         }
 
         .qr-title {
             color: #5b0d13;
-            font-size: 7.2px;
+            font-size: 6.8px;
             font-weight: bold;
-            letter-spacing: 0.4px;
-            margin-bottom: 2px;
+            letter-spacing: 0.3px;
+            margin-bottom: 1.5px;
             text-transform: uppercase;
         }
 
         .qr-desc {
             color: #6b6459;
-            font-size: 6.8px;
-            line-height: 1.35;
+            font-size: 6.5px;
+            line-height: 1.25;
         }
 
         /* Terms & Signatures */
         .terms-sign-table {
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             page-break-inside: avoid;
             table-layout: fixed;
             width: 100%;
         }
 
         .terms-col {
-            padding-right: 12px;
+            padding-right: 10px;
             vertical-align: bottom;
-            width: 55%;
+            width: 54%;
         }
 
         .terms-content {
             background: #fdfcf9;
-            border-left: 2.5px solid #c4922a;
+            border-left: 2px solid #c4922a;
             color: #6e675b;
-            font-size: 6.6px;
-            line-height: 1.45;
-            padding: 5px 8px;
+            font-size: 6.3px;
+            line-height: 1.35;
+            padding: 3.5px 6px;
         }
 
         .terms-heading {
             color: #5b0d13;
-            font-size: 6.8px;
+            font-size: 6.5px;
             font-weight: bold;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
             text-transform: uppercase;
         }
 
         .sign-col {
             vertical-align: bottom;
-            width: 45%;
+            width: 46%;
         }
 
         .sign-table {
@@ -570,7 +569,7 @@
         }
 
         .sign-box {
-            padding-top: 24px;
+            padding-top: 16px;
             text-align: center;
             vertical-align: bottom;
             width: 50%;
@@ -579,10 +578,10 @@
         .sign-line {
             border-top: 1px solid #9e9587;
             color: #453f36;
-            font-size: 6.8px;
+            font-size: 6.5px;
             font-weight: bold;
-            margin: 0 6px;
-            padding-top: 3px;
+            margin: 0 5px;
+            padding-top: 2.5px;
             text-transform: uppercase;
         }
 
@@ -590,15 +589,14 @@
         .invoice-footer {
             border-top: 1px solid #ded5c7;
             color: #8b8376;
-            font-size: 6.6px;
-            line-height: 1.5;
-            padding-top: 6px;
+            font-size: 6.5px;
+            padding-top: 3px;
             text-align: center;
         }
 
         .thanks-msg {
             color: #5b0d13;
-            font-size: 7.5px;
+            font-size: 7px;
             font-weight: bold;
         }
     </style>
@@ -612,20 +610,6 @@
         $invoiceItems = collect($invoice['items'] ?? []);
         $totalGrossWeight = $invoiceItems->sum(fn ($i) => (float) ($i['gross_weight'] ?? $i['weight'] ?? 0));
         $totalNetWeight = $invoiceItems->sum(fn ($i) => (float) ($i['net_weight'] ?? $i['weight'] ?? 0));
-        $totalMakingCharges = $invoiceItems->sum(function ($i) {
-            $making = (float) ($i['making_charges'] ?? 0);
-            $type = $i['making_charge_type'] ?? 'percentage';
-            $net = (float) ($i['net_weight'] ?? $i['weight'] ?? 0);
-            $rate = (float) ($i['rate'] ?? 0);
-            $metalAmt = $net * $rate;
-            if ($type === 'flat' || $type === 'lump_sum') {
-                return $making;
-            } elseif ($type === 'per_gram') {
-                return $making * $net;
-            } else {
-                return ($metalAmt * $making) / 100;
-            }
-        });
 
         $goldItems = $invoiceItems->filter(fn ($i) => strtoupper($i['metal'] ?? 'GOLD') === 'GOLD');
         $silverItems = $invoiceItems->filter(fn ($i) => strtoupper($i['metal'] ?? '') === 'SILVER');
@@ -641,10 +625,17 @@
 
         $paidAmount = (float) ($invoice['paid_amount'] ?? 0);
         $balanceDue = (float) ($invoice['balance_due'] ?? max($totalAmount - $paidAmount, 0));
-        $transactions = collect($invoice['transactions'] ?? []);
+
+        // Filter transactions strictly for PAYMENT records
+        $transactions = collect($invoice['transactions'] ?? [])->filter(function ($t) {
+            $type = strtoupper($t['type'] ?? 'PAYMENT');
+            return $type === 'PAYMENT' || $type === 'RECEIPT';
+        });
 
         $logoBase64 = '';
-        if (file_exists(public_path('logo.png'))) {
+        if (file_exists(public_path('main-logo.png'))) {
+            $logoBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents(public_path('main-logo.png')));
+        } elseif (file_exists(public_path('logo.png'))) {
             $logoBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents(public_path('logo.png')));
         }
 
@@ -722,7 +713,7 @@
                         alt="{{ $business['store_name'] ?? 'Maniratn Jewellers' }}"
                     >
                 @else
-                    <div style="font-size: 13px; font-weight: bold; color: #ffffff; letter-spacing: 1px; text-transform: uppercase;">
+                    <div style="font-size: 12px; font-weight: bold; color: #ffffff; letter-spacing: 1px; text-transform: uppercase;">
                         {{ $business['store_name'] ?? 'MANIRATN' }}
                     </div>
                 @endif
@@ -917,7 +908,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" style="padding: 14px; text-align: center; color: #7f786d;">
+                    <td colspan="8" style="padding: 12px; text-align: center; color: #7f786d;">
                         No line items recorded for this invoice.
                     </td>
                 </tr>
@@ -943,7 +934,7 @@
                             @foreach($transactions as $txn)
                                 <tr>
                                     <td>
-                                        <strong>{{ $txn['payment_method'] ?? 'CASH' }}</strong>
+                                        <strong>{{ $txn['payment_method'] ?? 'CARD' }}</strong>
                                         @if(! empty($txn['reference_number']))
                                             (Ref: {{ $txn['reference_number'] }})
                                         @endif
@@ -956,13 +947,13 @@
                             @endforeach
                         @else
                             <tr>
-                                <td>Payment Status: <strong>Settled in Full</strong></td>
-                                <td class="amt">&#8377;&nbsp;{{ number_format($totalAmount, 2) }}</td>
+                                <td>Payment Mode: <strong>{{ $invoice['payment_method'] ?? 'CARD' }}</strong></td>
+                                <td class="amt">&#8377;&nbsp;{{ number_format($paidAmount > 0 ? $paidAmount : $totalAmount, 2) }}</td>
                             </tr>
                         @endif
                         <tr>
-                            <td style="padding-top: 3px; font-weight: bold; color: #221e1a;">Total Paid / Settled</td>
-                            <td class="amt" style="padding-top: 3px; color: #15803d;">
+                            <td style="padding-top: 2.5px; font-weight: bold; color: #221e1a;">Total Paid / Settled</td>
+                            <td class="amt" style="padding-top: 2.5px; color: #15803d;">
                                 &#8377;&nbsp;{{ number_format($paidAmount > 0 ? $paidAmount : $totalAmount, 2) }}
                             </td>
                         </tr>
@@ -1020,14 +1011,14 @@
                 <table style="width: 100%;">
                     <tr>
                         @if(! empty($qrCodeBase64))
-                            <td style="width: 54px; vertical-align: middle;">
+                            <td style="width: 48px; vertical-align: middle;">
                                 <img class="qr-img" src="{{ $qrCodeBase64 }}" alt="Customer Vault QR Code">
                             </td>
                         @endif
-                        <td style="vertical-align: middle; padding-left: {{ ! empty($qrCodeBase64) ? '8px' : '0' }};">
+                        <td style="vertical-align: middle; padding-left: {{ ! empty($qrCodeBase64) ? '7px' : '0' }};">
                             <div class="qr-title">Digital Vault & Warranty</div>
                             <div class="qr-desc">
-                                Scan this QR code to access your digital passbook, lifetime purity certificates, and portfolio valuation on the Maniratn web portal.
+                                Scan this QR code to access your digital passbook, lifetime certificates, and portfolio valuation on the Maniratn web portal.
                             </div>
                         </td>
                     </tr>
@@ -1037,11 +1028,11 @@
                 <table style="width: 100%;">
                     <tr>
                         @if(! empty($googleReviewQrBase64))
-                            <td style="width: 54px; vertical-align: middle;">
+                            <td style="width: 48px; vertical-align: middle;">
                                 <img class="qr-img" src="{{ $googleReviewQrBase64 }}" alt="Google Review QR Code">
                             </td>
                         @endif
-                        <td style="vertical-align: middle; padding-left: {{ ! empty($googleReviewQrBase64) ? '8px' : '0' }};">
+                        <td style="vertical-align: middle; padding-left: {{ ! empty($googleReviewQrBase64) ? '7px' : '0' }};">
                             <div class="qr-title" style="color: #b45309;">
                                 Rate Us on Google &bull; &#9733;&#9733;&#9733;&#9733;&#9733;
                             </div>
@@ -1083,8 +1074,7 @@
 
     <!-- Footer Note -->
     <div class="invoice-footer">
-        <span class="thanks-msg">Thank you for choosing {{ $business['store_name'] ?? 'Maniratn Jewellers' }} &bull; Handcrafted Gold & Silver Since 2007</span><br>
-        This is a computer-generated official tax invoice and certified record in your Maniratn Digital Vault.
+        <span class="thanks-msg">Thank you for choosing {{ $business['store_name'] ?? 'Maniratn Jewellers' }} &bull; Handcrafted Gold & Silver Since 2007</span>
     </div>
 </body>
 </html>
