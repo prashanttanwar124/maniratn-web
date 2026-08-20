@@ -49,27 +49,27 @@
         }
 
         .logo-cell {
-            background: #631511;
-            padding: 8px 10px;
+            background: #5b0d13;
+            padding: 8px 12px;
             text-align: center;
             vertical-align: middle;
-            width: 25%;
+            width: 24%;
         }
 
         .brand-logo {
             display: block;
             height: auto;
             margin: 0 auto;
-            max-height: 58px;
-            max-width: 105px;
+            max-height: 54px;
+            max-width: 95px;
         }
 
         .business-cell {
-            background: #631511;
-            border-left: 1px solid #7e2420;
+            background: #5b0d13;
+            border-left: 1px solid #7c262c;
             padding: 10px 14px;
             vertical-align: middle;
-            width: 43%;
+            width: 44%;
         }
 
         .document-cell {
@@ -606,12 +606,12 @@
         }
 
         $logoBase64 = '';
-        if (file_exists(public_path('maniratn-logo.jpg'))) {
-            $logoBase64 = 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('maniratn-logo.jpg')));
-        } elseif (file_exists(public_path('main-logo.png'))) {
-            $logoBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents(public_path('main-logo.png')));
+        if (file_exists(public_path('bill-logo.png'))) {
+            $logoBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents(public_path('bill-logo.png')));
         } elseif (file_exists(public_path('logo.png'))) {
             $logoBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents(public_path('logo.png')));
+        } elseif (file_exists(public_path('main-logo.png'))) {
+            $logoBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents(public_path('main-logo.png')));
         }
 
         // Amount in words conversion for Indian numbering
