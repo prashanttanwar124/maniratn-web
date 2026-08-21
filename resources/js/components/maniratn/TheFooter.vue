@@ -39,6 +39,9 @@ const footerCols = [
         <div class="mj-footer-bottom">
             <span>© 2026 Maniratn Jewellers</span>
             <span>BIS Hallmarked · Transparent Pricing</span>
+            <span class="mj-footer-powered">
+                Powered by <a href="https://karatsetu.com" target="_blank" rel="noopener" class="mj-powered-link">KaratSetu</a>
+            </span>
         </div>
     </footer>
 </template>
@@ -130,6 +133,24 @@ const footerCols = [
     font-size: 0.74rem;
 }
 
+.mj-footer-powered {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.mj-powered-link {
+    color: var(--mj-gold);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s, text-decoration 0.2s;
+}
+
+.mj-powered-link:hover {
+    color: var(--mj-crimson);
+    text-decoration: underline;
+}
+
 @media (min-width: 900px) {
     .mj-footer {
         padding-inline: 2rem;
@@ -143,6 +164,7 @@ const footerCols = [
     .mj-footer-bottom {
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
     }
 }
 </style>

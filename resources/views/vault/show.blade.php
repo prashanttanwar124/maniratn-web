@@ -713,6 +713,14 @@
                 </div>
             </div>
         </div>
+
+        <!-- Vault Footer / Powered by KaratSetu -->
+        <footer style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(212, 175, 55, 0.15); text-align: center; font-size: 0.75rem; color: #a1a1aa;">
+            <p>© {{ date('Y') }} {{ $store['name'] ?? 'Maniratn Jewellers' }} · All Rights Reserved</p>
+            <p style="margin-top: 0.4rem; font-size: 0.72rem; color: #71717a;">
+                Digital Vault & ERP Technology Powered by <a href="https://karatsetu.com" target="_blank" rel="noopener" style="color: #e5b958; font-weight: 600; text-decoration: none;">KaratSetu</a>
+            </p>
+        </footer>
     </div>
 
     <script>
