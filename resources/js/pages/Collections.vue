@@ -211,7 +211,16 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <Head title="Collections — Maniratn Jewellers" />
+    <Head>
+        <title>Exquisite Jewellery Collections — Bridal, Temple, Daily Wear & Diamonds | Maniratn Jewellers</title>
+        <meta name="description" content="Explore handcrafted jewellery collections at Maniratn Jewellers Virar. Royal Bridal Sets, Antique Temple Jewellery, Daily Wear Gold Bangles, Chains, Rings & Certified Diamonds." />
+        <meta name="keywords" content="gold jewellery collections, bridal necklace sets Virar, gold bangles designs, temple jewellery, daily wear gold chains, certified diamond rings, silver collection" />
+        <meta property="og:title" content="Exquisite Jewellery Collections — Maniratn Jewellers Virar" />
+        <meta property="og:description" content="Explore handcrafted jewellery collections at Maniratn Jewellers Virar. Royal Bridal Sets, Antique Temple Jewellery, Daily Wear Gold Bangles, Chains, Rings & Certified Diamonds." />
+        <meta property="og:url" content="https://maniratnjewellers.com/collections" />
+        <meta name="twitter:title" content="Exquisite Jewellery Collections — Maniratn Jewellers Virar" />
+        <meta name="twitter:description" content="Explore handcrafted jewellery collections at Maniratn Jewellers Virar. Royal Bridal Sets, Antique Temple Jewellery, Daily Wear Gold Bangles, Chains, Rings & Certified Diamonds." />
+    </Head>
 
     <CustomCursor />
     <TheNav current-page="collections" hero-variant="light" />

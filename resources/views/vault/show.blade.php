@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{{ $customer['name'] ?? 'Client' }} — Digital Jewellery Vault</title>
+    <title>{{ $customer['name'] ?? 'Client' }} — Digital Jewellery Vault | {{ $store['name'] ?? 'Maniratn Jewellers' }}</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Secure Digital Jewellery Vault & Authenticity Certificate Passbook for {{ $customer['name'] ?? 'Client' }} by {{ $store['name'] ?? 'Maniratn Jewellers' }}.">
     
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">

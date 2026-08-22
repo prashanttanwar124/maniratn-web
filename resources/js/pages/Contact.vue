@@ -183,7 +183,16 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <Head title="Contact — Maniratn Jewellers" />
+    <Head>
+        <title>Visit Our Showroom — Contact & Directions | Maniratn Jewellers Virar</title>
+        <meta name="description" content="Visit Maniratn Jewellers in Virar West, Maharashtra. Get showroom timings, Google Maps directions, phone contact, WhatsApp concierge & book private bridal jewelry consultations." />
+        <meta name="keywords" content="Maniratn Jewellers address, contact jeweller Virar, jewellery showroom timings, book jewellery appointment Virar, jewellery shop contact number Virar" />
+        <meta property="og:title" content="Visit Our Showroom — Maniratn Jewellers Virar" />
+        <meta property="og:description" content="Visit Maniratn Jewellers in Virar West, Maharashtra. Get showroom timings, Google Maps directions, phone contact, WhatsApp concierge & book private bridal jewelry consultations." />
+        <meta property="og:url" content="https://maniratnjewellers.com/contact" />
+        <meta name="twitter:title" content="Visit Our Showroom — Maniratn Jewellers Virar" />
+        <meta name="twitter:description" content="Visit Maniratn Jewellers in Virar West, Maharashtra. Get showroom timings, Google Maps directions, phone contact, WhatsApp concierge & book private bridal jewelry consultations." />
+    </Head>
 
     <CustomCursor />
     <TheNav current-page="contact" hero-variant="light" />

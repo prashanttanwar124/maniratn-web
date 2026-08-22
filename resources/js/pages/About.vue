@@ -226,7 +226,16 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <Head title="About — Maniratn Jewellers" />
+    <Head>
+        <title>Our Story & Craftsmanship Since 2007 — Maniratn Jewellers</title>
+        <meta name="description" content="Discover the legacy of Maniratn Jewellers since 2007. Built on uncompromised purity, BIS 916 hallmarking, master goldsmith craftsmanship, and multigenerational customer trust in Virar." />
+        <meta name="keywords" content="about Maniratn Jewellers, legacy jeweller Virar, BIS hallmarking standard, master karigars, custom jewellery design, jewellery craftsmanship" />
+        <meta property="og:title" content="Our Story & Craftsmanship Since 2007 — Maniratn Jewellers" />
+        <meta property="og:description" content="Discover the legacy of Maniratn Jewellers since 2007. Built on uncompromised purity, BIS 916 hallmarking, master goldsmith craftsmanship, and multigenerational customer trust in Virar." />
+        <meta property="og:url" content="https://maniratnjewellers.com/about" />
+        <meta name="twitter:title" content="Our Story & Craftsmanship Since 2007 — Maniratn Jewellers" />
+        <meta name="twitter:description" content="Discover the legacy of Maniratn Jewellers since 2007. Built on uncompromised purity, BIS 916 hallmarking, master goldsmith craftsmanship, and multigenerational customer trust in Virar." />
+    </Head>
 
     <CustomCursor />
     <TheNav current-page="about" hero-variant="light" />

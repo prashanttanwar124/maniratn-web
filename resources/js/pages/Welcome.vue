@@ -553,7 +553,16 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <Head title="Maniratn Jewellers — Since 2007" />
+    <Head>
+        <title>Maniratn Jewellers — BIS 916 Hallmarked Gold, Diamond & Bridal Jewellery | Virar</title>
+        <meta name="description" content="Discover exquisite BIS 916 Hallmarked Gold, Certified Diamonds & Antique Bridal Jewellery at Maniratn Jewellers, Virar. Certified purity, transparent pricing & heirloom designs since 2007." />
+        <meta name="keywords" content="Maniratn Jewellers, jewellery shop in Virar, gold jewellery Virar, 916 hallmarked gold, diamond bridal necklace, gold rate today Virar, antique temple jewellery, gold savings scheme Virar" />
+        <meta property="og:title" content="Maniratn Jewellers — BIS 916 Hallmarked Gold, Diamond & Bridal Jewellery | Virar" />
+        <meta property="og:description" content="Discover exquisite BIS 916 Hallmarked Gold, Certified Diamonds & Antique Bridal Jewellery at Maniratn Jewellers, Virar. Certified purity, transparent pricing & heirloom designs since 2007." />
+        <meta property="og:url" content="https://maniratnjewellers.com" />
+        <meta name="twitter:title" content="Maniratn Jewellers — BIS 916 Hallmarked Gold, Diamond & Bridal Jewellery | Virar" />
+        <meta name="twitter:description" content="Discover exquisite BIS 916 Hallmarked Gold, Certified Diamonds & Antique Bridal Jewellery at Maniratn Jewellers, Virar. Certified purity, transparent pricing & heirloom designs since 2007." />
+    </Head>
 
     <CustomCursor />
     <TheNav current-page="home" hero-variant="dark" />
