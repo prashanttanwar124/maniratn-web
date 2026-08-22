@@ -204,66 +204,58 @@
 
         <!-- Structured Data / JSON-LD Schema -->
         <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "JewelryStore",
-            "@id": "https://maniratnjewellers.com/#store",
-            "name": "Maniratn Jewellers",
-            "legalName": "Maniratn Jewellers",
-            "image": "{{ asset('favicon.png') }}",
-            "description": "Exclusive BIS Hallmarked 916 Gold, Certified Diamond, Antique & Silver Jewellery showroom in Virar, Maharashtra since 2007.",
-            "url": "https://maniratnjewellers.com",
-            "telephone": "+919820112233",
-            "priceRange": "₹₹₹",
-            "currenciesAccepted": "INR",
-            "paymentAccepted": "Cash, Credit Card, Debit Card, UPI, Net Banking",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Virar West",
-                "addressLocality": "Virar",
-                "addressRegion": "Maharashtra",
-                "postalCode": "401303",
-                "addressCountry": "IN"
-            },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 19.4564,
-                "longitude": 72.8116
-            },
-            "openingHoursSpecification": [
-                {
-                    "@type": "OpeningHoursSpecification",
-                    "dayOfWeek": [
-                        "Monday",
-                        "Tuesday",
-                        "Wednesday",
-                        "Thursday",
-                        "Friday",
-                        "Saturday",
-                        "Sunday"
-                    ],
-                    "opens": "10:00",
-                    "closes": "21:00"
-                }
+        {!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'JewelryStore',
+            '@id' => 'https://maniratnjewellers.com/#store',
+            'name' => 'Maniratn Jewellers',
+            'legalName' => 'Maniratn Jewellers',
+            'image' => asset('favicon.png'),
+            'description' => 'Exclusive BIS Hallmarked 916 Gold, Certified Diamond, Antique & Silver Jewellery showroom in Virar, Maharashtra since 2007.',
+            'url' => 'https://maniratnjewellers.com',
+            'telephone' => '+919820112233',
+            'priceRange' => '₹₹₹',
+            'currenciesAccepted' => 'INR',
+            'paymentAccepted' => 'Cash, Credit Card, Debit Card, UPI, Net Banking',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => 'Virar West',
+                'addressLocality' => 'Virar',
+                'addressRegion' => 'Maharashtra',
+                'postalCode' => '401303',
+                'addressCountry' => 'IN'
             ],
-            "sameAs": [
-                "https://www.instagram.com/maniratnjewellers",
-                "https://www.facebook.com/maniratnjewellers"
+            'geo' => [
+                '@type' => 'GeoCoordinates',
+                'latitude' => 19.4564,
+                'longitude' => 72.8116
+            ],
+            'openingHoursSpecification' => [
+                [
+                    '@type' => 'OpeningHoursSpecification',
+                    'dayOfWeek' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                    'opens' => '10:00',
+                    'closes' => '21:00'
+                ]
+            ],
+            'sameAs' => [
+                'https://www.instagram.com/maniratnjewellers',
+                'https://www.facebook.com/maniratnjewellers'
             ]
-        }
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
         </script>
         <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "@id": "https://maniratnjewellers.com/#website",
-            "url": "https://maniratnjewellers.com",
-            "name": "Maniratn Jewellers",
-            "description": "BIS 916 Hallmarked Gold, Certified Diamonds & Antique Bridal Jewellery in Virar since 2007",
-            "publisher": {
-                "@id": "https://maniratnjewellers.com/#store"
-            }
-        }
+        {!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'WebSite',
+            '@id' => 'https://maniratnjewellers.com/#website',
+            'url' => 'https://maniratnjewellers.com',
+            'name' => 'Maniratn Jewellers',
+            'description' => 'BIS 916 Hallmarked Gold, Certified Diamonds & Antique Bridal Jewellery in Virar since 2007',
+            'publisher' => [
+                '@id' => 'https://maniratnjewellers.com/#store'
+            ]
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
         </script>
 
         @vite(['resources/css/app.css', 'resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
