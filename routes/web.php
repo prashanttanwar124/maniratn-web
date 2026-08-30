@@ -27,9 +27,13 @@ Route::get('/robots.txt', function () {
         : abort(404);
 })->name('robots');
 
-// --- CUSTOMER DIGITAL VAULT ---
+// --- CUSTOMER DIGITAL VAULT & VIP ONBOARDING ---
 Route::get('/vault/{token}', [CustomerVaultController::class, 'show'])->name('vault.show');
 Route::get('/vault/{token}/invoices/{invoice}/print', [CustomerVaultController::class, 'printInvoice'])->name('vault.invoice.print');
+Route::get('/join', [\App\Http\Controllers\CustomerOnboardingController::class, 'show'])->name('join');
+Route::post('/join', [\App\Http\Controllers\CustomerOnboardingController::class, 'submit'])->name('join.submit');
+Route::get('/register-vip', [\App\Http\Controllers\CustomerOnboardingController::class, 'show']);
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'Dashboard')->name('dashboard');
