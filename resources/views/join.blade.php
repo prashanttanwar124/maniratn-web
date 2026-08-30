@@ -635,7 +635,6 @@
 
             <form id="onboardingForm" class="form-grid" onsubmit="handleOnboardingSubmit(event)">
                 <input type="hidden" id="tokenInput" name="token" value="{{ $initialCode ?? '' }}">
-                <input type="hidden" id="pinInput" name="pin" value="{{ $initialPin ?? '' }}">
 
                 @if (empty($initialCode))
                 <div class="form-group">
@@ -646,6 +645,23 @@
                     <span class="form-hint">Scan the showroom counter standee QR code to auto-fill.</span>
                 </div>
                 @endif
+
+                @if (empty($initialPin))
+                <div class="form-group" id="pinGroup">
+                    <label class="form-label" for="pinInput">
+                        <span class="label-left">🔢 Counter PIN</span>
+                        <span class="optional-tag">If shown on standee</span>
+                    </label>
+                    <div class="input-wrap">
+                        <input type="text" id="pinInput" class="input-control" placeholder="4-digit PIN (e.g. 4123)" maxlength="10" value="">
+                    </div>
+                    <span class="form-hint">Only required if a Counter Code is printed on your showroom standee.</span>
+                    <div id="pinError" class="form-error"></div>
+                </div>
+                @else
+                <input type="hidden" id="pinInput" name="pin" value="{{ $initialPin }}">
+                @endif
+
 
                 <!-- Full Name -->
                 <div class="form-group">
@@ -824,6 +840,7 @@
             var nameError = document.getElementById('nameError');
             var mobileError = document.getElementById('mobileError');
             var dobError = document.getElementById('dobError');
+            var pinError = document.getElementById('pinError');
             var submitBtn = document.getElementById('submitBtn');
             var btnSpinner = document.getElementById('btnSpinner');
             var btnText = document.getElementById('btnText');
@@ -832,15 +849,17 @@
             nameError.textContent = '';
             mobileError.textContent = '';
             if (dobError) dobError.textContent = '';
+            if (pinError) pinError.textContent = '';
 
             var token = document.getElementById('tokenInput').value || (document.getElementById('manualToken') ? document.getElementById('manualToken').value : '');
-            var pin = document.getElementById('pinInput').value || '';
+            var pin = document.getElementById('pinInput') ? document.getElementById('pinInput').value.trim() : '';
             var name = document.getElementById('nameInput').value.trim();
             var mobile = document.getElementById('mobileInput').value.trim();
             var dob = document.getElementById('dobInput').value;
             var anniversary_date = document.getElementById('anniversaryInput').value;
             var city = document.getElementById('cityInput').value.trim();
             var email = document.getElementById('emailInput').value.trim();
+
 
             if (!token) {
                 errorBanner.textContent = 'Missing counter registration token. Please scan the QR standee at the counter.';
@@ -903,9 +922,13 @@
                     document.getElementById('openVaultBtn').setAttribute('href', vaultLink);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else if (response.status === 401) {
+                    if (data.message && data.message.toLowerCase().includes('pin') && pinError) {
+                        pinError.textContent = data.message;
+                    }
                     errorBanner.textContent = data.message || 'Invalid or expired counter code. Please scan the QR standee again.';
                     errorBanner.style.display = 'block';
                 } else if (data.errors) {
+
                     if (data.errors.name) nameError.textContent = data.errors.name[0];
                     if (data.errors.mobile) mobileError.textContent = data.errors.mobile[0];
                     if (data.errors.dob && dobError) dobError.textContent = data.errors.dob[0];
