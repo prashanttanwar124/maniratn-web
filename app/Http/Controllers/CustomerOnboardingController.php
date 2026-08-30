@@ -42,13 +42,14 @@ class CustomerOnboardingController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'mobile' => ['required', 'string', 'max:20'],
             'email' => ['nullable', 'email', 'max:255'],
-            'dob' => ['nullable', 'date'],
+            'dob' => ['required', 'date'],
             'anniversary_date' => ['nullable', 'date'],
             'city' => ['nullable', 'string', 'max:100'],
             'address' => ['nullable', 'string', 'max:500'],
             'pan_no' => ['nullable', 'string', 'max:20'],
             'aadhaar_no' => ['nullable', 'string', 'max:20'],
         ]);
+
 
         $erpBaseUrl = rtrim((string) config('services.erp.url', env('ERP_API_URL', 'http://127.0.0.1:8000')), '/');
 

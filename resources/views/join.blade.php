@@ -21,11 +21,11 @@
     <style>
         :root {
             --bg: #09090b;
-            --surface: #121215;
-            --surface-card: #18181d;
-            --surface-elevated: #22222a;
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-gold: rgba(212, 175, 55, 0.35);
+            --surface: #121216;
+            --surface-card: #17171e;
+            --surface-elevated: #20202a;
+            --border-subtle: rgba(255, 255, 255, 0.1);
+            --border-gold: rgba(212, 175, 55, 0.38);
             --gold-primary: #d4af37;
             --gold-light: #f3e5ab;
             --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #aa771c 100%);
@@ -33,7 +33,7 @@
             --text-secondary: #94a3b8;
             --text-muted: #64748b;
             --accent-green: #10b981;
-            --accent-red: #ef4444;
+            --accent-red: #f87171;
         }
 
         * {
@@ -58,7 +58,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(9, 9, 11, 0.94);
+            background: rgba(9, 9, 11, 0.95);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border-subtle);
@@ -66,7 +66,7 @@
         }
 
         .header-inner {
-            max-width: 600px;
+            max-width: 540px;
             margin: 0 auto;
             display: flex;
             align-items: center;
@@ -111,7 +111,7 @@
         }
 
         .main-container {
-            max-width: 600px;
+            max-width: 540px;
             margin: 0 auto;
             padding: 1.25rem 1rem;
         }
@@ -120,12 +120,12 @@
         .onboarding-hero {
             background: var(--surface);
             border: 1px solid var(--border-subtle);
-            border-radius: 0.85rem;
-            padding: 1.5rem;
+            border-radius: 1rem;
+            padding: 1.5rem 1.25rem;
             margin-bottom: 1.25rem;
             position: relative;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-            background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+            background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.1) 0%, transparent 75%);
         }
 
         .hero-top {
@@ -133,7 +133,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 0.75rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             padding-bottom: 0.65rem;
         }
 
@@ -168,7 +168,7 @@
             font-weight: 800;
             color: #ffffff;
             line-height: 1.2;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
         }
 
         .hero-desc {
@@ -179,110 +179,121 @@
 
         /* Form Controls */
         .form-grid {
-            display: grid;
-            gap: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
             margin-top: 1.25rem;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 0.35rem;
-        }
-
-        .form-group.col-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.75rem;
+            gap: 0.4rem;
         }
 
         .form-label {
-            font-size: 0.72rem;
-            font-weight: 600;
+            font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .form-label span.req {
+        .form-label .req {
             color: var(--gold-primary);
+            font-weight: 800;
+        }
+
+        .form-label .optional-tag {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: normal;
         }
 
         .input-wrap {
             position: relative;
             display: flex;
             align-items: center;
+            width: 100%;
         }
 
         .input-prefix {
             position: absolute;
-            left: 0.85rem;
-            font-size: 0.82rem;
+            left: 0.95rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--gold-primary);
             pointer-events: none;
             font-family: 'Outfit', sans-serif;
+            z-index: 2;
         }
 
         .input-control {
             width: 100%;
+            height: 48px;
             background: var(--surface-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 0.55rem;
-            padding: 0.75rem 0.85rem;
+            border-radius: 0.65rem;
+            padding: 0 0.95rem;
             color: #ffffff;
-            font-size: 0.88rem;
+            font-size: 16px; /* Prevents auto-zoom on iPhone */
             font-family: inherit;
             outline: none;
-            transition: all 0.15s ease;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+            color-scheme: dark; /* Dark mode native calendar popup */
         }
 
         .input-control:focus {
             border-color: var(--gold-primary);
-            box-shadow: 0 0 0 1px var(--gold-primary);
-            background: #1c1c22;
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.25);
+            background: #1d1d26;
         }
 
         .input-control.with-prefix {
-            padding-left: 2.8rem;
+            padding-left: 3.1rem;
             font-family: 'Outfit', monospace;
             font-weight: 600;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
         }
 
         .form-hint {
-            font-size: 0.68rem;
+            font-size: 0.72rem;
             color: var(--text-muted);
-            margin-top: 0.15rem;
+            line-height: 1.35;
         }
 
         .form-error {
-            font-size: 0.72rem;
+            font-size: 0.74rem;
             color: var(--accent-red);
-            margin-top: 0.2rem;
-            font-weight: 500;
+            margin-top: 0.15rem;
+            font-weight: 600;
         }
 
         /* Gold Submit Button */
         .btn-gold {
             width: 100%;
+            height: 52px;
             background: var(--gold-gradient);
             color: #09090b;
             border: none;
-            border-radius: 0.6rem;
-            padding: 0.88rem 1.25rem;
+            border-radius: 0.75rem;
             font-family: 'Outfit', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 700;
-            letter-spacing: 0.04em;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            margin-top: 0.75rem;
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+            margin-top: 0.5rem;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
             transition: transform 0.1s ease, filter 0.15s ease;
         }
 
@@ -301,9 +312,9 @@
         }
 
         .spinner {
-            width: 16px;
-            height: 16px;
-            border: 2px solid #09090b;
+            width: 18px;
+            height: 18px;
+            border: 2.5px solid #09090b;
             border-top-color: transparent;
             border-radius: 50%;
             animation: spin 0.6s linear infinite;
@@ -385,13 +396,13 @@
         .perk-card {
             background: var(--surface);
             border: 1px solid var(--border-subtle);
-            border-radius: 0.6rem;
-            padding: 0.85rem 0.65rem;
+            border-radius: 0.65rem;
+            padding: 0.85rem 0.5rem;
             text-align: center;
         }
 
         .perk-icon {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             margin-bottom: 0.25rem;
             display: block;
         }
@@ -412,13 +423,14 @@
 
         .error-banner {
             display: none;
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-radius: 0.55rem;
-            padding: 0.75rem 1rem;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            border-radius: 0.65rem;
+            padding: 0.85rem 1rem;
             margin-bottom: 1rem;
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             color: #fca5a5;
+            font-weight: 500;
         }
 
         .footer-note {
@@ -457,10 +469,10 @@
         <!-- FORM SECTION -->
         <section id="formSection" class="onboarding-hero">
             <div class="hero-top">
-                <span class="hero-label">👑 Walk-In VIP Onboarding</span>
+                <span class="hero-label">👑 VIP Walk-In Registration</span>
                 <span class="verified-standee">
                     <span class="status-dot"></span>
-                    Verified Counter Standee
+                    Verified Showroom Standee
                 </span>
             </div>
 
@@ -475,7 +487,9 @@
 
                 @if (empty($initialCode))
                 <div class="form-group">
-                    <label class="form-label" for="manualToken">Counter Token <span class="req">*</span></label>
+                    <label class="form-label" for="manualToken">
+                        <span>Counter Token <span class="req">*</span></span>
+                    </label>
                     <input type="text" id="manualToken" class="input-control" placeholder="karatsetu_..." value="{{ $initialCode ?? '' }}" required>
                     <span class="form-hint">Scan the showroom counter standee QR code to auto-fill.</span>
                 </div>
@@ -483,48 +497,62 @@
 
                 <!-- Full Name -->
                 <div class="form-group">
-                    <label class="form-label" for="nameInput">Full Name <span class="req">*</span></label>
+                    <label class="form-label" for="nameInput">
+                        <span>Full Name <span class="req">*</span></span>
+                    </label>
                     <input type="text" id="nameInput" class="input-control" placeholder="e.g. Rajesh S. Sharma" required autocomplete="name">
                     <div id="nameError" class="form-error"></div>
                 </div>
 
                 <!-- Mobile Number -->
                 <div class="form-group">
-                    <label class="form-label" for="mobileInput">Mobile Number <span class="req">*</span></label>
+                    <label class="form-label" for="mobileInput">
+                        <span>Mobile Number <span class="req">*</span></span>
+                    </label>
                     <div class="input-wrap">
                         <span class="input-prefix">+91</span>
                         <input type="tel" id="mobileInput" class="input-control with-prefix" placeholder="98XXXXXXXX" maxlength="10" required autocomplete="tel" oninput="formatMobile(this)">
                     </div>
-                    <span class="form-hint">Used for your Digital Vault passbook and WhatsApp invoice updates.</span>
+                    <span class="form-hint">For your Digital Vault passbook and WhatsApp invoice delivery.</span>
                     <div id="mobileError" class="form-error"></div>
                 </div>
 
-                <!-- Birthday & Anniversary in 2 Columns -->
-                <div class="form-group col-2">
-                    <div>
-                        <label class="form-label" for="dobInput">Birthday 🎂 (Optional)</label>
-                        <input type="date" id="dobInput" class="input-control">
-                        <span class="form-hint">Special birthday gold vouchers.</span>
-                    </div>
-
-                    <div>
-                        <label class="form-label" for="anniversaryInput">Anniversary 💍 (Optional)</label>
-                        <input type="date" id="anniversaryInput" class="input-control">
-                        <span class="form-hint">Anniversary gift rewards.</span>
-                    </div>
+                <!-- Birthday (REQUIRED) -->
+                <div class="form-group">
+                    <label class="form-label" for="dobInput">
+                        <span>Date of Birth 🎂 <span class="req">*</span></span>
+                    </label>
+                    <input type="date" id="dobInput" class="input-control" required>
+                    <span class="form-hint">Required for your exclusive birthday gold discount voucher.</span>
+                    <div id="dobError" class="form-error"></div>
                 </div>
 
-                <!-- City & Email in 2 Columns -->
-                <div class="form-group col-2">
-                    <div>
-                        <label class="form-label" for="cityInput">City / Location</label>
-                        <input type="text" id="cityInput" class="input-control" placeholder="e.g. Virar West" value="Virar">
-                    </div>
+                <!-- Wedding Anniversary (Optional) -->
+                <div class="form-group">
+                    <label class="form-label" for="anniversaryInput">
+                        <span>Wedding Anniversary 💍</span>
+                        <span class="optional-tag">Optional</span>
+                    </label>
+                    <input type="date" id="anniversaryInput" class="input-control">
+                    <span class="form-hint">Celebrate your special day with anniversary rewards.</span>
+                </div>
 
-                    <div>
-                        <label class="form-label" for="emailInput">Email Address (Optional)</label>
-                        <input type="email" id="emailInput" class="input-control" placeholder="name@example.com" autocomplete="email">
-                    </div>
+                <!-- City / Town -->
+                <div class="form-group">
+                    <label class="form-label" for="cityInput">
+                        <span>City / Town</span>
+                        <span class="optional-tag">Optional</span>
+                    </label>
+                    <input type="text" id="cityInput" class="input-control" placeholder="e.g. Virar West / Mumbai" value="Virar">
+                </div>
+
+                <!-- Email Address -->
+                <div class="form-group">
+                    <label class="form-label" for="emailInput">
+                        <span>Email Address</span>
+                        <span class="optional-tag">Optional</span>
+                    </label>
+                    <input type="email" id="emailInput" class="input-control" placeholder="name@example.com" autocomplete="email">
                 </div>
 
                 <!-- Submit Button -->
@@ -577,20 +605,20 @@
         <div class="perks-grid">
             <div class="perk-card">
                 <span class="perk-icon">🔐</span>
-                <div class="perk-title">Digital Gold Vault</div>
-                <div class="perk-desc">All your purchases, HUID hallmarking, and invoices on your phone 24/7.</div>
+                <div class="perk-title">Digital Vault</div>
+                <div class="perk-desc">All purchases, HUID hallmarking, & bills on your phone.</div>
             </div>
 
             <div class="perk-card">
                 <span class="perk-icon">📈</span>
                 <div class="perk-title">Live Valuation</div>
-                <div class="perk-desc">Real-time daily valuation of your gold & silver portfolio.</div>
+                <div class="perk-desc">Live daily valuation of your gold jewellery portfolio.</div>
             </div>
 
             <div class="perk-card">
                 <span class="perk-icon">🎁</span>
                 <div class="perk-title">VIP Rewards</div>
-                <div class="perk-desc">Special making charge discounts and festive gift surprises.</div>
+                <div class="perk-desc">Birthday gold vouchers and festive surprises.</div>
             </div>
         </div>
 
@@ -618,6 +646,7 @@
             var errorBanner = document.getElementById('errorBanner');
             var nameError = document.getElementById('nameError');
             var mobileError = document.getElementById('mobileError');
+            var dobError = document.getElementById('dobError');
             var submitBtn = document.getElementById('submitBtn');
             var btnSpinner = document.getElementById('btnSpinner');
             var btnText = document.getElementById('btnText');
@@ -625,6 +654,7 @@
             errorBanner.style.display = 'none';
             nameError.textContent = '';
             mobileError.textContent = '';
+            if (dobError) dobError.textContent = '';
 
             var token = document.getElementById('tokenInput').value || (document.getElementById('manualToken') ? document.getElementById('manualToken').value : '');
             var pin = document.getElementById('pinInput').value || '';
@@ -648,6 +678,11 @@
 
             if (!mobile || mobile.length !== 10) {
                 mobileError.textContent = 'Please enter a valid 10-digit mobile number.';
+                return;
+            }
+
+            if (!dob) {
+                if (dobError) dobError.textContent = 'Please select your Date of Birth for birthday rewards.';
                 return;
             }
 
@@ -696,6 +731,7 @@
                 } else if (data.errors) {
                     if (data.errors.name) nameError.textContent = data.errors.name[0];
                     if (data.errors.mobile) mobileError.textContent = data.errors.mobile[0];
+                    if (data.errors.dob && dobError) dobError.textContent = data.errors.dob[0];
                     errorBanner.textContent = 'Please correct the highlighted fields.';
                     errorBanner.style.display = 'block';
                 } else {

@@ -33,6 +33,7 @@ test('it forwards onboarding submission to erp api successfully', function () {
         'token' => 'karatsetu_test123',
         'name' => 'Aarav Mehta',
         'mobile' => '9820012345',
+        'dob' => '1995-05-15',
         'city' => 'Mumbai',
     ]);
 
@@ -58,7 +59,9 @@ test('it passes through error from erp api when token is invalid', function () {
         'token' => 'invalid_token',
         'name' => 'Aarav Mehta',
         'mobile' => '9820012345',
+        'dob' => '1995-05-15',
     ]);
+
 
     $response->assertStatus(401)
         ->assertJson([
