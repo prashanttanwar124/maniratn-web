@@ -622,11 +622,19 @@
             </div>
         </div>
 
-        <div class="footer-note">
+        <!-- Footer / Powered by KaratSetu -->
+        <footer class="footer-note">
             <p><strong>Maniratn Jewellers</strong> • Fine Gold & Diamond Jewellery</p>
-            <p>Bolinj Rd, Gokul Twp, Virar West, Maharashtra 401303 • +91 98928 20518</p>
-        </div>
+            <p style="margin-top: 0.25rem;">Bolinj Rd, Gokul Twp, Virar West, Maharashtra 401303 • +91 98928 20518</p>
+            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+                <p style="font-size: 0.72rem; color: #a1a1aa;">© {{ date('Y') }} Maniratn Jewellers · All Rights Reserved</p>
+                <p style="margin-top: 0.35rem; font-size: 0.72rem; color: #71717a;">
+                    Digital Vault & ERP Technology Powered by <a href="https://karatsetu.com/" target="_blank" rel="noopener" style="color: #d4af37; font-weight: 600; text-decoration: none;">KaratSetu</a>
+                </p>
+            </div>
+        </footer>
     </main>
+
 
     <script>
         function formatMobile(input) {
