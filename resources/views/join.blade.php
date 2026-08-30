@@ -4,10 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Join Maniratn Privé — VIP Walk-in Registration & Digital Vault</title>
+    <title>Join Maniratn VIP Club — Walk-in Registration & Digital Vault</title>
     <meta name="robots" content="noindex, nofollow">
     <meta name="description" content="Register your VIP membership with Maniratn Jewellers for instant Smart Digital Gold Vault, certificates, and anniversary privileges.">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -596,7 +597,7 @@
                 </span>
             </a>
             <div class="vip-header-badge">
-                ✨ PRIVÉ CLUB
+                ✨ VIP CLUB
             </div>
         </div>
     </header>
@@ -618,11 +619,12 @@
             </div>
 
             <h1 class="hero-title">
-                Join <span class="hero-title-gold">Maniratn Privé</span>
+                Join <span class="hero-title-gold">Maniratn VIP Club</span>
             </h1>
             <p class="hero-desc">
                 Register in 30 seconds for your personal <strong>Smart Digital Gold Vault</strong>, lifetime jewellery passbook, and festive rewards.
             </p>
+
 
             <!-- Value Props Badges -->
             <div class="value-pills">
@@ -733,7 +735,7 @@
                 </div>
 
                 <h1 class="hero-title">
-                    Welcome to <span class="hero-title-gold">Privé!</span>
+                    Welcome to <span class="hero-title-gold">VIP Club!</span>
                 </h1>
                 <p class="hero-desc" id="successCustomerMessage">
                     Your exclusive membership and Smart Digital Gold Vault have been created.
@@ -743,10 +745,11 @@
                 <div class="vip-card-preview">
                     <div class="vip-card-badge">
                         <span>MANIRATN JEWELLERS</span>
-                        <span style="color: var(--gold-light);">💎 PRIVÉ VIP</span>
+                        <span style="color: var(--gold-light);">💎 VIP GOLD MEMBER</span>
                     </div>
                     <div id="cardHolderName" class="vip-card-name">Customer Name</div>
                     <div id="cardHolderPhone" class="vip-card-phone">+91 98XXXXXXXX</div>
+
 
                     <div class="vip-card-bottom">
                         <div>

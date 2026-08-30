@@ -10,8 +10,9 @@ test('it renders the vip join onboarding page', function () {
     $response->assertOk()
         ->assertViewIs('join')
         ->assertSee('karatsetu_test123')
-        ->assertSee('Join Maniratn Privé');
+        ->assertSee('Join Maniratn VIP Club');
 });
+
 
 
 test('it forwards onboarding submission to erp api successfully', function () {

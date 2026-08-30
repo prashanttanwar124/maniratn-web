@@ -65,10 +65,11 @@ class CustomerOnboardingController extends Controller
 
                 return response()->json([
                     'success' => true,
-                    'message' => $data['message'] ?? 'Welcome to Maniratn Privé! Your membership is active.',
+                    'message' => $data['message'] ?? 'Welcome to Maniratn VIP Club! Your membership is active.',
                     'customer' => $data['customer'] ?? [],
                     'vault_url' => $localVaultUrl,
                 ], 201);
+
             }
 
             $status = $response->status();
