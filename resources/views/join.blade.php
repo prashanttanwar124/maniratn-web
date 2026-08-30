@@ -375,29 +375,27 @@
             gap: 0.3rem;
         }
 
-        /* Gold Submit Button with Shimmer Sweep */
+        /* Gold Submit Button with Refined Luxury Styling */
         .btn-gold {
             position: relative;
             width: 100%;
-            height: 54px;
+            height: 48px;
             background: var(--gold-gradient);
             color: #070908;
             border: none;
-            border-radius: 0.85rem;
+            border-radius: 0.75rem;
             font-family: 'Outfit', sans-serif;
-            font-size: 0.96rem;
-            font-weight: 900;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: none;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
             margin-top: 0.65rem;
-            box-shadow: 
-                0 6px 25px rgba(212, 175, 55, 0.35),
-                0 0 15px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 4px 18px rgba(212, 175, 55, 0.28);
             transition: transform 0.1s ease, filter 0.15s ease, box-shadow 0.15s ease;
             overflow: hidden;
         }
@@ -412,7 +410,7 @@
             background: linear-gradient(
                 60deg,
                 transparent 30%,
-                rgba(255, 255, 255, 0.45) 50%,
+                rgba(255, 255, 255, 0.35) 50%,
                 transparent 70%
             );
             transform: rotate(25deg);
@@ -426,12 +424,12 @@
         }
 
         .btn-gold:hover {
-            filter: brightness(1.1);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.45);
+            filter: brightness(1.08);
+            box-shadow: 0 6px 22px rgba(212, 175, 55, 0.38);
         }
 
         .btn-gold:active {
-            transform: scale(0.98);
+            transform: scale(0.985);
         }
 
         .btn-gold:disabled {
@@ -439,6 +437,7 @@
             cursor: not-allowed;
             filter: none;
         }
+
 
         .spinner {
             width: 18px;
@@ -720,8 +719,9 @@
                 <!-- Submit Button -->
                 <button type="submit" id="submitBtn" class="btn-gold">
                     <span id="btnSpinner" class="spinner" style="display: none;"></span>
-                    <span id="btnText">✨ ACTIVATE VIP PASS & DIGITAL VAULT</span>
+                    <span id="btnText">✨ Activate VIP Pass & Digital Vault</span>
                 </button>
+
             </form>
         </section>
 
@@ -918,8 +918,9 @@
             } finally {
                 submitBtn.disabled = false;
                 btnSpinner.style.display = 'none';
-                btnText.textContent = '✨ ACTIVATE VIP PASS & DIGITAL VAULT';
+                btnText.textContent = '✨ Activate VIP Pass & Digital Vault';
             }
+
         }
     </script>
 </body>
