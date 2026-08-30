@@ -8,12 +8,11 @@ test('it renders the vip join onboarding page', function () {
     $response = get(route('join', ['code' => 'karatsetu_test123', 'pin' => '4123']));
 
     $response->assertOk()
-        ->assertInertia(fn ($page) => $page
-            ->component('Join')
-            ->has('initialCode')
-            ->has('initialPin')
-        );
+        ->assertViewIs('join')
+        ->assertSee('karatsetu_test123')
+        ->assertSee('Join Maniratn Privé');
 });
+
 
 test('it forwards onboarding submission to erp api successfully', function () {
     Http::fake([

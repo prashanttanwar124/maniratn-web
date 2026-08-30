@@ -11,14 +11,14 @@ use Inertia\Response;
 class CustomerOnboardingController extends Controller
 {
     /**
-     * Display the VIP Customer Onboarding registration page.
+     * Display the VIP Customer Onboarding registration page (Pure lightweight Blade view matching vault).
      */
-    public function show(Request $request): Response
+    public function show(Request $request)
     {
         $code = (string) ($request->query('code') ?: $request->query('token') ?: '');
         $pin = (string) ($request->query('pin') ?: '');
 
-        return Inertia::render('Join', [
+        return view('join', [
             'initialCode' => $code,
             'initialPin' => $pin,
             'store' => [
@@ -29,6 +29,7 @@ class CustomerOnboardingController extends Controller
             ],
         ]);
     }
+
 
     /**
      * Submit walk-in customer details to ERP Website API.
