@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Vault Inactive | {{ $store['name'] ?? 'Maniratn Jewellers' }}</title>
     
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon_v2.svg">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon_v2-96x96.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon_v2-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon_v2-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_v2-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_v2-16x16.png">
+    <link rel="shortcut icon" href="/favicon_v2.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon_v2.png">
     <meta name="theme-color" content="#5b0d13">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

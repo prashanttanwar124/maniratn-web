@@ -166,13 +166,14 @@
             }
         </style>
 
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-        <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="shortcut icon" href="/favicon.ico">
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/svg+xml" href="/favicon_v2.svg">
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon_v2-96x96.png">
+        <link rel="icon" type="image/png" sizes="48x48" href="/favicon_v2-48x48.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/favicon_v2-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon_v2-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon_v2-16x16.png">
+        <link rel="shortcut icon" href="/favicon_v2.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon_v2.png">
         <link rel="manifest" href="/site.webmanifest">
         <meta name="theme-color" content="#5b0d13">
 
@@ -196,13 +197,13 @@
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:title" content="Maniratn Jewellers — BIS 916 Hallmarked Gold & Bridal Jewellery">
         <meta property="og:description" content="Discover timeless elegance with BIS 916 Hallmarked Gold, Certified Diamonds & Handcrafted Bridal Jewellery at Maniratn Jewellers Virar.">
-        <meta property="og:image" content="{{ asset('favicon.png') }}">
+        <meta property="og:image" content="{{ asset('favicon_v2.png') }}">
 
         <!-- Twitter Cards -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Maniratn Jewellers — BIS 916 Hallmarked Gold & Bridal Jewellery">
         <meta name="twitter:description" content="Discover timeless elegance with BIS 916 Hallmarked Gold, Certified Diamonds & Handcrafted Bridal Jewellery at Maniratn Jewellers Virar.">
-        <meta name="twitter:image" content="{{ asset('favicon.png') }}">
+        <meta name="twitter:image" content="{{ asset('favicon_v2.png') }}">
 
         <!-- Structured Data / JSON-LD Schema -->
         <script type="application/ld+json">
@@ -212,7 +213,7 @@
             '@id' => 'https://maniratnjewellers.com/#store',
             'name' => 'Maniratn Jewellers',
             'legalName' => 'Maniratn Jewellers',
-            'image' => asset('favicon.png'),
+            'image' => asset('favicon_v2.png'),
             'description' => 'Exclusive BIS Hallmarked 916 Gold, Certified Diamond, Antique & Silver Jewellery showroom in Virar, Maharashtra since 2007.',
             'url' => 'https://maniratnjewellers.com',
             'telephone' => '+919820112233',
